@@ -1,0 +1,6 @@
+
+** Nerd Stuff
+
+This blog is HEAVILY based on [[https://github.com/patrickt/patrickt.github.io][@patrickt]] (initial version lifted verbatim from him, I just updated licenses and workflows).
+
+The posts on this blog are licensed under the Creative Commons [[https://creativecommons.org/licenses/by-sa/4.0/][BY-SA 4.0]] license. I built this blog using [[https://jaspervdj.be/hakyll/][Hakyll]], [[https://orgmode.org][Org-mode]], [[https://github.com/edwardtufte/tufte-css][Edward Tufte’s CSS]], and [[https://pages.github.com][GitHub Pages]]. You can take a look at [[https://github.com/Arusekk/arusekk.github.io][the source]] if you’re curious as to how it works. There is no support for comments on this blog, as all its pages are statically generated; if you truly feel compelled to comment, there are many news aggregators that provide you with such a space.

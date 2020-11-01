@@ -1,0 +1,7 @@
+.DS_Store
+dist
+dist-newstyle
+_cache
+_site
+gh-pages
+gh-pages.pub

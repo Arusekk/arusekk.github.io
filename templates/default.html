@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="author" content="Arusekk"/>
+        <link rel="stylesheet" type="text/css" href="/stylesheet.css" />
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <title>
+            Arusekk blog: $title$
+        </title>
+    </head>
+
+
+    <body>
+        <div id="header">
+            <a href="/">home</a>
+            <a href="/archive.html">archive</a>
+            <a href="/about.html">about</a>
+            <a href="/contact.html">contact</a>
+            <a href="/atom.xml">feed</a>
+        </div>
+        <div id="content">
+            <article>
+                <h1>$title$</h1>
+                $if(date)$
+                  <h2>$date$</h2>
+                $endif$
+                <section>
+                    $body$
+                </section>
+            </article>
+        </div>
+    </body>
+
+</html>
