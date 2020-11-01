@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <title>Arusekk blog</title>
+    <link href="https://arusekk.github.io/atom.xml" rel="self" />
+    <link href="https://arusekk.github.io" />
+    <id>https://arusekk.github.io/atom.xml</id>
+    <author>
+        <name>Arusekk</name>
+        <email>arek_koz@o2.pl</email>
+    </author>
+    <updated>Unknown</updated>
+    
+</feed>
