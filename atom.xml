@@ -8,6 +8,14 @@
         <name>Arusekk</name>
         <email>arek_koz@o2.pl</email>
     </author>
-    <updated>Unknown</updated>
-    
+    <updated>2020-11-04T00:00:00Z</updated>
+    <entry>
+    <title>Overencryption killing interplanetary networks</title>
+    <link href="https://arusekk.github.io/posts/overencryption-killing-interplanetary-networks.html" />
+    <id>https://arusekk.github.io/posts/overencryption-killing-interplanetary-networks.html</id>
+    <published>2020-11-04T00:00:00Z</published>
+    <updated>2020-11-04T00:00:00Z</updated>
+    <summary type="html"><![CDATA[Complaints about wide adoption of HTTPS and its design goals]]></summary>
+</entry>
+
 </feed>
