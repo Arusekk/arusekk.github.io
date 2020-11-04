@@ -1,3 +1,5 @@
+I am a student of joined Computer Science and Math.  I [[https://github.com/Arusekk#js-contribution-activity][enjoy]] libre software.
+Living in Wrocław, Poland.  Come see this beautiful city in better times!
 
 ** Nerd Stuff
 
