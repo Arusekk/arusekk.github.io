@@ -8,8 +8,16 @@
         <name>Arusekk</name>
         <email>arek_koz@o2.pl</email>
     </author>
-    <updated>2020-11-04T00:00:00Z</updated>
+    <updated>2021-01-19T00:00:00Z</updated>
     <entry>
+    <title>An adventure with Acer Swift</title>
+    <link href="https://arusekk.github.io/posts/an-adventure-with-acer-swift.html" />
+    <id>https://arusekk.github.io/posts/an-adventure-with-acer-swift.html</id>
+    <published>2021-01-19T00:00:00Z</published>
+    <updated>2021-01-19T00:00:00Z</updated>
+    <summary type="html"><![CDATA[A story of a new laptop and hard obstacles in the way of getting it to work]]></summary>
+</entry>
+<entry>
     <title>Overencryption killing interplanetary networks</title>
     <link href="https://arusekk.github.io/posts/overencryption-killing-interplanetary-networks.html" />
     <id>https://arusekk.github.io/posts/overencryption-killing-interplanetary-networks.html</id>
