@@ -15,9 +15,18 @@ So here are the main things I noticed:
 1. Software designers (or whoever does the things I mean) are very anglocentric.
 They mostly don't care about other languages, even the similar ones,
 not to mention [the exotic][wine-icu] (search for *designed well*).
-The Polish analogue would be "dwie" for two (female).
+Like Hebrew numerals in that article,
+in Polish we also say "dwie" for two (female),
+but "dwóch" for two (male) and "dwa" for two (neutral).
+So a msgid saying `"Only two %s found."` is a 100% bad design.
 
 [wine-icu]: https://www.winehq.org/interview/16
+
+The same goes for having many `%s` in a msgid.
+Hey, GNU printf supports `"%1$s not found because of %2$s"`,
+all non-C languages also have some way to numer the percent-esses.
+And then you can of course translate it to `"%2$s caused no results for %1$s"`
+if it sounds more natural in the target language.
 
 2. English word formation is endemic.
 An example is adjective nominalization.
@@ -62,7 +71,7 @@ I decided that "złożenie", which is "a putting together" or "a handing in",
 misses the meaning and sounds worse.
 
 I also found out about many secret features of Git, like
-git diff --color-words, git pull --autostash
+git diff --color-words / --color-moved, git pull --autostash
 and all the interactive procedures.
 
 Yeah so the best part of translating is the satisfaction
