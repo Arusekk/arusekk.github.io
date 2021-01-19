@@ -31,8 +31,9 @@
 <p>So now it has one. I spent every evening for a month before Christmas on translating it.</p>
 <p>So here are the main things I noticed:</p>
 <ol type="1">
-<li>Software designers (or whoever does the things I mean) are very anglocentric. They mostly don’t care about other languages, even the similar ones, not to mention <a href="https://www.winehq.org/interview/16">the exotic</a> (search for <em>designed well</em>). The Polish analogue would be “dwie” for two (female).</li>
+<li>Software designers (or whoever does the things I mean) are very anglocentric. They mostly don’t care about other languages, even the similar ones, not to mention <a href="https://www.winehq.org/interview/16">the exotic</a> (search for <em>designed well</em>). Like Hebrew numerals in that article, in Polish we also say “dwie” for two (female), but “dwóch” for two (male) and “dwa” for two (neutral). So a msgid saying <code>"Only two %s found."</code> is a 100% bad design.</li>
 </ol>
+<p>The same goes for having many <code>%s</code> in a msgid. Hey, GNU printf supports <code>"%1$s not found because of %2$s"</code>, all non-C languages also have some way to numer the percent-esses. And then you can of course translate it to <code>"%2$s caused no results for %1$s"</code> if it sounds more natural in the target language.</p>
 <ol start="2" type="1">
 <li>English word formation is endemic. An example is adjective nominalization. Many nouns formed from adjectives need to be translated as the whole phrase. They say “laptop” for a laptop computer, “remote” for a remote control (in git “remote” == remote repository, “upstream” == upstream branch), “English” for an English citizen, “television” for television set, “pickle” for pickled cucumber, “glass” for a glass cup, “flat” for a flat apartment, “review” for a review document, “plastic” for plastic material, “composite” for composite material, “wearable” for wearable equipment and so on.</li>
 </ol>
@@ -44,7 +45,7 @@
 <ol start="3" type="1">
 <li>Inventing new words. The basic word of Git is “commit”. Again, this is both a noun and a verb. I chose “zapis” for “a commit” (meaning “a record”/“a save”) and “złożyć” for “to commit” (meaning “put together” or “hand in”). I decided that “złożenie”, which is “a putting together” or “a handing in”, misses the meaning and sounds worse.</li>
 </ol>
-<p>I also found out about many secret features of Git, like git diff –color-words, git pull –autostash and all the interactive procedures.</p>
+<p>I also found out about many secret features of Git, like git diff –color-words / –color-moved, git pull –autostash and all the interactive procedures.</p>
 <p>Yeah so the best part of translating is the satisfaction of it finally being done.</p>
                 </section>
             </article>
