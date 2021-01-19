@@ -39,6 +39,7 @@ In whole Poland ([see][mmkt] [it][nnet] [for][euro] [yourself][mxp]).
 And then I thought that any would do, so I took the cheapest one.
 It happened to be Acer Swift 3 (SF314-42).
 It had quite everything I needed:
+
 - A dedicated power socket.
 - A USBC port, a USB2 port, and a USB3 port.
 - A single jack audio socket.
@@ -47,6 +48,7 @@ It had quite everything I needed:
 - Sharp webcam, NVMe SSD, Ryzen 5, Radeon.
 
 The hardware drawbacks I saw then:
+
 - No RJ45 (LAN / Ethernet or what you call it).
 - Intel Wi-Fi card (nah, it can't be that bad).
 
