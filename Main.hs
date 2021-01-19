@@ -30,7 +30,7 @@ main = hakyll do
       csses <- loadAll "css/*.css"
       makeItem $ unlines $ map itemBody $ tufte : csses
 
-  match "posts/*.org" do
+  match "posts/*.md" do
     route $ setExtension "html"
     compile $
       customPandoc
@@ -64,7 +64,7 @@ main = hakyll do
     route idRoute
     compile $ makeItem @String "arusekk.github.io"
 
-  match "about.org" do
+  match "about.md" do
     route $ setExtension "html"
     compile $
       customPandoc
@@ -72,7 +72,7 @@ main = hakyll do
         >>= loadAndApplyTemplate "templates/default.html" (constField "title" "About Me" <> defaultContext)
         >>= relativizeUrls
 
-  match "contact.org" do
+  match "contact.md" do
     route $ setExtension "html"
     compile $
       customPandoc
