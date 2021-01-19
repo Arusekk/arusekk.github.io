@@ -4,9 +4,6 @@ date: 2020-11-04
 description: Complaints about wide adoption of HTTPS and its design goals
 ---
 
-#+TITLE: Overencryption killing interplanetary networks
-#+DATE: 2020-11-04
-
 As years went by, we tried so hard to push everybody towards encrypting
 everything.  Just in case.  Of course, whenever I see a HTTP (no S here) form
 asking you for password, or credit card details, I don't know whether to be
