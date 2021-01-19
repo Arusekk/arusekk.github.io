@@ -15,6 +15,7 @@ which requires an overnight CPU-heavy update
 
 So I bought a new one.
 I searched online for laptops with the following criteria set:
+
 1. without M$ Windows [malware](https://www.gnu.org/proprietary/malware-microsoft.html) preinstalled,
 2. without Intel CPU, for no particular reason.
 

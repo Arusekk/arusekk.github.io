@@ -11,6 +11,7 @@ So now it has one.
 I spent every evening for a month before Christmas on translating it.
 
 So here are the main things I noticed:
+
 1. Software designers (or whoever does the things I mean) are very anglocentric.
 They mostly don't care about other languages, even the similar ones,
 not to mention [the exotic][wine-icu] (search for *designed well*).
