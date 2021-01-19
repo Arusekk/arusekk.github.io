@@ -24,7 +24,7 @@ I searched online for laptops with the following criteria set:
 just as 'a desktop' came from 'a desk-top PC',
 and I am not willing to talk any ultrabook / hyperbook nonsense,
 though I like 'netbook' as an analogy of a networking notepad.
-See [I translated Git!](i-translated-git.md) for how hard it is
+See [I translated Git!](i-translated-git.html) for how hard it is
 to translate English nominalization of adjectives which is "business as usual".
 
 This narrowed down the search results to circa 30 distinct models.
@@ -100,6 +100,13 @@ Yeah, no chance to have 100% FLOSS on it now.
 
 But whatever. The BIOS was still broken.
 
+I tried to boot to UEFI directly from Linux (I intentionally skipped GNU now,
+since it is a [thin software] from an [answer] to a [SU question]).
+
+[thin software]: https://github.com/adoakley/efi-boot-to-fw-ui
+[answer]: https://superuser.com/a/1547985/400626
+[SU question]: https://superuser.com/questions/519718/linux-on-uefi-how-to-reboot-to-the-uefi-setup-screen-like-windows-8-can
+
 I contacted Acer support on the phone, and the wisest thing they told me
 was to update BIOS, and they sent me a BIOS firmware update.
 It was a zipped EXE,
@@ -121,9 +128,15 @@ And it launched the executable as well (great job, Insyde Corp!).
 But the executable told me that my BIOS is already up to date,
 and that I should go hack myself.
 
-So I hacked that the exe was a 7-zip SFX, extracted it and finally saw
-that there is a file called `properties.ini`, which has tons of description
-on how to tamper with the parameters and e.g. disable the version check.
+So I hacked that the `FH4FR108.exe` was a 7-zip SFX, extracted it,
+and finally saw that there is a file called `properties.ini`,
+which has tons of description on how to tamper with the parameters
+and e.g. disable the version check.
+
+(I lied, I searched online for `H2OFFT-Wx64.exe` and ended up on [SU again]).
+
+[SU again]: https://superuser.com/questions/1496286/how-to-repair-a-broken-bios-setup-utility
+
 
 And it has worked!
 Now my shiny new laptop works again, without me having to install malware on it.

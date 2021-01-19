@@ -81,7 +81,7 @@ Could be used to serve the neutral cacheable content like Wikipedia,
 CDN-delivered stuff, or static content of your favorite homepag^W (you use
 Chrome anyway, so you don't have a homepage or you use a different browser,
 but you keep your tabs open, so you never see it).  And then you could encrypt
-just the elements you really /need/ to encrypt: passwords, credit card numbers
+just the elements you really *need* to encrypt: passwords, credit card numbers
 and probably account/profile details.
 [It's 2020, no one writes HTML that works without scripts anymore.](https://hackernoon.com/how-it-feels-to-learn-javascript-in-2016-d3a717dd577f)
 
