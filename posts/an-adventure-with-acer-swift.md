@@ -122,6 +122,10 @@ in as few as two obvious commands.
 
 [winpe]: https://docs.microsoft.com/en-us/windows-hardware/manufacture/desktop/download-winpe--windows-pe
 
+EDIT: it turns out this is a known method and [no Windows is needed][winpe-archwiki]
+
+[winpe-archwiki]: https://wiki.archlinux.org/index.php/Windows_PE
+
 (And I was in physical pain having to deal with this mirrored commandline.)
 
 I copied over only several files from inside the ISO to a USB stick
