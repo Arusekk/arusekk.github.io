@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8" />
+        <meta name="author" content="Arusekk" />
+        <link rel="stylesheet" type="text/css" href="../stylesheet.css" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>
+            Arusekk blog: Average day of a FLOSS developer
+        </title>
+    </head>
+
+
+    <body>
+        <div id="header">
+            <a href="../">home</a>
+            <a href="../archive.html">archive</a>
+            <a href="../about.html">about</a>
+            <a href="../contact.html">contact</a>
+            <a href="../atom.xml">feed</a>
+        </div>
+        <div id="content">
+            <article>
+                <h1>Average day of a FLOSS developer</h1>
+                
+                  <h2>2021-02-18</h2>
+                
+                <section>
+                    <p>I woke up, ate my breakfast, did some workout with <a href="https://www.stepmania.com">StepMania</a> (a DDR clone, great game, BTW, you should definitely try it, if you like to move), practiced playing music a little on a MIDI keyboard (using QSynth with JACK (managed by Catia) for low latency response).</p>
+<p>I heard that Wine supports GTK3 themes, so I wanted to check it out, but there was none for the latest version, and that lead me to <a href="https://bugs.winehq.org/show_bug.cgi?id=50677">filing a bug</a>.</p>
+<p>Then I worked a little on <a href="https://pwntools.com">pwntools</a>.</p>
+<p>In the afternoon I tried to transcribe (is this the word?) some music, so I installed Lilypond and <a href="https://lists.gnu.org/archive/html/bug-lilypond/2021-02/msg00043.html">found a bug there, too</a>.</p>
+<p>In the evening I worked on rooting my new Xperia XA2, which I will describe in an upcoming blog post.</p>
+<p>It is not that Free/Libre Open Source Software does not work. It works great. And in order to be developed by total strangers, the requirement to keep code quality high is paramount. And whenever you report a bug with a complete simple solution, it gets fixed in seconds. Here are some contributions I made last month:</p>
+<ul>
+<li><a href="https://invent.kde.org/frameworks/ktexteditor/-/merge_requests/91">kate</a> — in vi input mode (I love vim for being so productive) some actions were behaving strange, I decided to take a look at this; one of the errors was <a href="https://invent.kde.org/frameworks/ktexteditor/-/merge_requests/53">already reported</a>, it was enough to check out the repo, comment out git hooks in the tests, find the offending place by grepping for %, then reading some source code (the code is crystally clean if you know what I mean), and fixing a simple off-by-one error. An hour of creative work.</li>
+</ul>
+<ul>
+<li><a href="https://github.com/pkgcore/snakeoil/issues/57">snakeoil</a> — I had a problem, which was <a href="https://github.com/mgorny/smart-live-rebuild/issues/11">reported already</a>, then had its <a href="https://bugs.gentoo.org/745462">blockers analyzed</a>, so that lead me to try porting SnakeOil to pypy. Here I have been ignored for quite long, but still it was surprising to discover that there is only one strict bug preventing enabling pypy support (another bug I filed in this subject was <a href="https://foss.heptapod.net/pypy/pypy/-/issues/3391">pypy/pypy#3391</a>, not realizing that it has already had <a href="https://foss.heptapod.net/pypy/pypy/-/tree/branch/py3.8-reversed-dict">a WIP branch</a>, which I mentioned in my snakeoil pypy support commit).</li>
+</ul>
+<p>Here are some older (from last year, too) I am quite proud of:</p>
+<ul>
+<li><a href="i-translated-git.html">translating git to Polish</a></li>
+<li><a href="https://lore.kernel.org/linux-man/20201201112245.11764-1-arek_koz@o2.pl/">man-pages</a> — fixing a simple typo which prevented me from correctly extracting syscall signatures from second chapter man pages (I guess parsing kernel sources would be better, but whatever)</li>
+<li><a href="https://github.com/stepmania/stepmania/pull/2042">stepmania</a> — and <a href="https://github.com/stepmania/stepmania/pull/2043">the other one</a>, and <a href="https://github.com/stepmania/stepmania/pull/2012">the third one</a>: StepMania community looks very embracing and welcoming.</li>
+</ul>
+<p>Not to mention my first major contributions to FOSS:</p>
+<ul>
+<li><a href="https://github.com/dyne/Tomb/pull/245">tomb</a> — fixing spaces handling in a cryptographic wrapper app</li>
+<li><a href="https://github.com/Gallopsled/pwntools/pull/1224">pwntools</a> — porting it to Python 3, which was a huge undertaking</li>
+</ul>
+<p>I owe really much to Free/Libre Software, and contribute back whenever I can. This is something I really enjoy. FLOSS is pushing this world forward, and the proprietary software companies must fall one day. I expect some of them to drop their flagship products in the near future, and invest their resources in FLOSS development (even contributing to productss being their biggest “competitors”, as their money-oriented business managers would say!).</p>
+<p>Everyone from tech can encourage their employers to donate some tiny fraction of their profit to the products that make it (the profit) possible so cheaply: to the compilers they use, to their <a href="https://xkcd.com/2347/">most useful dependencies</a>, to their most useful infrastructure parts. It will help make these products better and probably even make their maintainers respect your employer.</p>
+                </section>
+            </article>
+        </div>
+    </body>
+
+</html>
