@@ -62,7 +62,7 @@ main = hakyll do
 
   create ["CNAME"] do
     route idRoute
-    compile $ makeItem @String "arusekk.github.io"
+    compile $ makeItem @String "blog.arusekk.pl"
 
   match "about.md" do
     route $ setExtension "html"
