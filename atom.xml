@@ -8,8 +8,16 @@
         <name>Arusekk</name>
         <email>arek_koz@o2.pl</email>
     </author>
-    <updated>2021-02-18T00:00:00Z</updated>
+    <updated>2021-03-23T00:00:00Z</updated>
     <entry>
+    <title>My domain is my castle</title>
+    <link href="https://arusekk.github.io/posts/my-domain-is-my-castle.html" />
+    <id>https://arusekk.github.io/posts/my-domain-is-my-castle.html</id>
+    <published>2021-03-23T00:00:00Z</published>
+    <updated>2021-03-23T00:00:00Z</updated>
+    <summary type="html"><![CDATA[I spent many many days learing how everything domain-related works, and here are my thoughts and the least intuitive facts.]]></summary>
+</entry>
+<entry>
     <title>Average day of a FLOSS developer</title>
     <link href="https://arusekk.github.io/posts/average-day-of-a-floss-developer.html" />
     <id>https://arusekk.github.io/posts/average-day-of-a-floss-developer.html</id>
@@ -40,14 +48,6 @@
     <published>2020-12-27T00:00:00Z</published>
     <updated>2020-12-27T00:00:00Z</updated>
     <summary type="html"><![CDATA[Linguistic digressions on how hard it is to translate stuff]]></summary>
-</entry>
-<entry>
-    <title>Overencryption killing interplanetary networks</title>
-    <link href="https://arusekk.github.io/posts/overencryption-killing-interplanetary-networks.html" />
-    <id>https://arusekk.github.io/posts/overencryption-killing-interplanetary-networks.html</id>
-    <published>2020-11-04T00:00:00Z</published>
-    <updated>2020-11-04T00:00:00Z</updated>
-    <summary type="html"><![CDATA[Complaints about wide adoption of HTTPS and its design goals]]></summary>
 </entry>
 
 </feed>
