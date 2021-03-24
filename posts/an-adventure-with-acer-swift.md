@@ -93,8 +93,9 @@ The things that didn't work OOTB were sound, X server, and touchpad.
 The touchpad still has a 0.001 chance to break \@ boot for no reason.
 
 The X server needed `dri`+`amdgpu` drivers enabled (no surprise here),
-The touchpad needed psmouse and some strange AMD I²C – SODIMM bridge driver
-(no surprise either, but was hard to find `pinctrl_amd` in Kconfig),
+The touchpad needed psmouse and some strange AMD I²C – SMBus bridge driver
+(no surprise either, but was hard to find `pinctrl_amd`,
+`piix4_smbus` and `i2c_piix4` in Kconfig),
 the speakers worked with `snd_hda_intel` universal HD audio driver,
 and the mic apparently had a separate integrated soundcard
 (searching for ALC255 told me that, and it is `snd_soc_dmic`).
