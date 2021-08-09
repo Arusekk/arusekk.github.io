@@ -21,10 +21,10 @@ menu:
       url: /
       weight: 1
     - name: About
-      url: /about
+      url: /about/
       weight: 2
     - name: Contact
-      url: /contact
+      url: /contact/
       weight: 3
     - name: Feed
       url: /posts/index.xml
