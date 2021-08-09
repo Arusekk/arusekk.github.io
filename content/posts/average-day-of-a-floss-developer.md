@@ -67,7 +67,7 @@ Here are some contributions I made last month:
 
 Here are some older (from last year, too) I am quite proud of:
 
-* [translating git to Polish](../i-translated-git/)
+* [translating git to Polish](i-translated-git.md)
 * [man-pages][man] — fixing a simple typo which prevented me
   from correctly extracting syscall signatures from second chapter man pages
   (I guess parsing kernel sources would be better, but whatever)
