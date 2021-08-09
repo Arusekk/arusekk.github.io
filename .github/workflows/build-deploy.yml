@@ -20,6 +20,9 @@ jobs:
       - name: Build
         run:  hugo
 
+      - name: Set CNAME
+        run:  echo blog.arusekk.pl > public/CNAME
+
       - name: Legacy links
         run:  ./mklinks.sh
 
