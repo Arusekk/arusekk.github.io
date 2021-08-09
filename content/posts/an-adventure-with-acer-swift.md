@@ -25,7 +25,7 @@ I searched online for laptops with the following criteria set:
 just as 'a desktop' came from 'a desk-top PC',
 and I am not willing to talk any ultrabook / hyperbook nonsense,
 though I like 'netbook' as an analogy of a networking notepad.
-See [I translated Git!](i-translated-git.html) for how hard it is
+See [I translated Git!](../i-translated-git/) for how hard it is
 to translate English nominalization of adjectives which is "business as usual".
 
 This narrowed down the search results to circa 30 distinct models.
