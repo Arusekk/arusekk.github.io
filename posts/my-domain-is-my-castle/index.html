@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>My domain is my castle | Arusekk blog</title>
+<meta name="keywords" content="" />
+<meta name="description" content="I spent many many days learing how everything domain-related works, and here are my thoughts and the least intuitive facts.">
+<meta name="author" content="">
+<link rel="canonical" href="/posts/my-domain-is-my-castle/" />
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.6cba0d81b5f3f42bb578d49f402ba4175aa72b43def148780b8ad714c957c6f5.css" integrity="sha256-bLoNgbXz9Cu1eNSfQCukF1qnK0Pe8Uh4C4rXFMlXxvU=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.7680afc38aa6b15ddf158a4f3780b7b1f7dde7e91d26f073e6229bb7a0793c92.js" integrity="sha256-doCvw4qmsV3fFYpPN4C3sffd5&#43;kdJvBz5iKbt6B5PJI="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="mask-icon" href="/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<meta name="generator" content="Hugo 0.87.0" />
+<meta property="og:title" content="My domain is my castle" />
+<meta property="og:description" content="I spent many many days learing how everything domain-related works, and here are my thoughts and the least intuitive facts." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/posts/my-domain-is-my-castle/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-03-23T00:00:00&#43;00:00" />
+<meta property="article:modified_time" content="2021-03-23T00:00:00&#43;00:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="My domain is my castle"/>
+<meta name="twitter:description" content="I spent many many days learing how everything domain-related works, and here are my thoughts and the least intuitive facts."/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "/posts/"
+    }
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "My domain is my castle",
+      "item": "/posts/my-domain-is-my-castle/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "My domain is my castle",
+  "name": "My domain is my castle",
+  "description": "I spent many many days learing how everything domain-related works, and here are my thoughts and the least intuitive facts.",
+  "keywords": [
+    
+  ],
+  "articleBody": "So here it is! arusekk.pl is finally mine.\nBuying a domain is straightforward. All I did was find the registry of my favorite TLD (which is .pl for Poland), registry maintained by NASK, reachable at dns.pl.\nThere at the list of registrars I narrowed down the list to those supporting IPv6 domain delegation (I had yet to know what it means, but I thought that it would be better to have it), DNSSEC (which I knew was something important), and that the registrar must be a Polish entity.\nI chose hitme.pl, since they had the lowest prices (not so relevant, since it is a yearly payment anyway), and resisting the temptation to buy a .wroclaw.pl domain, I bought it.\nSide note about e-payments, skip if not interested In Poland, the most secure payment de-facto standard are quick bank transfers, using przelewy24.pl (Polish, formerly also branded dotpay.pl) and payu.com (international), which are the only two major online payment services in Poland, and as far as I can tell, they can be trusted with at least triple-pizza-cost payments.\nIf I could buy a domain with some cryptocurrency, like Ethereum, Monero or the ugly Bitcoin, I would consider it, too, but I do not posess any crypto yet, so I would also have to learn it.\nI hate it when online payments are only possible through PayPal (although I admire that Mr. Elon managed to earn so much with so little effort, and gain so much trust and such a monopoly on e-payments, I hate the astronomical [pun!] fees that PayPal demands from every transaction) or only through credit card. Come on! Demanding access to someone’s all money, even those that they don’t have (in case of a real credit card), for a single transaction is a great abuse of the fusty financial landscape. It’s 2021, let’s finally make use of cryptography, oauth2 and all that jazz.\nThere is also a thing called blik, based on the shared secret protocol (your bank gives you a 6-digit number, you tell the number to the seller, they send the number to the bank, then your bank tells you what the transaction really is, and finally you have to tell your bank that you accept it). The drawback is that most banks only support it in their mobile apps (it is close to impossible to install them on your FOSS +Sailfish OS phone).\nMy own DNS server The first thing I did with my new shiny domain was… delegate it to my own server. I put my old laptop (even older than the one I complained about; the one which only has battery issues and slow CPU, not the one with HDD issues + LCD issues + broken keyboard + broken charger).\nDNS is split in zones, so when you want to know what address www.example.com has, you first ask the root servers, one of them tells you that .com zone is known by the global TLD / gTLD servers, then one of them tells you that .example.com is managed by IANA servers, then finally an IANA server tells you the actual address.\n(this recursive resolving is done by your ISP’s DNS server by default, you can do it too, using dig +trace from bind-tools / bind-utils by ISC, packaged on GNU/Linux or *BSD)\nI used ISC’s BIND9, since it is a widely used open-source DNS server, future-proof enough even to allow defining your own types of DNS records.\nPutting DNS records inside Even if you don’t have your own server, you need to get to know some of the DNS record types. The most important are (in the order of decreasing significance):\n   Record Description     SOA contact info and expiry policy   AAAA an IPv6 address   A an IPv4 address (BTW, it is time for IPv4 to die already)   NS delegating sub-zone elsewhere, most likely multiple for redundancy, also set upstream   CNAME a symbolic link / a pointer (sadly, cannot be combined with most other record types)   MX domain name and priority of mail exchange server, most likely multiple for redundancy   TXT unstructured textual info, mostly used for SPF and DKIM anti-spam mechanisms   DS DNSSEC: hash of key to be used by servers indicated with NS, only set upstream   DNSKEY DNSSEC: (auto-inserted) the actual public key info used by this server to sign the zone   RRSIG DNSSEC: (auto-inserted) signature with the key   NSEC DNSSEC: (auto-inserted) next record in zone (proving non-existence of records lexicographically between two records)   NSEC3 DNSSEC: (auto-inserted) version of the above immune to zone enumeration   NSEC5 DNSSEC: (auto-inserted) [upcoming] version of the above immune to some other “vulnerability”   TLSA DANE: quite a new feature — DNS-based Authentication of Named Entities, allows you to specify an additional or alternative trust anchor for TLS certificates    DNSSEC DNSSEC was the hardest part. It has no comprehensive walkthrough, especially creating the keys, managing them, sending their hashes to your provider, and so on.\nThe version Gentoo gave me as of the time of writing was:\nBIND 9.16.13 (Stable Release)  It comes with handy tools: dnssec-keygen (keys get auto-detected by BIND, it signs the zones automatically and so on) and dnssec-dsfromkey. No tutorial I found mentioned dnssec-dsfromkey and I think it is more important than all the other dnssec-* tools. For the keygen thing, you need a Key Signing Key, and a Zone Signing Key (your server software signs ZSK with KSK, and you send the KSK’s hash upstream, so that you can change ZSK without changing KSK, or keep KSK away from your server software, in case it gets compromised maybe?).\nMail server I set up exim, which works brilliant with default settings. I just needed to generate a DKIM key and add it to DNS. (thankfully the key content put here is the base64 stuff between –BEGIN PUBLIC– … –END PUBLIC–)\nI dislike openssl incantations.\nIPv6 The thing is, everybody loves IPv6. Everybody except those lazy ISPs, and those lazy freemail providers (of all my friends' e-mail accounts, only Google’s MX support IPv6!).\nBut… even my ISP, which has deployed IPv6 with legacy IPv4 support through DualStack-Lite (so I can get one of many IP addresses per-connection, but no guarantees that it persists, also almost no incoming connections are acceptable, no port-mapping etc), can apparently query DNS only through IPv4!\nns2.afraid.org to the rescue!\nNow I have a back-up NS server, which looks like the only NS server to the legacy world.\nAs for the MX, I decided to do exactly the same: use my own service (Exim), and set up a forwarder on some free / freemium service. ImprovMX does great job! The service is developed by two brothers-in-law. It was unable to deliver mail to ipv6-only servers at first, but I sent them an e-mail (ha!) describing my problem and possible solutions, and they fixed it overnight.\nI am super impressed by their attitude towards customers.\nIn the meantime I tried to set up TLS certificates in a secure way. Exim by default issues a fresh self-signed certificate on every connection. Haproxy needs a provided certificate. But I decided to use haproxy + lighttpd to serve static HTTP content, and certbot to provide free certificates.\nIt turns out that certbot is easier to deploy even than being your own CA. The renewal period has not passed yet, so I will see if it is as painless to renew the certificate. I set up both haproxy and exim to read the certificates issued by certbot (they have allowed domain names set to all arusekk.pl, www.arusekk.pl, mail.arusekk.pl and xn–rzch-6va.dev.arusekk.pl, which reads rzęch.dev.arusekk.pl after decoding IDNA, rzęch meaning something so old that it wheezes).\nTLSA (DANE) This was totally optional, but I wanted to test these new security features. Wikipedia describes it quite well and graphically, without all the bloaty preambles typical to RFC / IETF / IANA documents.\nThankfully, I found a tutorial:\nopenssl x509 -in /etc/letsencrypt/live/arusekk.pl/cert.pem -noout -pubkey | openssl pkey -pubin -outform DER | openssl dgst -sha256 -binary | hexdump -ve '/1 \"%02x\"' (this is the command that only signs the key info, without the whole CA chain)\n",
+  "wordCount" : "1344",
+  "inLanguage": "en",
+  "datePublished": "2021-03-23T00:00:00Z",
+  "dateModified": "2021-03-23T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "/posts/my-domain-is-my-castle/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Arusekk blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+<noscript>
+    <style type="text/css">
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: #1d1e20;
+                --entry: #2e2e33;
+                --primary: rgba(255, 255, 255, 0.84);
+                --secondary: rgba(255, 255, 255, 0.56);
+                --tertiary: rgba(255, 255, 255, 0.16);
+                --content: rgba(255, 255, 255, 0.74);
+                --hljs-bg: #2e2e33;
+                --code-bg: #37383e;
+                --border: #333;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="/" accesskey="h" title="Arusekk blog (Alt + H)">Arusekk blog</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </span>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="/" title="Home">
+                    <span>Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="/about" title="About">
+                    <span>About</span>
+                </a>
+            </li>
+            <li>
+                <a href="/contact" title="Contact">
+                    <span>Contact</span>
+                </a>
+            </li>
+            <li>
+                <a href="/posts/index.xml" title="Feed">
+                    <span>Feed</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title">
+      My domain is my castle
+    </h1>
+    <div class="post-description">
+      I spent many many days learing how everything domain-related works, and here are my thoughts and the least intuitive facts.
+    </div>
+    <div class="post-meta">March 23, 2021
+</div>
+  </header> 
+  <div class="post-content"><p>So here it is! <code>arusekk.pl</code> is finally mine.</p>
+<p>Buying a domain is straightforward.
+All I did was find the registry of my favorite TLD (which is .pl for Poland),
+registry maintained by NASK,
+reachable at <a href="https://dns.pl">dns.pl</a>.</p>
+<p>There at the <a href="https://dns.pl/lista_rejestratorow">list of registrars</a>
+I narrowed down the list to those supporting IPv6 domain delegation
+(I had yet to know what it means,
+but I thought that it would be better to have it),
+DNSSEC (which I knew was something important),
+and that the registrar must be a Polish entity.</p>
+<p>I chose <a href="https://hitme.pl/domeny/">hitme.pl</a>,
+since they had the lowest prices
+(not so relevant, since it is a yearly payment anyway),
+and resisting the temptation to buy a .wroclaw.pl domain,
+I bought it.</p>
+<h2 id="side-note-about-e-payments-skip-if-not-interested">Side note about e-payments, skip if not interested<a hidden class="anchor" aria-hidden="true" href="#side-note-about-e-payments-skip-if-not-interested">#</a></h2>
+<p>In Poland, the most secure payment de-facto standard are quick bank transfers,
+using przelewy24.pl (Polish, formerly also branded dotpay.pl)
+and payu.com (international),
+which are the only two major online payment services in Poland,
+and as far as I can tell,
+they can be trusted with at least triple-pizza-cost payments.</p>
+<p>If I could buy a domain with some cryptocurrency,
+like Ethereum, Monero or the ugly Bitcoin,
+I would consider it, too, but I do not posess any crypto yet,
+so I would also have to learn it.</p>
+<p>I hate it when online payments are only possible through PayPal
+(although I admire that Mr. Elon managed to earn so much with so little effort,
+and gain so much trust and such a monopoly on e-payments,
+I hate the astronomical [pun!] fees that PayPal demands from every transaction)
+or only through credit card.
+Come on! Demanding access to someone&rsquo;s all money,
+even those that they don&rsquo;t have (in case of a real credit card),
+for a single transaction is a great abuse of the fusty financial landscape.
+It&rsquo;s 2021, let&rsquo;s finally make use of cryptography, oauth2 and all that jazz.</p>
+<p>There is also a thing called <a href="https://www.blik.com/">blik</a>,
+based on the shared secret protocol
+(your bank gives you a 6-digit number,
+you tell the number to the seller,
+they send the number to the bank,
+then your bank tells you what the transaction really is,
+and finally you have to tell your bank that you accept it).
+The drawback is that most banks only support it
+in their mobile apps
+(it is close to impossible to install them on your FOSS
++Sailfish OS phone).</p>
+<p><img loading="lazy" src="https://media.discordapp.net/attachments/692128024778244118/821691943725301810/photo_2021-03-17_11-30-19.jpg" alt="bank apps meme"  />
+</p>
+<h2 id="my-own-dns-server">My own DNS server<a hidden class="anchor" aria-hidden="true" href="#my-own-dns-server">#</a></h2>
+<p>The first thing I did with my new shiny domain was&hellip;
+delegate it to my own server.
+I put my old laptop
+(even older than the one I complained about;
+the one which only has battery issues and slow CPU,
+not the one with HDD issues + LCD issues + broken keyboard + broken charger).</p>
+<p>DNS is split in zones,
+so when you want to know what address <a href="http://www.example.com">www.example.com</a> has,
+you first ask the root servers,
+one of them tells you that .com zone is known by the global TLD / gTLD servers,
+then one of them tells you that .example.com is managed by IANA servers,
+then finally an IANA server tells you the actual address.</p>
+<p>(this recursive resolving is done by your ISP&rsquo;s DNS server by default,
+you can do it too, using <code>dig +trace</code> from bind-tools / bind-utils
+by ISC, packaged on GNU/Linux or *BSD)</p>
+<p>I used ISC&rsquo;s BIND9, since it is a widely used open-source DNS server,
+future-proof enough even to allow defining your own types of DNS records.</p>
+<h2 id="putting-dns-records-inside">Putting DNS records inside<a hidden class="anchor" aria-hidden="true" href="#putting-dns-records-inside">#</a></h2>
+<p>Even if you don&rsquo;t have your own server, you need to get to know some of the DNS record types.
+The most important are (in the order of decreasing significance):</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Record</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>SOA</code></td>
+<td style="text-align:left">contact info and expiry policy</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>AAAA</code></td>
+<td style="text-align:left">an IPv6 address</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>A</code></td>
+<td style="text-align:left">an IPv4 address (BTW, it is time for IPv4 to die already)</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>NS</code></td>
+<td style="text-align:left">delegating sub-zone elsewhere, most likely multiple for redundancy, also set <em>upstream</em></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>CNAME</code></td>
+<td style="text-align:left">a symbolic link / a pointer (sadly, cannot be combined with most other record types)</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>MX</code></td>
+<td style="text-align:left"><strong>domain name</strong> and priority of mail exchange server, most likely multiple for redundancy</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>TXT</code></td>
+<td style="text-align:left">unstructured textual info, mostly used for SPF and DKIM anti-spam mechanisms</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>DS</code></td>
+<td style="text-align:left">DNSSEC: hash of key to be used by servers indicated with <code>NS</code>, only set <em>upstream</em></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>DNSKEY</code></td>
+<td style="text-align:left">DNSSEC: (auto-inserted) the actual public key info used by this server to sign the zone</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>RRSIG</code></td>
+<td style="text-align:left">DNSSEC: (auto-inserted) signature with the key</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>NSEC</code></td>
+<td style="text-align:left">DNSSEC: (auto-inserted) next record in zone (proving non-existence of records lexicographically between two records)</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>NSEC3</code></td>
+<td style="text-align:left">DNSSEC: (auto-inserted) version of the above immune to zone enumeration</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>NSEC5</code></td>
+<td style="text-align:left">DNSSEC: (auto-inserted) [upcoming] version of the above immune to some other &ldquo;vulnerability&rdquo;</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>TLSA</code></td>
+<td style="text-align:left">DANE: quite a new feature — DNS-based Authentication of Named Entities, allows you to specify an additional or alternative trust anchor for TLS certificates</td>
+</tr>
+</tbody>
+</table>
+<h2 id="dnssec">DNSSEC<a hidden class="anchor" aria-hidden="true" href="#dnssec">#</a></h2>
+<p>DNSSEC was the hardest part.
+It has no comprehensive walkthrough,
+especially creating the keys, managing them,
+sending their hashes to your provider, and so on.</p>
+<p>The version Gentoo gave me as of the time of writing was:</p>
+<pre><code>BIND 9.16.13 (Stable Release) &lt;id:072e758&gt;
+</code></pre><p>It comes with handy tools:
+<code>dnssec-keygen</code> (keys get auto-detected by BIND, it signs the zones automatically and so on)
+and <code>dnssec-dsfromkey</code>.
+No tutorial I found mentioned <code>dnssec-dsfromkey</code> and I think it is more important than all the other <code>dnssec-*</code> tools.
+For the keygen thing, you need a Key Signing Key, and a Zone Signing Key
+(your server software signs ZSK with KSK, and you send the KSK&rsquo;s hash upstream,
+so that you can change ZSK without changing KSK,
+or keep KSK away from your server software, in case it gets compromised maybe?).</p>
+<h2 id="mail-server">Mail server<a hidden class="anchor" aria-hidden="true" href="#mail-server">#</a></h2>
+<p>I set up exim, which works brilliant with default settings.
+I just needed to <a href="https://mikepultz.com/2010/02/using-dkim-in-exim/">generate a DKIM key</a> and add it to DNS.
+(thankfully the <em>key content</em> put here is the base64 stuff between
+&ndash;BEGIN PUBLIC&ndash; &hellip; &ndash;END PUBLIC&ndash;)</p>
+<p><em>I dislike openssl incantations.</em></p>
+<h2 id="ipv6">IPv6<a hidden class="anchor" aria-hidden="true" href="#ipv6">#</a></h2>
+<p>The thing is, everybody loves IPv6.
+Everybody except those lazy ISPs,
+and those lazy freemail providers
+(of all my friends' e-mail accounts, only Google&rsquo;s MX support IPv6!).</p>
+<p>But&hellip; even my ISP, which has deployed IPv6 with legacy IPv4 support
+through DualStack-Lite
+(so I can get one of many IP addresses per-connection,
+but no guarantees that it persists,
+also almost no incoming connections are acceptable,
+no port-mapping etc),
+can apparently query DNS only through IPv4!</p>
+<p><a href="https://freedns.afraid.org/secondary/">ns2.afraid.org</a> to the rescue!</p>
+<p>Now I have a back-up NS server,
+which looks like the only NS server to the legacy world.</p>
+<p>As for the MX, I decided to do exactly the same:
+use my own service (Exim),
+and set up a forwarder on some free / freemium service.
+<a href="https://improvmx.com">ImprovMX</a> does great job!
+The service is developed by two brothers-in-law.
+It was unable to deliver mail to ipv6-only servers at first,
+but I sent them an e-mail (ha!) describing my problem
+and possible solutions, and they fixed it overnight.</p>
+<p>I am super impressed by their attitude towards customers.</p>
+<h2 id="in-the-meantime">In the meantime<a hidden class="anchor" aria-hidden="true" href="#in-the-meantime">#</a></h2>
+<p>I tried to set up TLS certificates in a secure way.
+Exim by default issues a fresh self-signed certificate on every connection.
+Haproxy needs a provided certificate.
+But I decided to use haproxy + lighttpd to serve static HTTP content,
+and <a href="https://letsencrypt.org">certbot</a> to provide free certificates.</p>
+<p>It turns out that certbot is easier to deploy even than being your own CA.
+The renewal period has not passed yet,
+so I will see if it is as painless to renew the certificate.
+I set up both haproxy and exim to read the certificates issued by certbot
+(they have allowed domain names set to all arusekk.pl, <a href="http://www.arusekk.pl">www.arusekk.pl</a>,
+mail.arusekk.pl and xn&ndash;rzch-6va.dev.arusekk.pl,
+which reads rzęch.dev.arusekk.pl after decoding IDNA,
+rzęch meaning something so old that it wheezes).</p>
+<h2 id="tlsa-dane">TLSA (DANE)<a hidden class="anchor" aria-hidden="true" href="#tlsa-dane">#</a></h2>
+<p>This was totally optional, but I wanted to test these new security features.
+Wikipedia describes it quite well and graphically,
+without all the bloaty preambles typical to RFC / IETF / IANA documents.</p>
+<p>Thankfully, I found <a href="https://flippingbinary.com/2018/02/26/lets-encrypt-with-tlsa-dane/">a tutorial</a>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">openssl x509 -in /etc/letsencrypt/live/arusekk.pl/cert.pem -noout -pubkey |
+  openssl pkey -pubin -outform DER |
+  openssl dgst -sha256 -binary |
+  hexdump -ve <span style="color:#e6db74">&#39;/1 &#34;%02x&#34;&#39;</span>
+</code></pre></div><p>(this is the command that only signs the key info, without the whole CA chain)</p>
+
+
+  </div>
+  <footer class="post-footer">
+  </footer>
+</article>
+    </main>
+    <footer class="footer">
+    <span>&copy; 2021 <a href="/">Arusekk blog</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://git.io/hugopapermod" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)">
+    <button class="top-link" id="top-link" type="button" accesskey="g">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+            <path d="M12 6H0l6-6z" />
+        </svg>
+    </button>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+    menu.onscroll = function () {
+        localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

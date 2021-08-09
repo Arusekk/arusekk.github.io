@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>I translated Git! | Arusekk blog</title>
+<meta name="keywords" content="" />
+<meta name="description" content="Linguistic digressions on how hard it is to translate stuff">
+<meta name="author" content="">
+<link rel="canonical" href="/posts/i-translated-git/" />
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.6cba0d81b5f3f42bb578d49f402ba4175aa72b43def148780b8ad714c957c6f5.css" integrity="sha256-bLoNgbXz9Cu1eNSfQCukF1qnK0Pe8Uh4C4rXFMlXxvU=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.7680afc38aa6b15ddf158a4f3780b7b1f7dde7e91d26f073e6229bb7a0793c92.js" integrity="sha256-doCvw4qmsV3fFYpPN4C3sffd5&#43;kdJvBz5iKbt6B5PJI="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="mask-icon" href="/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<meta name="generator" content="Hugo 0.87.0" />
+<meta property="og:title" content="I translated Git!" />
+<meta property="og:description" content="Linguistic digressions on how hard it is to translate stuff" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/posts/i-translated-git/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2020-12-27T00:00:00&#43;00:00" />
+<meta property="article:modified_time" content="2020-12-27T00:00:00&#43;00:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="I translated Git!"/>
+<meta name="twitter:description" content="Linguistic digressions on how hard it is to translate stuff"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "/posts/"
+    }
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "I translated Git!",
+      "item": "/posts/i-translated-git/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "I translated Git!",
+  "name": "I translated Git!",
+  "description": "Linguistic digressions on how hard it is to translate stuff",
+  "keywords": [
+    
+  ],
+  "articleBody": "I found that Git has no Polish translation! Terrible feeling, right?\nSo now it has one. I spent every evening for a month before Christmas on translating it.\nSo here are the main things I noticed:\n Software designers (or whoever does the things I mean) are very anglocentric. They mostly don’t care about other languages, even the similar ones, not to mention the exotic (search for designed well). Like Hebrew numerals in that article, in Polish we also say “dwie” for two (female), but “dwóch” for two (male) and “dwa” for two (neutral). So a msgid saying \"Only two %s found.\" is a 100% bad design.  The same goes for having many %s in a msgid. Hey, GNU printf supports \"%1$s not found because of %2$s\", all non-C languages also have some way to numer the percent-esses. And then you can of course translate it to \"%2$s caused no results for %1$s\" if it sounds more natural in the target language.\nEnglish word formation is endemic. An example is adjective nominalization. Many nouns formed from adjectives need to be translated as the whole phrase. They say “laptop” for a laptop computer, “remote” for a remote control (in git “remote” == remote repository, “upstream” == upstream branch), “English” for an English citizen, “television” for television set, “pickle” for pickled cucumber, “glass” for a glass cup, “flat” for a flat apartment, “review” for a review document, “plastic” for plastic material, “composite” for composite material, “wearable” for wearable equipment and so on.  In Polish, we say some of those from English, but we tend to be more like saying “control” for remote control, “material” for composite material, “equipment” for wearable equipment, “cucumber” for a pickled cucumber, and for the rest we make sure that they are different from their base word (those words are an attempt at literal translation, so almost certainly none of them exist): “livement” for a flat, “Englisher”, “televisor”, “glassie”, “reviewment”.\nIn Polish, all nouns have inherent invariable gender, and all adjectives have every gender, and by design they cannot be the same. One can easily form adjectives from nouns, which is the equivalent of adding “-y”, “-ing” or “-ish” in English.\nLike “blaze” - “blazy”, “blazing” or “blazish” would be “płomień” - “płomienny”, “płomienisty”, “płomieniowy” or “płomiennawy”.\nBut guess what? The oposite is not as easy. Or it is, but describes a different thing.\nLet’s take a remote. Literal Polish translation would be “zdalny”. So let’s make it a noun: “zdalność” (meaning “remoteness”), “zdalniak”/“zdalnek”/“zdalka” (not actual words, but would mean “remotey” and they sound infantile).\nInventing new words. The basic word of Git is “commit”. Again, this is both a noun and a verb. I chose “zapis” for “a commit” (meaning “a record”/“a save”) and “złożyć” for “to commit” (meaning “put together” or “hand in”). I decided that “złożenie”, which is “a putting together” or “a handing in”, misses the meaning and sounds worse.  I also found out about many secret features of Git, like git diff –color-words / –color-moved, git pull –autostash and all the interactive procedures.\nYeah so the best part of translating is the satisfaction of it finally being done.\n",
+  "wordCount" : "524",
+  "inLanguage": "en",
+  "datePublished": "2020-12-27T00:00:00Z",
+  "dateModified": "2020-12-27T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "/posts/i-translated-git/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Arusekk blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+<noscript>
+    <style type="text/css">
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: #1d1e20;
+                --entry: #2e2e33;
+                --primary: rgba(255, 255, 255, 0.84);
+                --secondary: rgba(255, 255, 255, 0.56);
+                --tertiary: rgba(255, 255, 255, 0.16);
+                --content: rgba(255, 255, 255, 0.74);
+                --hljs-bg: #2e2e33;
+                --code-bg: #37383e;
+                --border: #333;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="/" accesskey="h" title="Arusekk blog (Alt + H)">Arusekk blog</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </span>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="/" title="Home">
+                    <span>Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="/about" title="About">
+                    <span>About</span>
+                </a>
+            </li>
+            <li>
+                <a href="/contact" title="Contact">
+                    <span>Contact</span>
+                </a>
+            </li>
+            <li>
+                <a href="/posts/index.xml" title="Feed">
+                    <span>Feed</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title">
+      I translated Git!
+    </h1>
+    <div class="post-description">
+      Linguistic digressions on how hard it is to translate stuff
+    </div>
+    <div class="post-meta">December 27, 2020
+</div>
+  </header> 
+  <div class="post-content"><p>I found that Git has no Polish translation!
+Terrible feeling, right?</p>
+<p>So now it has one.
+I spent every evening for a month before Christmas on translating it.</p>
+<p>So here are the main things I noticed:</p>
+<ol>
+<li>Software designers (or whoever does the things I mean) are very anglocentric.
+They mostly don&rsquo;t care about other languages, even the similar ones,
+not to mention <a href="https://www.winehq.org/interview/16">the exotic</a> (search for <em>designed well</em>).
+Like Hebrew numerals in that article,
+in Polish we also say &ldquo;dwie&rdquo; for two (female),
+but &ldquo;dwóch&rdquo; for two (male) and &ldquo;dwa&rdquo; for two (neutral).
+So a msgid saying <code>&quot;Only two %s found.&quot;</code> is a 100% bad design.</li>
+</ol>
+<p>The same goes for having many <code>%s</code> in a msgid.
+Hey, GNU printf supports <code>&quot;%1$s not found because of %2$s&quot;</code>,
+all non-C languages also have some way to numer the percent-esses.
+And then you can of course translate it to <code>&quot;%2$s caused no results for %1$s&quot;</code>
+if it sounds more natural in the target language.</p>
+<ol start="2">
+<li>English word formation is endemic.
+An example is adjective nominalization.
+Many nouns formed from adjectives need to be translated as the whole phrase.
+They say &ldquo;laptop&rdquo; for a laptop computer, &ldquo;remote&rdquo; for a remote control
+(in git &ldquo;remote&rdquo; == remote repository, &ldquo;upstream&rdquo; == upstream branch),
+&ldquo;English&rdquo; for an English citizen, &ldquo;television&rdquo; for television set,
+&ldquo;pickle&rdquo; for pickled cucumber, &ldquo;glass&rdquo; for a glass cup,
+&ldquo;flat&rdquo; for a flat apartment, &ldquo;review&rdquo; for a review document,
+&ldquo;plastic&rdquo; for plastic material, &ldquo;composite&rdquo; for composite material,
+&ldquo;wearable&rdquo; for wearable equipment and so on.</li>
+</ol>
+<p>In Polish, we say some of those from English, but we tend to be more like
+saying &ldquo;control&rdquo; for remote control, &ldquo;material&rdquo; for composite material,
+&ldquo;equipment&rdquo; for wearable equipment, &ldquo;cucumber&rdquo; for a pickled cucumber,
+and for the rest we make sure that they are different from their base word
+(those words are an attempt at literal translation,
+so almost certainly none of them exist):
+&ldquo;livement&rdquo; for a flat, &ldquo;Englisher&rdquo;, &ldquo;televisor&rdquo;, &ldquo;glassie&rdquo;, &ldquo;reviewment&rdquo;.</p>
+<p>In Polish, all nouns have inherent invariable gender,
+and all adjectives have every gender, and by design they cannot be the same.
+One can easily form adjectives from nouns, which is the equivalent of adding
+&ldquo;-y&rdquo;, &ldquo;-ing&rdquo; or &ldquo;-ish&rdquo; in English.</p>
+<p>Like &ldquo;blaze&rdquo; -&gt; &ldquo;blazy&rdquo;, &ldquo;blazing&rdquo; or &ldquo;blazish&rdquo; would be
+&ldquo;płomień&rdquo; -&gt; &ldquo;płomienny&rdquo;, &ldquo;płomienisty&rdquo;, &ldquo;płomieniowy&rdquo; or &ldquo;płomiennawy&rdquo;.</p>
+<p>But guess what? The oposite is not as easy. Or it is, but describes
+a different thing.</p>
+<p>Let&rsquo;s take a remote. Literal Polish translation would be &ldquo;zdalny&rdquo;.
+So let&rsquo;s make it a noun: &ldquo;zdalność&rdquo; (meaning &ldquo;remoteness&rdquo;),
+&ldquo;zdalniak&rdquo;/&ldquo;zdalnek&rdquo;/&ldquo;zdalka&rdquo; (not actual words, but would mean &ldquo;remotey&rdquo;
+and they sound infantile).</p>
+<ol start="3">
+<li>Inventing new words.
+The basic word of Git is &ldquo;commit&rdquo;. Again, this is both a noun and a verb.
+I chose &ldquo;zapis&rdquo; for &ldquo;a commit&rdquo; (meaning &ldquo;a record&rdquo;/&ldquo;a save&rdquo;)
+and &ldquo;złożyć&rdquo; for &ldquo;to commit&rdquo; (meaning &ldquo;put together&rdquo; or &ldquo;hand in&rdquo;).
+I decided that &ldquo;złożenie&rdquo;, which is &ldquo;a putting together&rdquo; or &ldquo;a handing in&rdquo;,
+misses the meaning and sounds worse.</li>
+</ol>
+<p>I also found out about many secret features of Git, like
+git diff &ndash;color-words / &ndash;color-moved, git pull &ndash;autostash
+and all the interactive procedures.</p>
+<p>Yeah so the best part of translating is the satisfaction
+of it finally being done.</p>
+
+
+  </div>
+  <footer class="post-footer">
+  </footer>
+</article>
+    </main>
+    <footer class="footer">
+    <span>&copy; 2021 <a href="/">Arusekk blog</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://git.io/hugopapermod" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)">
+    <button class="top-link" id="top-link" type="button" accesskey="g">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+            <path d="M12 6H0l6-6z" />
+        </svg>
+    </button>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+    menu.onscroll = function () {
+        localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

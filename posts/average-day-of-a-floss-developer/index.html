@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Average day of a FLOSS developer | Arusekk blog</title>
+<meta name="keywords" content="" />
+<meta name="description" content="It feels fun to be part of a nice phenomenon.">
+<meta name="author" content="">
+<link rel="canonical" href="/posts/average-day-of-a-floss-developer/" />
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.6cba0d81b5f3f42bb578d49f402ba4175aa72b43def148780b8ad714c957c6f5.css" integrity="sha256-bLoNgbXz9Cu1eNSfQCukF1qnK0Pe8Uh4C4rXFMlXxvU=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.7680afc38aa6b15ddf158a4f3780b7b1f7dde7e91d26f073e6229bb7a0793c92.js" integrity="sha256-doCvw4qmsV3fFYpPN4C3sffd5&#43;kdJvBz5iKbt6B5PJI="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="mask-icon" href="/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<meta name="generator" content="Hugo 0.87.0" />
+<meta property="og:title" content="Average day of a FLOSS developer" />
+<meta property="og:description" content="It feels fun to be part of a nice phenomenon." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/posts/average-day-of-a-floss-developer/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-02-18T00:00:00&#43;00:00" />
+<meta property="article:modified_time" content="2021-02-18T00:00:00&#43;00:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Average day of a FLOSS developer"/>
+<meta name="twitter:description" content="It feels fun to be part of a nice phenomenon."/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "/posts/"
+    }
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Average day of a FLOSS developer",
+      "item": "/posts/average-day-of-a-floss-developer/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Average day of a FLOSS developer",
+  "name": "Average day of a FLOSS developer",
+  "description": "It feels fun to be part of a nice phenomenon.",
+  "keywords": [
+    
+  ],
+  "articleBody": "I woke up, ate my breakfast, did some workout with StepMania (a DDR clone, great game, BTW, you should definitely try it, if you like to move), practiced playing music a little on a MIDI keyboard (using QSynth with JACK (managed by Catia) for low latency response).\nI heard that Wine supports GTK3 themes, so I wanted to check it out, but there was none for the latest version, and that lead me to filing a bug.\nThen I worked a little on pwntools.\nIn the afternoon I tried to transcribe (is this the word?) some music, so I installed Lilypond and found a bug there, too.\nIn the evening I worked on rooting my new Xperia XA2, which I will describe in an upcoming blog post.\nIt is not that Free/Libre Open Source Software does not work. It works great. And in order to be developed by total strangers, the requirement to keep code quality high is paramount. And whenever you report a bug with a complete simple solution, it gets fixed in seconds. Here are some contributions I made last month:\n kate — in vi input mode (I love vim for being so productive) some actions were behaving strange, I decided to take a look at this; one of the errors was already reported, it was enough to check out the repo, comment out git hooks in the tests, find the offending place by grepping for %, then reading some source code (the code is crystally clean if you know what I mean), and fixing a simple off-by-one error. An hour of creative work.   snakeoil — I had a problem, which was reported already, then had its blockers analyzed, so that lead me to try porting SnakeOil to pypy. Here I have been ignored for quite long, but still it was surprising to discover that there is only one strict bug preventing enabling pypy support (another bug I filed in this subject was pypy/pypy#3391, not realizing that it has already had a WIP branch, which I mentioned in my snakeoil pypy support commit).  Here are some older (from last year, too) I am quite proud of:\n translating git to Polish man-pages — fixing a simple typo which prevented me from correctly extracting syscall signatures from second chapter man pages (I guess parsing kernel sources would be better, but whatever) stepmania — and the other one, and the third one: StepMania community looks very embracing and welcoming.  Not to mention my first major contributions to FOSS:\n tomb — fixing spaces handling in a cryptographic wrapper app pwntools — porting it to Python 3, which was a huge undertaking  I owe really much to Free/Libre Software, and contribute back whenever I can. This is something I really enjoy. FLOSS is pushing this world forward, and the proprietary software companies must fall one day. I expect some of them to drop their flagship products in the near future, and invest their resources in FLOSS development (even contributing to productss being their biggest “competitors”, as their money-oriented business managers would say!).\nEveryone from tech can encourage their employers to donate some tiny fraction of their profit to the products that make it (the profit) possible so cheaply: to the compilers they use, to their most useful dependencies, to their most useful infrastructure parts. It will help make these products better and probably even make their maintainers respect your employer.\n",
+  "wordCount" : "567",
+  "inLanguage": "en",
+  "datePublished": "2021-02-18T00:00:00Z",
+  "dateModified": "2021-02-18T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "/posts/average-day-of-a-floss-developer/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Arusekk blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+<noscript>
+    <style type="text/css">
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: #1d1e20;
+                --entry: #2e2e33;
+                --primary: rgba(255, 255, 255, 0.84);
+                --secondary: rgba(255, 255, 255, 0.56);
+                --tertiary: rgba(255, 255, 255, 0.16);
+                --content: rgba(255, 255, 255, 0.74);
+                --hljs-bg: #2e2e33;
+                --code-bg: #37383e;
+                --border: #333;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="/" accesskey="h" title="Arusekk blog (Alt + H)">Arusekk blog</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </span>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="/" title="Home">
+                    <span>Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="/about" title="About">
+                    <span>About</span>
+                </a>
+            </li>
+            <li>
+                <a href="/contact" title="Contact">
+                    <span>Contact</span>
+                </a>
+            </li>
+            <li>
+                <a href="/posts/index.xml" title="Feed">
+                    <span>Feed</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title">
+      Average day of a FLOSS developer
+    </h1>
+    <div class="post-description">
+      It feels fun to be part of a nice phenomenon.
+    </div>
+    <div class="post-meta">February 18, 2021
+</div>
+  </header> 
+  <div class="post-content"><p>I woke up, ate my breakfast, did some workout with <a href="https://www.stepmania.com">StepMania</a> (a DDR clone,
+great game, BTW, you should definitely try it, if you like to move),
+practiced playing music a little on a MIDI keyboard (using QSynth with
+JACK (managed by Catia) for low latency response).</p>
+<p>I heard that Wine supports GTK3 themes, so I wanted to check it out,
+but there was none for the latest version, and that lead me
+to <a href="https://bugs.winehq.org/show_bug.cgi?id=50677">filing a bug</a>.</p>
+<p>Then I worked a little on <a href="https://pwntools.com">pwntools</a>.</p>
+<p>In the afternoon I tried to transcribe (is this the word?) some music,
+so I installed Lilypond and <a href="https://lists.gnu.org/archive/html/bug-lilypond/2021-02/msg00043.html">found a bug there, too</a>.</p>
+<p>In the evening I worked on rooting my new Xperia XA2,
+which I will describe in an upcoming blog post.</p>
+<p>It is not that Free/Libre Open Source Software does not work.
+It works great.
+And in order to be developed by total strangers,
+the requirement to keep code quality high is paramount.
+And whenever you report a bug with a complete simple solution,
+it gets fixed in seconds.
+Here are some contributions I made last month:</p>
+<ul>
+<li><a href="https://invent.kde.org/frameworks/ktexteditor/-/merge_requests/91">kate</a> — in vi input mode (I love vim for being so productive)
+some actions were behaving strange,
+I decided to take a look at this;
+one of the errors was <a href="https://invent.kde.org/frameworks/ktexteditor/-/merge_requests/53">already reported</a>,
+it was enough to check out the repo,
+comment out git hooks in the tests,
+find the offending place by grepping for %,
+then reading some source code
+(the code is crystally clean if you know what I mean),
+and fixing a simple off-by-one error.
+An hour of creative work.</li>
+</ul>
+<ul>
+<li><a href="https://github.com/pkgcore/snakeoil/issues/57">snakeoil</a> — I had a problem, which was <a href="https://github.com/mgorny/smart-live-rebuild/issues/11">reported already</a>,
+then had its <a href="https://bugs.gentoo.org/745462">blockers analyzed</a>,
+so that lead me to try porting SnakeOil to pypy.
+Here I have been ignored for quite long, but still
+it was surprising to discover that there is only one strict bug
+preventing enabling pypy support
+(another bug I filed in this subject was <a href="https://foss.heptapod.net/pypy/pypy/-/issues/3391">pypy/pypy#3391</a>,
+not realizing that it has already had <a href="https://foss.heptapod.net/pypy/pypy/-/tree/branch/py3.8-reversed-dict">a WIP branch</a>,
+which I mentioned in my snakeoil pypy support commit).</li>
+</ul>
+<p>Here are some older (from last year, too) I am quite proud of:</p>
+<ul>
+<li><a href="i-translated-git.html">translating git to Polish</a></li>
+<li><a href="https://lore.kernel.org/linux-man/20201201112245.11764-1-arek_koz@o2.pl/">man-pages</a> — fixing a simple typo which prevented me
+from correctly extracting syscall signatures from second chapter man pages
+(I guess parsing kernel sources would be better, but whatever)</li>
+<li><a href="https://github.com/stepmania/stepmania/pull/2042">stepmania</a> — and <a href="https://github.com/stepmania/stepmania/pull/2043">the other one</a>,
+and <a href="https://github.com/stepmania/stepmania/pull/2012">the third one</a>: StepMania community
+looks very embracing and welcoming.</li>
+</ul>
+<p>Not to mention my first major contributions to FOSS:</p>
+<ul>
+<li><a href="https://github.com/dyne/Tomb/pull/245">tomb</a> — fixing spaces handling in a cryptographic wrapper app</li>
+<li><a href="https://github.com/Gallopsled/pwntools/pull/1224">pwntools</a> — porting it to Python 3, which was a huge undertaking</li>
+</ul>
+<p>I owe really much to Free/Libre Software, and contribute back whenever I can.
+This is something I really enjoy.
+FLOSS is pushing this world forward,
+and the proprietary software companies must fall one day.
+I expect some of them to drop their flagship products in the near future,
+and invest their resources in FLOSS development
+(even contributing to productss being their biggest &ldquo;competitors&rdquo;,
+as their money-oriented business managers would say!).</p>
+<p>Everyone from tech can encourage their employers to donate some tiny fraction
+of their profit to the products that make it (the profit) possible so cheaply:
+to the compilers they use, to their <a href="https://xkcd.com/2347/">most useful dependencies</a>,
+to their most useful infrastructure parts.
+It will help make these products better and probably even
+make their maintainers respect your employer.</p>
+
+
+  </div>
+  <footer class="post-footer">
+  </footer>
+</article>
+    </main>
+    <footer class="footer">
+    <span>&copy; 2021 <a href="/">Arusekk blog</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://git.io/hugopapermod" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)">
+    <button class="top-link" id="top-link" type="button" accesskey="g">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+            <path d="M12 6H0l6-6z" />
+        </svg>
+    </button>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+    menu.onscroll = function () {
+        localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>
