@@ -1,0 +1,34 @@
+baseURL: "/"
+title: Arusekk blog
+theme: papermod
+
+# Home page
+params:
+  homeInfoParams:
+    Title: Welcome
+    Content: My name is Arusekk.  Not a real name, but I find it the most real for me online.  This is a blog where I write about computer programming and some unpopular opinions.
+
+  socialIcons:
+    - name: github
+      url: https://github.com/Arusekk
+    - name: linkedin
+      url: https://www.linkedin.com/in/arkadiusz-kozdra-7b9b73211/
+
+# Navbar
+menu:
+  main:
+    - name: Home
+      url: /
+      weight: 1
+    - name: About
+      url: /about
+      weight: 2
+    - name: Contact
+      url: /contact
+      weight: 3
+    - name: Feed
+      url: /posts/index.xml
+      weight: 4
+
+# Other settings
+paginate: 5
