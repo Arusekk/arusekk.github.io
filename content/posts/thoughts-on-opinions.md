@@ -69,7 +69,7 @@ of true claims and stating opinions as opinions
 >
 > — And *that* is your opinion!
 
-A good hint that some 'fact' in, in fact, an opinion,
+A good hint that some 'fact' is, in fact, an opinion,
 might be that people don't so universally agree about it.
 
 Beware, there is some heavy symbolism ahead!
