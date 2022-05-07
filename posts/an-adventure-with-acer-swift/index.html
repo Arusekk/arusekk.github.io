@@ -6,12 +6,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
 <title>An adventure with Acer Swift | Arusekk blog</title>
-<meta name="keywords" content="" />
+<meta name="keywords" content="">
 <meta name="description" content="A story of a new laptop and hard obstacles in the way of getting it to work">
 <meta name="author" content="">
-<link rel="canonical" href="/posts/an-adventure-with-acer-swift/" />
-<link crossorigin="anonymous" href="/assets/css/stylesheet.min.6cba0d81b5f3f42bb578d49f402ba4175aa72b43def148780b8ad714c957c6f5.css" integrity="sha256-bLoNgbXz9Cu1eNSfQCukF1qnK0Pe8Uh4C4rXFMlXxvU=" rel="preload stylesheet" as="style">
-<script defer crossorigin="anonymous" src="/assets/js/highlight.min.7680afc38aa6b15ddf158a4f3780b7b1f7dde7e91d26f073e6229bb7a0793c92.js" integrity="sha256-doCvw4qmsV3fFYpPN4C3sffd5&#43;kdJvBz5iKbt6B5PJI="
+<link rel="canonical" href="/posts/an-adventure-with-acer-swift/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.ec8da366ca2fb647537ccb7a8f6fa5b4e9cd3c7a0d3171dd2d3baad1e49c8bfc.css" integrity="sha256-7I2jZsovtkdTfMt6j2&#43;ltOnNPHoNMXHdLTuq0eSci/w=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.2840b7fccd34145847db71a290569594bdbdb00047097f75d6495d162f5d7dff.js" integrity="sha256-KEC3/M00FFhH23GikFaVlL29sABHCX911kldFi9dff8="
     onload="hljs.initHighlightingOnLoad();"></script>
 <link rel="icon" href="/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -20,8 +20,43 @@
 <link rel="mask-icon" href="/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.87.0" />
-<meta property="og:title" content="An adventure with Acer Swift" />
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:title" content="An adventure with Acer Swift" />
 <meta property="og:description" content="A story of a new laptop and hard obstacles in the way of getting it to work" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/posts/an-adventure-with-acer-swift/" /><meta property="article:section" content="posts" />
@@ -63,7 +98,7 @@
   "keywords": [
     
   ],
-  "articleBody": "Recently my old laptop started losing keyboard keys, and I heard that in 2021 it is time to let go of that good ol' laptop with loud HDD, CD station, shiny HD-ready LCD, dissolved keys, cracked screws, two jacks, snappy sound, rumbling mic, 640x480 webcam, 4GiB RAM, 2x bithread i5-4200M @ 2.50 GHz, especially that I use unstable Gentoo GNU/Linux distro, which requires an overnight CPU-heavy update (Portage, the Gentoo PM, compiles everything from source by default).\nSo I bought a new one. I searched online for laptops with the following criteria set:\n without M$ Windows malware preinstalled, without Intel CPU, for no particular reason.  (a linguistic digression):\n‘A laptop’ came from ‘a lap-top PC’, just as ‘a desktop’ came from ‘a desk-top PC’, and I am not willing to talk any ultrabook / hyperbook nonsense, though I like ‘netbook’ as an analogy of a networking notepad. See I translated Git! for how hard it is to translate English nominalization of adjectives which is “business as usual”.\nThis narrowed down the search results to circa 30 distinct models. In whole Poland (see it for yourself).\nAnd then I thought that any would do, so I took the cheapest one. It happened to be Acer Swift 3 (SF314-42). It had quite everything I needed:\n A dedicated power socket. A USBC port, a USB2 port, and a USB3 port. A single jack audio socket. An HDMI socket. Light weight, full HD matt/frosted LCD (whatever the english name is). Sharp webcam, NVMe SSD, Ryzen 5, Radeon.  The hardware drawbacks I saw then:\n No RJ45 (LAN / Ethernet or what you call it). Intel Wi-Fi card (nah, it can’t be that bad).  On the first boot an UEFI shell greeted me. A nice one, though the path separators were awfully backwards.\nThen I launched a live headless Gentoo to put everything in place. Or so I wanted to do. Before launching a screen appeared that wanted to know whether I wanted to install any special stuff inside my shiny new UEFI, so I just added the live OS' bootloader, and it booted gracefully.\nI just set up Portage make.conf, timezone and locale, installed GRUB and genkernel, compiled a kernel with some preliminary config and the next step was to reboot. When I seleced gentoo-grub in EFI boot selection, it showed a huge red shield with a white cross on it and a label telling me “Secure Boot trust broken!” or something.\nThen I wanted to get it working, so just as the owner’s manual said, I went into BIOS (F2 on the logo), added a Supervisor password, added my bootloader’s hash into EFI trusted set, reset the password to empty in order to remove it (per the manual), and selected “Save \u0026 poweroff” or something.\nThen I tried to enter the BIOS again, but no luck this time :)\nIt looked just like it had a\nwhile (isPasswordSet \u0026\u0026 isPasswordUnset) {} somewhere, because the logo (normally present for ~a second) did not go away, and was unresponsive to Ctrl+Alt+Delete.\nThe good news was that my GRUB just worked. My GNU/Linux did not, I guess the kernel was not configured enough. So I took the universal config from Gentoo liveCD and started to throw things away.\nThe things that didn’t work OOTB were sound, X server, and touchpad. The touchpad still has a 0.001 chance to break @ boot for no reason.\nThe X server needed dri+amdgpu drivers enabled (no surprise here), The touchpad needed psmouse and some strange AMD I²C – SMBus bridge driver (no surprise either, but was hard to find pinctrl_amd, piix4_smbus and i2c_piix4 in Kconfig), the speakers worked with snd_hda_intel universal HD audio driver, and the mic apparently had a separate integrated soundcard (searching for ALC255 told me that, and it is snd_soc_dmic). The ax200 Wi-Fi 6 card needed iwlmvm with ax200 firmware blobs. Yeah, no chance to have 100% FLOSS on it now.\nBut whatever. The BIOS was still broken.\nI tried to boot to UEFI directly from Linux (I intentionally skipped GNU now, since it is a thin software from an answer to a SU question).\nI contacted Acer support on the phone, and the wisest thing they told me was to update BIOS, and they sent me a BIOS firmware update. It was a zipped EXE, so I started to look for lightweight live M$ Windows images. And not surprisingly I did not find one. Surprisingly though, I found that you can easily create one! All you need is another M$ Windows machine. I used my work laptop (shhh! don’t tell anyone) to create a 260 MiB iso image in as few as two obvious commands.\nEDIT: it turns out this is a known method and no Windows is needed\n(And I was in physical pain having to deal with this mirrored commandline.)\nI copied over only several files from inside the ISO to a USB stick (UEFI FTW over BIOS, no more reformatting your USB every single time!). It booted with no pain. And it launched the executable as well (great job, Insyde Corp!). But the executable told me that my BIOS is already up to date, and that I should go hack myself.\nSo I hacked that the FH4FR108.exe was a 7-zip SFX, extracted it, and finally saw that there is a file called properties.ini, which has tons of description on how to tamper with the parameters and e.g. disable the version check.\n(I lied, I searched online for H2OFFT-Wx64.exe and ended up on SU again).\nAnd it has worked! Now my shiny new laptop works again, without me having to install malware on it.\n",
+  "articleBody": "Recently my old laptop started losing keyboard keys, and I heard that in 2021 it is time to let go of that good ol’ laptop with loud HDD, CD station, shiny HD-ready LCD, dissolved keys, cracked screws, two jacks, snappy sound, rumbling mic, 640x480 webcam, 4GiB RAM, 2x bithread i5-4200M @ 2.50 GHz, especially that I use unstable Gentoo GNU/Linux distro, which requires an overnight CPU-heavy update (Portage, the Gentoo PM, compiles everything from source by default).\nSo I bought a new one. I searched online for laptops with the following criteria set:\n without M$ Windows malware preinstalled, without Intel CPU, for no particular reason.  (a linguistic digression):\n‘A laptop’ came from ‘a lap-top PC’, just as ‘a desktop’ came from ‘a desk-top PC’, and I am not willing to talk any ultrabook / hyperbook nonsense, though I like ’netbook’ as an analogy of a networking notepad. See I translated Git! for how hard it is to translate English nominalization of adjectives which is “business as usual”.\nThis narrowed down the search results to circa 30 distinct models. In whole Poland (see it for yourself).\nAnd then I thought that any would do, so I took the cheapest one. It happened to be Acer Swift 3 (SF314-42). It had quite everything I needed:\n A dedicated power socket. A USBC port, a USB2 port, and a USB3 port. A single jack audio socket. An HDMI socket. Light weight, full HD matt/frosted LCD (whatever the english name is). Sharp webcam, NVMe SSD, Ryzen 5, Radeon.  The hardware drawbacks I saw then:\n No RJ45 (LAN / Ethernet or what you call it). Intel Wi-Fi card (nah, it can’t be that bad).  On the first boot an UEFI shell greeted me. A nice one, though the path separators were awfully backwards.\nThen I launched a live headless Gentoo to put everything in place. Or so I wanted to do. Before launching a screen appeared that wanted to know whether I wanted to install any special stuff inside my shiny new UEFI, so I just added the live OS’ bootloader, and it booted gracefully.\nI just set up Portage make.conf, timezone and locale, installed GRUB and genkernel, compiled a kernel with some preliminary config and the next step was to reboot. When I seleced gentoo-grub in EFI boot selection, it showed a huge red shield with a white cross on it and a label telling me “Secure Boot trust broken!” or something.\nThen I wanted to get it working, so just as the owner’s manual said, I went into BIOS (F2 on the logo), added a Supervisor password, added my bootloader’s hash into EFI trusted set, reset the password to empty in order to remove it (per the manual), and selected “Save \u0026 poweroff” or something.\nThen I tried to enter the BIOS again, but no luck this time :)\nIt looked just like it had a\nwhile (isPasswordSet \u0026\u0026 isPasswordUnset) {} somewhere, because the logo (normally present for ~a second) did not go away, and was unresponsive to Ctrl+Alt+Delete.\nThe good news was that my GRUB just worked. My GNU/Linux did not, I guess the kernel was not configured enough. So I took the universal config from Gentoo liveCD and started to throw things away.\nThe things that didn’t work OOTB were sound, X server, and touchpad. The touchpad still has a 0.001 chance to break @ boot for no reason.\nThe X server needed dri+amdgpu drivers enabled (no surprise here), The touchpad needed psmouse and some strange AMD I²C – SMBus bridge driver (no surprise either, but was hard to find pinctrl_amd, piix4_smbus and i2c_piix4 in Kconfig), the speakers worked with snd_hda_intel universal HD audio driver, and the mic apparently had a separate integrated soundcard (searching for ALC255 told me that, and it is snd_soc_dmic). The ax200 Wi-Fi 6 card needed iwlmvm with ax200 firmware blobs. Yeah, no chance to have 100% FLOSS on it now.\nBut whatever. The BIOS was still broken.\nI tried to boot to UEFI directly from Linux (I intentionally skipped GNU now, since it is a thin software from an answer to a SU question).\nI contacted Acer support on the phone, and the wisest thing they told me was to update BIOS, and they sent me a BIOS firmware update. It was a zipped EXE, so I started to look for lightweight live M$ Windows images. And not surprisingly I did not find one. Surprisingly though, I found that you can easily create one! All you need is another M$ Windows machine. I used my work laptop (shhh! don’t tell anyone) to create a 260 MiB iso image in as few as two obvious commands.\nEDIT: it turns out this is a known method and no Windows is needed\n(And I was in physical pain having to deal with this mirrored commandline.)\nI copied over only several files from inside the ISO to a USB stick (UEFI FTW over BIOS, no more reformatting your USB every single time!). It booted with no pain. And it launched the executable as well (great job, Insyde Corp!). But the executable told me that my BIOS is already up to date, and that I should go hack myself.\nSo I hacked that the FH4FR108.exe was a 7-zip SFX, extracted it, and finally saw that there is a file called properties.ini, which has tons of description on how to tamper with the parameters and e.g. disable the version check.\n(I lied, I searched online for H2OFFT-Wx64.exe and ended up on SU again).\nAnd it has worked! Now my shiny new laptop works again, without me having to install malware on it.\n",
   "wordCount" : "939",
   "inLanguage": "en",
   "datePublished": "2021-01-19T00:00:00Z",
@@ -95,43 +130,6 @@
     }
 
 </script>
-<noscript>
-    <style type="text/css">
-        #theme-toggle,
-        .top-link {
-            display: none;
-        }
-
-    </style>
-    <style>
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --theme: #1d1e20;
-                --entry: #2e2e33;
-                --primary: rgba(255, 255, 255, 0.84);
-                --secondary: rgba(255, 255, 255, 0.56);
-                --tertiary: rgba(255, 255, 255, 0.16);
-                --content: rgba(255, 255, 255, 0.74);
-                --hljs-bg: #2e2e33;
-                --code-bg: #37383e;
-                --border: #333;
-            }
-
-            .list {
-                background: var(--theme);
-            }
-
-            .list:not(.dark)::-webkit-scrollbar-track {
-                background: 0 0;
-            }
-
-            .list:not(.dark)::-webkit-scrollbar-thumb {
-                border-color: var(--theme);
-            }
-        }
-
-    </style>
-</noscript>
 
 <header class="header">
     <nav class="nav">
@@ -195,11 +193,12 @@
     <div class="post-description">
       A story of a new laptop and hard obstacles in the way of getting it to work
     </div>
-    <div class="post-meta">January 19, 2021
+    <div class="post-meta"><span title='2021-01-19 00:00:00 +0000 UTC'>January 19, 2021</span>
+
 </div>
   </header> 
   <div class="post-content"><p>Recently my old laptop started losing keyboard keys,
-and I heard that in 2021 it is time to let go of that good ol' laptop
+and I heard that in 2021 it is time to let go of that good ol&rsquo; laptop
 with loud HDD, CD station, shiny HD-ready LCD, dissolved keys, cracked screws,
 two jacks, snappy sound, rumbling mic, 640x480 webcam, 4GiB RAM,
 2x bithread i5-4200M @ 2.50 GHz,
@@ -216,7 +215,7 @@ I searched online for laptops with the following criteria set:</p>
 <p>&lsquo;A laptop&rsquo; came from &lsquo;a lap-top PC&rsquo;,
 just as &lsquo;a desktop&rsquo; came from &lsquo;a desk-top PC&rsquo;,
 and I am not willing to talk any ultrabook / hyperbook nonsense,
-though I like &lsquo;netbook&rsquo; as an analogy of a networking notepad.
+though I like &rsquo;netbook&rsquo; as an analogy of a networking notepad.
 See <a href="../i-translated-git/">I translated Git!</a> for how hard it is
 to translate English nominalization of adjectives which is &ldquo;business as usual&rdquo;.</p>
 <p>This narrowed down the search results to circa 30 distinct models.
@@ -243,7 +242,7 @@ A nice one, though the path separators were awfully backwards.</p>
 Or so I wanted to do.
 Before launching a screen appeared that wanted to know
 whether I wanted to install any special stuff inside my shiny new UEFI,
-so I just added the live OS' bootloader, and it booted gracefully.</p>
+so I just added the live OS&rsquo; bootloader, and it booted gracefully.</p>
 <p>I just set up Portage make.conf, timezone and locale,
 installed GRUB and genkernel,
 compiled a kernel with some preliminary config
@@ -258,8 +257,8 @@ to empty in order to remove it (per the manual), and selected
 &ldquo;Save &amp; poweroff&rdquo; or something.</p>
 <p>Then I tried to enter the BIOS again, but no luck this time :)</p>
 <p>It looked just like it had a</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">while</span> (isPasswordSet <span style="color:#f92672">&amp;&amp;</span> isPasswordUnset) {}
-</code></pre></div><p>somewhere, because the logo (normally present for ~a second) did not go away,
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">while</span> (isPasswordSet <span style="color:#f92672">&amp;&amp;</span> isPasswordUnset) {}
+</span></span></code></pre></div><p>somewhere, because the logo (normally present for ~a second) did not go away,
 and was unresponsive to Ctrl+Alt+Delete.</p>
 <p>The good news was that my GRUB just worked.
 My GNU/Linux did not, I guess the kernel was not configured enough.
@@ -306,31 +305,35 @@ Now my shiny new laptop works again, without me having to install malware on it.
 
 
   </div>
+
   <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
   </footer>
 </article>
     </main>
-    <footer class="footer">
-    <span>&copy; 2021 <a href="/">Arusekk blog</a></span>
+    
+<footer class="footer">
+    <span>&copy; 2022 <a href="/">Arusekk blog</a></span>
     <span>
         Powered by
         <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
         <a href="https://git.io/hugopapermod" rel="noopener" target="_blank">PaperMod</a>
     </span>
 </footer>
-<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)">
-    <button class="top-link" id="top-link" type="button" accesskey="g">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
-            <path d="M12 6H0l6-6z" />
-        </svg>
-    </button>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
 </a>
 
 <script>
     let menu = document.getElementById('menu')
-    menu.scrollLeft = localStorage.getItem("menu-scroll-position");
-    menu.onscroll = function () {
-        localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
     }
 
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {

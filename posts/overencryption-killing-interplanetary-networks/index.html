@@ -6,12 +6,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
 <title>Overencryption killing interplanetary networks | Arusekk blog</title>
-<meta name="keywords" content="" />
+<meta name="keywords" content="">
 <meta name="description" content="Complaints about wide adoption of HTTPS and its design goals">
 <meta name="author" content="">
-<link rel="canonical" href="/posts/overencryption-killing-interplanetary-networks/" />
-<link crossorigin="anonymous" href="/assets/css/stylesheet.min.6cba0d81b5f3f42bb578d49f402ba4175aa72b43def148780b8ad714c957c6f5.css" integrity="sha256-bLoNgbXz9Cu1eNSfQCukF1qnK0Pe8Uh4C4rXFMlXxvU=" rel="preload stylesheet" as="style">
-<script defer crossorigin="anonymous" src="/assets/js/highlight.min.7680afc38aa6b15ddf158a4f3780b7b1f7dde7e91d26f073e6229bb7a0793c92.js" integrity="sha256-doCvw4qmsV3fFYpPN4C3sffd5&#43;kdJvBz5iKbt6B5PJI="
+<link rel="canonical" href="/posts/overencryption-killing-interplanetary-networks/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.ec8da366ca2fb647537ccb7a8f6fa5b4e9cd3c7a0d3171dd2d3baad1e49c8bfc.css" integrity="sha256-7I2jZsovtkdTfMt6j2&#43;ltOnNPHoNMXHdLTuq0eSci/w=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.2840b7fccd34145847db71a290569594bdbdb00047097f75d6495d162f5d7dff.js" integrity="sha256-KEC3/M00FFhH23GikFaVlL29sABHCX911kldFi9dff8="
     onload="hljs.initHighlightingOnLoad();"></script>
 <link rel="icon" href="/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -20,8 +20,43 @@
 <link rel="mask-icon" href="/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.87.0" />
-<meta property="og:title" content="Overencryption killing interplanetary networks" />
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:title" content="Overencryption killing interplanetary networks" />
 <meta property="og:description" content="Complaints about wide adoption of HTTPS and its design goals" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/posts/overencryption-killing-interplanetary-networks/" /><meta property="article:section" content="posts" />
@@ -63,7 +98,7 @@
   "keywords": [
     
   ],
-  "articleBody": "As years went by, we tried so hard to push everybody towards encrypting everything. Just in case. Of course, whenever I see a HTTP (no S here) form asking you for password, or credit card details, I don’t know whether to be angry, or to feel sympathy for those who are unable to set up simple encryption.\nAnd yes, it was very hard to do encryption in the past. It consumed CPU, memory, other valuable resources, and was not even widely supported. The first web pages ever were created way before SSL was even thought of, as were the first browsers. There started to be educational campaigns (which I am a very keen advocate of), like natashenka’s (my personal favourite), or Let’s Encrypt’s, or Google’s.\nBUT. There always is a but. Have you though about caching? Say you run a huge office, or you are an internet provider. Well, we don’t like our ISPs, but we do like our workplace, or school, or university, right? So let’s say people do software updates through your link. If they used HTTP, you could just place a proxy, and instruct people to use it, or even do a destnat, which I call HTTP spoofing or DNS spoofing, but whatever. You simply cannot do that with HTTPS! There is a tech giant that already knows that — M$ Windows (official source) tries to optimize network usage during its most bandwidth-consuming activities. You might want to read about InterPlanetary File System by the way.\nYou can of course say, ‘Whaaat, caching is just the foul fruit called integrity-checked active mixed content’, which is BACKWARDS (and while it does compromise privacy in some RARE scenarios, you can always be just profiled anyways based on IP ranges you connect to, and sizes of packets you exchange with them), since the main usage would be to serve STATIC content using this mechanism, like scripts used on the main page, which are fetchable anyways by anyone in the world, and of no surprise, containing no sensitive data. Well, passive mixed content is allowed? It shows a crossed lock icon, since the content could have been tampered with. But wait! Actually integrity-checked active mixed content is more secure! Like a sealed glass box, not a sealed lead box. The whole point of allowing passive mixed content is even less valid than integrity-checked active. There are use cases for both box types, right? Have you seen election voting boxes in Poland?\nWell, finally, even if you may be right in some messed up way, let’s see what else ‘benefits’ we get from being so HTTPS. It is the only easy-to-adopt encryption standard enforcing certification by some central authorities, and some operating system API designers think that limiting app network activity to valid HTTPS requests only is a way of sandboxing. What utter fools! Because of that it is no longer possible to easily provide Quality of Service (QoS), also called bandwidth throttling, bandwidth assignment or other names, when 90% of the traffic you have is nameless HTTPS. Even VoIP apps now use WebSockets. Back in the sane times, one could add a firewall rule that SIP had to be served with low latency, other streams next, and then the big file transfers. There were ports assigned to stuff. And now? Your two pandemic flatmates want to watch live lectures while you have a meeting at work, and the router no longer goes brrr, it goes eeeeekghvsh.\nWhat’s worse, Google kills FTP and Firefox sadly pursues being Chrome, not even considering that some choose Firefox over Chrome for a reason. Here comes the salvation: the new protocol from Google. But wait! Oh noes, a single bit leaks so much info! They do even plan on deprecating unencrypted HTTP. Good luck developing stuff on localhost. Good luck accessing those captive portals (which should be illegal anyway).\nBack to the glass boxes, there could be some new protocol (yeah, a standard one), call it something like HTTPV (and ABSOLUTELY NOT SHTTP, never repeat the mistake with FTPS/SFTP) like HTTP that’s ‘verified’/‘signed’ secure, but not ‘encrypted’ secure. Could be used to serve the neutral cacheable content like Wikipedia, CDN-delivered stuff, or static content of your favorite homepag^W (you use Chrome anyway, so you don’t have a homepage or you use a different browser, but you keep your tabs open, so you never see it). And then you could encrypt just the elements you really need to encrypt: passwords, credit card numbers and probably account/profile details. It’s 2020, no one writes HTML that works without scripts anymore.\nThis is a part of a series on why The Web is broken. And it is. And it is only because of quickly hacking together a solution on top of compatibility and interoperability of things that do not ever need to interact.\n",
+  "articleBody": "As years went by, we tried so hard to push everybody towards encrypting everything. Just in case. Of course, whenever I see a HTTP (no S here) form asking you for password, or credit card details, I don’t know whether to be angry, or to feel sympathy for those who are unable to set up simple encryption.\nAnd yes, it was very hard to do encryption in the past. It consumed CPU, memory, other valuable resources, and was not even widely supported. The first web pages ever were created way before SSL was even thought of, as were the first browsers. There started to be educational campaigns (which I am a very keen advocate of), like natashenka’s (my personal favourite), or Let’s Encrypt’s, or Google’s.\nBUT. There always is a but. Have you though about caching? Say you run a huge office, or you are an internet provider. Well, we don’t like our ISPs, but we do like our workplace, or school, or university, right? So let’s say people do software updates through your link. If they used HTTP, you could just place a proxy, and instruct people to use it, or even do a destnat, which I call HTTP spoofing or DNS spoofing, but whatever. You simply cannot do that with HTTPS! There is a tech giant that already knows that — M$ Windows (official source) tries to optimize network usage during its most bandwidth-consuming activities. You might want to read about InterPlanetary File System by the way.\nYou can of course say, ‘Whaaat, caching is just the foul fruit called integrity-checked active mixed content’, which is BACKWARDS (and while it does compromise privacy in some RARE scenarios, you can always be just profiled anyways based on IP ranges you connect to, and sizes of packets you exchange with them), since the main usage would be to serve STATIC content using this mechanism, like scripts used on the main page, which are fetchable anyways by anyone in the world, and of no surprise, containing no sensitive data. Well, passive mixed content is allowed? It shows a crossed lock icon, since the content could have been tampered with. But wait! Actually integrity-checked active mixed content is more secure! Like a sealed glass box, not a sealed lead box. The whole point of allowing passive mixed content is even less valid than integrity-checked active. There are use cases for both box types, right? Have you seen election voting boxes in Poland?\nWell, finally, even if you may be right in some messed up way, let’s see what else ‘benefits’ we get from being so HTTPS. It is the only easy-to-adopt encryption standard enforcing certification by some central authorities, and some operating system API designers think that limiting app network activity to valid HTTPS requests only is a way of sandboxing. What utter fools! Because of that it is no longer possible to easily provide Quality of Service (QoS), also called bandwidth throttling, bandwidth assignment or other names, when 90% of the traffic you have is nameless HTTPS. Even VoIP apps now use WebSockets. Back in the sane times, one could add a firewall rule that SIP had to be served with low latency, other streams next, and then the big file transfers. There were ports assigned to stuff. And now? Your two pandemic flatmates want to watch live lectures while you have a meeting at work, and the router no longer goes brrr, it goes eeeeekghvsh.\nWhat’s worse, Google kills FTP and Firefox sadly pursues being Chrome, not even considering that some choose Firefox over Chrome for a reason. Here comes the salvation: the new protocol from Google. But wait! Oh noes, a single bit leaks so much info! They do even plan on deprecating unencrypted HTTP. Good luck developing stuff on localhost. Good luck accessing those captive portals (which should be illegal anyway).\nBack to the glass boxes, there could be some new protocol (yeah, a standard one), call it something like HTTPV (and ABSOLUTELY NOT SHTTP, never repeat the mistake with FTPS/SFTP) like HTTP that’s ‘verified’/‘signed’ secure, but not ’encrypted’ secure. Could be used to serve the neutral cacheable content like Wikipedia, CDN-delivered stuff, or static content of your favorite homepag^W (you use Chrome anyway, so you don’t have a homepage or you use a different browser, but you keep your tabs open, so you never see it). And then you could encrypt just the elements you really need to encrypt: passwords, credit card numbers and probably account/profile details. It’s 2020, no one writes HTML that works without scripts anymore.\nThis is a part of a series on why The Web is broken. And it is. And it is only because of quickly hacking together a solution on top of compatibility and interoperability of things that do not ever need to interact.\n",
   "wordCount" : "803",
   "inLanguage": "en",
   "datePublished": "2020-11-04T00:00:00Z",
@@ -95,43 +130,6 @@
     }
 
 </script>
-<noscript>
-    <style type="text/css">
-        #theme-toggle,
-        .top-link {
-            display: none;
-        }
-
-    </style>
-    <style>
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --theme: #1d1e20;
-                --entry: #2e2e33;
-                --primary: rgba(255, 255, 255, 0.84);
-                --secondary: rgba(255, 255, 255, 0.56);
-                --tertiary: rgba(255, 255, 255, 0.16);
-                --content: rgba(255, 255, 255, 0.74);
-                --hljs-bg: #2e2e33;
-                --code-bg: #37383e;
-                --border: #333;
-            }
-
-            .list {
-                background: var(--theme);
-            }
-
-            .list:not(.dark)::-webkit-scrollbar-track {
-                background: 0 0;
-            }
-
-            .list:not(.dark)::-webkit-scrollbar-thumb {
-                border-color: var(--theme);
-            }
-        }
-
-    </style>
-</noscript>
 
 <header class="header">
     <nav class="nav">
@@ -195,7 +193,8 @@
     <div class="post-description">
       Complaints about wide adoption of HTTPS and its design goals
     </div>
-    <div class="post-meta">November 4, 2020
+    <div class="post-meta"><span title='2020-11-04 00:00:00 +0000 UTC'>November 4, 2020</span>
+
 </div>
   </header> 
   <div class="post-content"><p>As years went by, we tried so hard to push everybody towards encrypting
@@ -264,7 +263,7 @@ illegal anyway).</p>
 <p>Back to the glass boxes, there could be some new protocol (yeah,
 a <a href="https://xkcd.com/927/">standard one</a>), call it something like HTTPV
 (and <em>ABSOLUTELY NOT</em> SHTTP, never repeat the mistake with FTPS/SFTP)
-like HTTP that&rsquo;s &lsquo;verified&rsquo;/&lsquo;signed&rsquo; secure, but not &lsquo;encrypted&rsquo; secure.
+like HTTP that&rsquo;s &lsquo;verified&rsquo;/&lsquo;signed&rsquo; secure, but not &rsquo;encrypted&rsquo; secure.
 Could be used to serve the neutral cacheable content like Wikipedia,
 CDN-delivered stuff, or static content of your favorite homepag^W (you use
 Chrome anyway, so you don&rsquo;t have a homepage or you use a different browser,
@@ -278,31 +277,35 @@ compatibility and interoperability of things that do not ever need to interact.<
 
 
   </div>
+
   <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
   </footer>
 </article>
     </main>
-    <footer class="footer">
-    <span>&copy; 2021 <a href="/">Arusekk blog</a></span>
+    
+<footer class="footer">
+    <span>&copy; 2022 <a href="/">Arusekk blog</a></span>
     <span>
         Powered by
         <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
         <a href="https://git.io/hugopapermod" rel="noopener" target="_blank">PaperMod</a>
     </span>
 </footer>
-<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)">
-    <button class="top-link" id="top-link" type="button" accesskey="g">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
-            <path d="M12 6H0l6-6z" />
-        </svg>
-    </button>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
 </a>
 
 <script>
     let menu = document.getElementById('menu')
-    menu.scrollLeft = localStorage.getItem("menu-scroll-position");
-    menu.onscroll = function () {
-        localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
     }
 
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
