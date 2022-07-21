@@ -78,7 +78,7 @@ to be able to do universal MITM (man-in-the-middle) attacks
 and therefore potentially steal your credentials).
 I will later explain how I arrived at this conclusion.
 
-[sra][https://securityriskahead.eu/]
+[sra]: https://securityriskahead.eu/
 
 This is made possible by the fundamental design flaw in X.509 / WebPKI.
 What the draft law says is pretty much 'every website must present a QWAC to EU citizens'.
