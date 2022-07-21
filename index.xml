@@ -5,7 +5,16 @@
     <link>/</link>
     <description>Recent content on Arusekk blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Tue, 23 Mar 2021 00:00:00 +0000</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 21 Jul 2022 00:00:00 +0000</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Rant on TLS PKI</title>
+      <link>/posts/rant-on-tls-pki/</link>
+      <pubDate>Thu, 21 Jul 2022 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/rant-on-tls-pki/</guid>
+      <description>There are some fundamental design flaws in X.509 / WebPKI (HTTPS/TLS key infrasructure), and I am freaked out nobody has noticed.  Or have they?</description>
+    </item>
+    
     <item>
       <title>My domain is my castle</title>
       <link>/posts/my-domain-is-my-castle/</link>
