@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Die, IPv4, just die already!!!1! | Arusekk blog</title>
+<meta name="keywords" content="">
+<meta name="description" content="IPv4 is obsolete and has no future.  Just deal with it.  IPv6 is the way to go.">
+<meta name="author" content="">
+<link rel="canonical" href="/posts/die-ipv4-just-die-already/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.ec8da366ca2fb647537ccb7a8f6fa5b4e9cd3c7a0d3171dd2d3baad1e49c8bfc.css" integrity="sha256-7I2jZsovtkdTfMt6j2&#43;ltOnNPHoNMXHdLTuq0eSci/w=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.e85ad0406048e8176e1c7661b25d5c69297ddfe41dc4124cf75ecb99a4f7b3d1.js" integrity="sha256-6FrQQGBI6BduHHZhsl1caSl93&#43;QdxBJM917LmaT3s9E="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="mask-icon" href="/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:title" content="Die, IPv4, just die already!!!1!" />
+<meta property="og:description" content="IPv4 is obsolete and has no future.  Just deal with it.  IPv6 is the way to go." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/posts/die-ipv4-just-die-already/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-01-10T00:00:00&#43;00:00" />
+<meta property="article:modified_time" content="2022-01-10T00:00:00&#43;00:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Die, IPv4, just die already!!!1!"/>
+<meta name="twitter:description" content="IPv4 is obsolete and has no future.  Just deal with it.  IPv6 is the way to go."/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "/posts/"
+    }
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Die, IPv4, just die already!!!1!",
+      "item": "/posts/die-ipv4-just-die-already/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Die, IPv4, just die already!!!1!",
+  "name": "Die, IPv4, just die already!!!1!",
+  "description": "IPv4 is obsolete and has no future.  Just deal with it.  IPv6 is the way to go.",
+  "keywords": [
+    
+  ],
+  "articleBody": "IPv4 has been invented in the eighties. IPv6 has quickly followed in the nineties, exactly after fourteen years of IPv4 practical application.\nIt’s been nearly 30 years since then, and we’re still stuck with IPv4.\nStuck? The main problem with IPv4 is its 32-bit addressing. It limits the Internet to 4 billion true participants (in practice even less, because of reserved address ranges, broadcast addresses, masks, and so on): less than half the world population! All its shortcomings come from this single problem.\nBut IPv4 is simpler! Short addresses Just use DNS/reverse DNS already!\nOf course it is easier to remember 1.1.1.1 than 2606:4700:4700::1111. But you can also remember one.one.one.one.\nIs it easier to remember 198.41.0.4 than 2001:503:ba3e::2:30? Maybe. But isn’t it way easier to remember a.root-servers.net?\nIs it easier to remember 77.254.234.1 than 2a02:a317:e13d:a780:21f:3bff:fe8c:49c3? Of course, but you should just forget them both and give them names. How about arusekk.pl, a little bit more catchy, right?\nLonger addresses are inevitable if we want to numerically address every single computer in the world.\nNAT (Network address translation) The most obvious way of dealing with the shrinking IPv4 address pool was apparently to invent a convoluted translation layer that messes with all the existing known higher-layer protocols, where a router lies to every machine in the subnet that it receives a globally unique addresses (giving it a ‘private’ address), and then intercepts all outbound traffic and performs a constant MITM (man-in-the-middle attack) against the whole subnet, it lies to the WAN (wide area network) that it is the only party making all these requests and receiving answers, effectively violating the ‘Just deliver the bits, stupid!’ principle.\nSo you still claim IPv4 is simpler? Ever heard of ALGs (application-level gateways)?\nImplementing a transparent NAT correctly involves not only rewriting IP addresses. Not only rewriting packet identifiers and TCP/UDP ports. It also involves (in some cases) intercepting the whole TCP stream and substituting text mentions of the ‘internal’ IP address by the ’external’ one; SIP, IRC and FTP are notable examples of protocols that send some IPs and ports in the connection payload. (Meanwhile in IPv6, every address is simply ‘globally-routable’: no weird distinction needed.)\nCGNAT (carrier-grade NAT) Well, this one is a huge agony extender. And I don’t like it. Imagine that you are a big ISP and have 512 addresses to use. You use 256 for your 256 computers and treat the remaining 256 as an amortized resource. Now your every connection can get an accidentally different IP, because well yeah. If you don’t mind being behind a NAT, then you are all set.\nSTUN / TURN NAT stops innovation. This is why new layer-4 protocols and protocol improvements such as MPTCP (multipath TCP) are pretty much stuck in place; the NAT status quo forces us to only use the existing technology and build frankensteins like websockets: a transport layer inside application layer making sure nothing touches it.\nSTUN (several backronyms, T for traversal, N for NAT) is a method for ‘NAT traversal’ (a non-concept in IPv6 world, there is no need to traverse anything, first learn the address you want your packets to arrive at, and then just send the packet to the freaking address!): if two peers behind NATs want to communicate, they need to do some ‘firewall hole punching’ thing (non-concept in the beautiful IPv6 world) in order to open a session.\nSometimes this weird dance is made impossible by the eager resource-saving NAT (called symmetric NAT: the worst evil that man created), so the only option left is relaying everything through a third party server. This is named TURN (several backronyms again, R for relay, N for NAT), and is an utter waste of resources.\nBut IPv4 is more secure! Discoverability Sending a packet to every routable IPv4 address only takes a couple hours if the sender has a decent uplink. If you serve anything over an IPv4 address (an SSH server for example), it will be getting constant probes from random botnets and crawlers, and that’s a given.\nThe private range is tiny as well. This is exactly why DNS rebinding attacks are so easy to convey and why many home routers try so hard to prevent them (breaking standards compliance once again).\nIterating through a single /64 IPv6 subnet would take 500000+ years. No one can guess your server address if it is random. They must know it: no more accidental probes, only directed ones. If someone is targetting ‘anyone’, you are much less likely to be the any one.\nAnonymity Hiding behind a single IP (v4) of a VPN server is no better than using a random address in a single /64 net of a VPN server. Just rotate the net and the address, or use several addresses simultaneously (an unforgivable waste in legacy IPv4) and keep being globally routable.\nWell, if you want true anonymity, you’re better off using something like Tor anyway.\nFirewall A NAT is inherently a firewall, because someone from the outside has literally no way of knowing what ‘internal address’ to reach. And even if they knew, they have no way to instruct the router to push the packet there. Or have they. Therefore NAT is no better than a conservative connection-tracking firewall.\nAnd this is the thing I find the most frustrating. I just want to have multiple servers on my network. This would help the general security, too, for example if the in-network router address was globally routable, it could get a normal HTTPS cert.\nBut IPv4 has wider support! Not any longer. Several of the Big Tech companies are migrating to IPv6-only server farms.\nBut IPv4 is battle tested! Yes it is, and it has been found inferior to IPv6, which is equally as well battle tested.\nBut we still have much time left until IPv4 becomes unusable! Yes and no. Introducing NAT made IPv4 mostly unusable for any ‘advanced’ use case of where anybody behind it wanted to do anything but browsing the Web, so it is already unusable.\nBut it is only a matter of time when the market lease price for an IPv4 address exceeds the value of a potato-grade VPS rental at an average hosting provider. Hosting customers will start to rent cloud hosts that are themselves behind NAT, and thus as unreachable as any wanna-be server on customer premises, which will economically push them to use IPv6, creating IPv6-only sites.\nThen the demand for IPv6 access will start to push those lazy legacy ISPs towards finally embracing the future.\nAllowing IPv4 and IPv6 to coexist was a unique chance for the ISPs (Internet service providers) to introduce IPv6 support without interfering in any way with IPv4 that was there. To let the hopeless, endlessly stacking hacks die with fading IPv4, getting only more and more pricely in comparison to fast, cheap, clean and obvious IPv6. Do the good ol’ IPv4 a favor, and admit that it is plain obsolete and outdated; better yet, ask your ISP sales about IPv6 and that you consider switching away because of lack of it. Together we can make the future now.\n",
+  "wordCount" : "1186",
+  "inLanguage": "en",
+  "datePublished": "2022-01-10T00:00:00Z",
+  "dateModified": "2022-01-10T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "/posts/die-ipv4-just-die-already/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Arusekk blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="/" accesskey="h" title="Arusekk blog (Alt + H)">Arusekk blog</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </span>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="/" title="Home">
+                    <span>Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="/about/" title="About">
+                    <span>About</span>
+                </a>
+            </li>
+            <li>
+                <a href="/contact/" title="Contact">
+                    <span>Contact</span>
+                </a>
+            </li>
+            <li>
+                <a href="/posts/index.xml" title="Feed">
+                    <span>Feed</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title">
+      Die, IPv4, just die already!!!1!
+    </h1>
+    <div class="post-description">
+      IPv4 is obsolete and has no future.  Just deal with it.  IPv6 is the way to go.
+    </div>
+    <div class="post-meta"><span title='2022-01-10 00:00:00 +0000 UTC'>January 10, 2022</span>
+
+</div>
+  </header> 
+  <div class="post-content"><p>IPv4 has been invented in the <a href="https://datatracker.ietf.org/doc/html/rfc791">eighties</a>.
+IPv6 has quickly followed in the <a href="https://datatracker.ietf.org/doc/html/rfc1883">nineties</a>,
+exactly after fourteen years of IPv4 practical application.</p>
+<p>It&rsquo;s been nearly 30 years since then,
+and we&rsquo;re still stuck with IPv4.</p>
+<h1 id="stuck">Stuck?<a hidden class="anchor" aria-hidden="true" href="#stuck">#</a></h1>
+<p>The main problem with IPv4 is its 32-bit addressing.
+It limits the Internet to 4 billion true participants
+(in practice even less,
+because of reserved address ranges,
+broadcast addresses, masks, and so on):
+less than half the world population!
+All its shortcomings come from this single problem.</p>
+<h1 id="but-ipv4-is-simpler">But IPv4 is simpler!<a hidden class="anchor" aria-hidden="true" href="#but-ipv4-is-simpler">#</a></h1>
+<h2 id="short-addresses">Short addresses<a hidden class="anchor" aria-hidden="true" href="#short-addresses">#</a></h2>
+<p>Just use DNS/reverse DNS already!</p>
+<p>Of course it is easier to remember <code>1.1.1.1</code> than <code>2606:4700:4700::1111</code>.
+But you can also remember <a href="https://one.one.one.one">one.one.one.one</a>.</p>
+<p>Is it easier to remember <code>198.41.0.4</code> than <code>2001:503:ba3e::2:30</code>?
+Maybe.  But isn&rsquo;t it way easier to remember <code>a.root-servers.net</code>?</p>
+<p>Is it easier to remember <code>77.254.234.1</code> than <code>2a02:a317:e13d:a780:21f:3bff:fe8c:49c3</code>?
+Of course, but you should just forget them both and give them names.
+How about <code>arusekk.pl</code>, a little bit more catchy, right?</p>
+<p>Longer addresses are inevitable if we want to numerically address
+every single computer in the world.</p>
+<h2 id="nat-network-address-translation">NAT (Network address translation)<a hidden class="anchor" aria-hidden="true" href="#nat-network-address-translation">#</a></h2>
+<p>The most obvious way of dealing with the shrinking IPv4 address pool was
+apparently to invent a convoluted translation layer
+that messes with all the existing known higher-layer protocols,
+where a router lies to every machine in the subnet that it receives a globally unique addresses
+(giving it a &lsquo;private&rsquo; address),
+and then intercepts all outbound traffic and performs a constant MITM (man-in-the-middle attack)
+against the whole subnet,
+it lies to the WAN (wide area network)
+that it is the only party making all these requests and receiving answers,
+effectively violating the <a href="https://isen.com/stupid.html">&lsquo;Just deliver the bits, stupid!&rsquo;</a> principle.</p>
+<p>So you still claim IPv4 is simpler?  Ever heard of ALGs (application-level gateways)?</p>
+<p>Implementing a transparent NAT correctly involves not only rewriting IP addresses.
+Not only rewriting packet identifiers and TCP/UDP ports.
+It also involves (in some cases) intercepting the whole TCP stream
+and substituting text mentions of the &lsquo;internal&rsquo; IP address by the &rsquo;external&rsquo; one;
+SIP, IRC and FTP are notable examples of protocols that send some IPs
+and ports in the connection payload.
+(Meanwhile in IPv6, every address is simply &lsquo;globally-routable&rsquo;:
+no weird distinction needed.)</p>
+<h3 id="cgnat-carrier-grade-nat">CGNAT (carrier-grade NAT)<a hidden class="anchor" aria-hidden="true" href="#cgnat-carrier-grade-nat">#</a></h3>
+<p>Well, this one is a huge agony extender.  And I don&rsquo;t like it.
+Imagine that you are a big ISP and have 512 addresses to use.
+You use 256 for your 256 computers
+and treat the remaining 256 as an amortized resource.
+Now your every connection can get an accidentally different IP,
+because well yeah.
+If you don&rsquo;t mind being behind a NAT, then you are all set.</p>
+<h3 id="stun--turn">STUN / TURN<a hidden class="anchor" aria-hidden="true" href="#stun--turn">#</a></h3>
+<p>NAT stops innovation.  This is why new layer-4 protocols
+and protocol improvements such as MPTCP (multipath TCP) are pretty much stuck in place;
+the NAT status quo forces us to only use the existing technology
+and build frankensteins like websockets:
+a transport layer inside application layer making sure nothing touches it.</p>
+<p>STUN (several backronyms, T for traversal, N for NAT)
+is a method for &lsquo;NAT traversal&rsquo;
+(a non-concept in IPv6 world, there is no need to traverse anything,
+first learn the address you want your packets to arrive at,
+and then just send the packet to the freaking address!):
+if two peers behind NATs want to communicate,
+they need to do some &lsquo;firewall hole punching&rsquo; thing
+(non-concept in the beautiful IPv6 world)
+in order to open a session.</p>
+<p>Sometimes this weird dance is made impossible
+by the eager resource-saving NAT
+(called symmetric NAT: the worst evil that man created),
+so the only option left is relaying everything
+through a third party server.
+This is named TURN
+(several backronyms again, R for relay, N for NAT),
+and is an utter waste of resources.</p>
+<h1 id="but-ipv4-is-more-secure">But IPv4 is more secure!<a hidden class="anchor" aria-hidden="true" href="#but-ipv4-is-more-secure">#</a></h1>
+<h2 id="discoverability">Discoverability<a hidden class="anchor" aria-hidden="true" href="#discoverability">#</a></h2>
+<p>Sending a packet to every routable IPv4 address only takes
+a couple hours if the sender has a decent uplink.
+If you serve anything over an IPv4 address (an SSH server for example),
+it will be getting constant probes from random botnets and crawlers,
+and that&rsquo;s a given.</p>
+<p>The private range is tiny as well.
+This is exactly why <a href="https://en.wikipedia.org/wiki/DNS_rebinding">DNS rebinding attacks</a> are so easy to convey
+and why many home routers try so hard to prevent them
+(breaking standards compliance once again).</p>
+<p>Iterating through a single /64 IPv6 <strong>subnet</strong> would take 500000+ years.
+No one can guess your server address if it is random.
+They must know it: no more accidental probes, only directed ones.
+If someone is targetting &lsquo;anyone&rsquo;,
+you are much less likely to be the any one.</p>
+<h2 id="anonymity">Anonymity<a hidden class="anchor" aria-hidden="true" href="#anonymity">#</a></h2>
+<p>Hiding behind a single IP (v4) of a VPN server is no better than using
+a random address in a single /64 net of a VPN server.
+Just rotate the net and the address, or use several addresses simultaneously
+(an unforgivable waste in legacy IPv4) and keep being globally routable.</p>
+<p>Well, if you want true anonymity,
+you&rsquo;re better off using something like <a href="https://www.torproject.org/">Tor</a> anyway.</p>
+<h2 id="firewall">Firewall<a hidden class="anchor" aria-hidden="true" href="#firewall">#</a></h2>
+<p>A NAT is inherently a firewall,
+because someone from the outside
+has literally no way of knowing what &lsquo;internal address&rsquo; to reach.
+And even if they knew, they have no way to instruct the router to push the packet there.
+<a href="https://samy.pl/slipstream/">Or have they.</a>
+Therefore NAT is no better than a conservative connection-tracking firewall.</p>
+<p>And this is the thing I find the most frustrating.
+I just want to have multiple servers on my network.
+This would help the general security, too,
+for example if the in-network router address was globally routable,
+it could <a href="https://emilymstark.com/2021/12/24/when-a-web-pki-certificate-wont-cut-it.html">get a normal HTTPS cert</a>.</p>
+<h1 id="but-ipv4-has-wider-support">But IPv4 has wider support!<a hidden class="anchor" aria-hidden="true" href="#but-ipv4-has-wider-support">#</a></h1>
+<p>Not any longer.
+Several of the Big Tech companies are migrating to <a href="https://ungleich.ch/en-us/cms/blog/2019/01/09/die-ipv4-die/">IPv6-only server farms</a>.</p>
+<h1 id="but-ipv4-is-battle-tested">But IPv4 is battle tested!<a hidden class="anchor" aria-hidden="true" href="#but-ipv4-is-battle-tested">#</a></h1>
+<p>Yes it is, and it has been found inferior to IPv6,
+which is equally as well battle tested.</p>
+<h1 id="but-we-still-have-much-time-left-until-ipv4-becomes-unusable">But we still have much time left until IPv4 becomes unusable!<a hidden class="anchor" aria-hidden="true" href="#but-we-still-have-much-time-left-until-ipv4-becomes-unusable">#</a></h1>
+<p>Yes and no.
+Introducing NAT made IPv4 mostly unusable
+for any &lsquo;advanced&rsquo; use case of where anybody behind it
+wanted to do anything but browsing the Web,
+so it is already unusable.</p>
+<p>But it is only a matter of time when the market lease price for an IPv4 address
+exceeds the value of a potato-grade VPS rental at an average hosting provider.
+Hosting customers will start to rent cloud hosts that are themselves behind NAT,
+and thus as unreachable as any wanna-be server on customer premises,
+which will economically push them to use IPv6,
+creating IPv6-only sites.</p>
+<p>Then the demand for IPv6 access will start to push those lazy
+legacy ISPs towards finally embracing the future.</p>
+<p>Allowing IPv4 and IPv6 to coexist was a unique chance for the ISPs (Internet service providers)
+to introduce IPv6 support without interfering in any way with IPv4 that was there.
+To let the hopeless, endlessly stacking hacks die with fading IPv4,
+getting only more and more pricely
+in comparison to fast, cheap, clean and obvious IPv6.
+Do the good ol&rsquo; IPv4 a favor, and admit that it is plain obsolete and outdated;
+better yet, ask your ISP sales about IPv6
+and that you consider switching away because of lack of it.
+Together we can make the future now.</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2022 <a href="/">Arusekk blog</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://git.io/hugopapermod" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>
