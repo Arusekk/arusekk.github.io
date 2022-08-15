@@ -173,6 +173,13 @@ Several of the Big Tech companies are migrating to [IPv6-only server farms][ungl
 Yes it is, and it has been found inferior to IPv6,
 which is equally as well battle tested.
 
+# But ISPs like IPv4 more!
+
+No, they do not.
+It was a constant pain for them [even 8 years ago][tmint].
+
+[tmint]: https://www.tecmint.com/ipv4-and-ipv6-comparison/
+
 # But we still have much time left until IPv4 becomes unusable!
 
 Yes and no.
