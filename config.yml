@@ -9,10 +9,20 @@ params:
     Content: My name is Arusekk.  Not a real name, but I find it the most real for me online.  This is a blog where I write about computer programming and some unpopular opinions.
 
   socialIcons:
-    - name: github
+    - name: Rss
+      url: posts/index.xml
+    - name: GitHub
       url: https://github.com/Arusekk
-    - name: linkedin
+    - name: GitLab
+      url: https://gitlab.com/Arusekk
+    - name: LinkedIn
       url: https://www.linkedin.com/in/arusekk/
+    - name: Matrix
+      url: https://matrix.to/#/@arusekk:matrix.org
+    - name: CTFtime
+      url: https://ctftime.org/user/102157
+    - name: StackOverflow
+      url: https://stackoverflow.com/users/3869724/arusekk
 
 # Navbar
 menu:

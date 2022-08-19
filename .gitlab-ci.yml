@@ -19,6 +19,7 @@ test:
 pages:
   script:
     - hugo
+    - ./mklinks.sh
   artifacts:
     paths:
       - public
