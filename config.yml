@@ -23,6 +23,8 @@ params:
       url: https://ctftime.org/user/102157
     - name: StackOverflow
       url: https://stackoverflow.com/users/3869724/arusekk
+    - name: Mastodon
+      url: https://infosec.exchange/@Arusekk
 
 # Navbar
 menu:
