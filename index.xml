@@ -85,7 +85,18 @@
       
       <guid>/about/</guid>
       <description>I am a student of joined Computer Science and Math. I enjoy libre software. Living in Wrocław, Poland. Come see this beautiful city in better times!
-Nerd Stuff The posts on this blog are licensed under the Creative Commons BY-SA 4.0 license. I built this blog using Hugo, markdown, PaperMod, and GitHub Pages. You can take a look at the source if you’re curious as to how it works. There is no support for comments on this blog, as all its pages are statically generated; if you truly feel compelled to comment, there are many news aggregators that provide you with such a space.</description>
+Nerd Stuff The posts on this blog are licensed under the Creative Commons BY-SA 4.0 license. I built this blog using Hugo, markdown, PaperMod, and GitLab Pages. You can take a look at the source if you’re curious as to how it works. There is no support for comments on this blog, as all its pages are statically generated; if you truly feel compelled to comment, there are many news aggregators that provide you with such a space.</description>
+    </item>
+    
+    <item>
+      <title>Blogroll</title>
+      <link>/blogroll/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/blogroll/</guid>
+      <description>I love the idea of personal blogging. If you know any search engine that only includes genuine blogs by actual people and excludes all the new-age auto-generated content, advertisements, social media posts and low-effort journalists, please let me know.
+Here is a blogroll of my friends (if you feel left out, reach out!):
+Franciszek Malinka (feed) Disconnect3d (feed) BonusPlay Radosław Miernik (feed) &amp;hellip; and some other blogs I found nice:</description>
     </item>
     
     <item>

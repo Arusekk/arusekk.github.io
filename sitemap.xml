@@ -35,6 +35,8 @@
     <loc>/about/</loc>
     <priority>0</priority>
   </url><url>
+    <loc>/blogroll/</loc>
+  </url><url>
     <loc>/categories/</loc>
   </url><url>
     <loc>/contact/</loc>
