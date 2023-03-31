@@ -1,46 +1,18 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-  xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  <url>
-    <loc>/</loc>
-    <lastmod>2022-07-21T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>/posts/</loc>
-    <lastmod>2022-07-21T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>/posts/rant-on-tls-pki/</loc>
-    <lastmod>2022-07-21T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>/posts/die-ipv4-just-die-already/</loc>
-    <lastmod>2022-01-10T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>/posts/my-domain-is-my-castle/</loc>
-    <lastmod>2021-03-23T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>/posts/average-day-of-a-floss-developer/</loc>
-    <lastmod>2021-02-18T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>/posts/thoughts-on-opinions/</loc>
-    <lastmod>2021-02-07T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>/posts/an-adventure-with-acer-swift/</loc>
-    <lastmod>2021-01-19T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>/posts/i-translated-git/</loc>
-    <lastmod>2020-12-27T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>/posts/overencryption-killing-interplanetary-networks/</loc>
-    <lastmod>2020-11-04T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>/about/</loc>
-    <priority>0</priority>
-  </url><url>
-    <loc>/blogroll/</loc>
-  </url><url>
-    <loc>/categories/</loc>
-  </url><url>
-    <loc>/contact/</loc>
-  </url><url>
-    <loc>/tags/</loc>
-  </url>
-</urlset>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <sitemap>
+    <loc>/en/sitemap.xml</loc>
+    
+      <lastmod>2022-07-21T00:00:00+00:00</lastmod>
+    
+  </sitemap>
+  
+  <sitemap>
+    <loc>/pl/sitemap.xml</loc>
+    
+      <lastmod>2020-12-27T00:00:00+00:00</lastmod>
+    
+  </sitemap>
+  
+</sitemapindex>

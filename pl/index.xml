@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Blog Aruskka</title>
+    <link>/pl/</link>
+    <description>Recent content on Blog Aruskka</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sun, 27 Dec 2020 00:00:00 +0000</lastBuildDate><atom:link href="/pl/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>O mnie</title>
+      <link>/pl/o-mnie/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/pl/o-mnie/</guid>
+      <description>Jestem studentem łączonej informatyki i matematyki. Lubię wolne oprogramowanie. Mieszkam we Wrocławiu w Polsce. Zapraszam do tego pięknego miasta!
+Dla nerdów Wpisy na tym blogu udostępnione są na licencji Creative Commons BY-SA 4.0. Zbudowałem ten blog przy użyciu Hugo, markdown, PaperMod i GitLab Pages. Źródła są dostępne, jeśli chcesz się przekonać, jak to wszystko działa. Nie ma na tym blogu miejsca na komentarze, bo wszystkie jego strony są generowane statycznie; jeśli czujesz się wyjątkowo zobowiązany(a) do skomentowania czegoś, jest pełno agregatorów artykułów, które dają taką możliwość.</description>
+    </item>
+    
+    <item>
+      <title>Kontakt</title>
+      <link>/pl/kontakt/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/pl/kontakt/</guid>
+      <description>Najlepiej się ze mną kontaktować przez e-mail: blog at arusekk.pl. Odpowiadam najpóźniej po tygodniu. Jeśli nie zadziała, spróbuj arek_koz na o2.pl.
+Można mnie też znaleźć na Matriksie (@Arusekk:matrix.org) i na Discordzie (@Arusekk#6609). Czasem tam rzadziej zaglądam, ale jeśli masz szczęście i przyłapiesz mnie, jak tam jestem, możemy porozmawiać z najmniejszym opóźnieniem.</description>
+    </item>
+    
+    <item>
+      <title>Przetłumaczyłem Gita!</title>
+      <link>/pl/posts/i-translated-git/</link>
+      <pubDate>Sun, 27 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/pl/posts/i-translated-git/</guid>
+      <description>Dygresje lingwistyczne o tym, jak trudno się tłumaczy rzeczy</description>
+    </item>
+    
+  </channel>
+</rss>
