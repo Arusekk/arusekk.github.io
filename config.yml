@@ -1,12 +1,34 @@
-baseURL: "/"
+baseURL: /
 title: Arusekk blog
 theme: papermod
+
+defaultLanguage: en
+languages:
+  en:
+    title: Arusekk blog
+    languageName: English
+  pl:
+    title: Blog Aruskka
+    languageName: polski
+    params:
+      homeInfoParams:
+        title: Witaj
+        content: Jestem Arusekk.  Nie jakieś prawdziwe imię, ale w sieci jestem najbardziej znany właśnie pod takim.  To jest blog, na którym piszę o programowaniu i dzielę się niepopularnymi opiniami.  Póki co niektóre wpisy są dostępne tylko po polsku, inne tylko po angielsku.
+      dateFormat: 2 stycznia 2006
+    menu:
+      main:
+        - name: Wpisy
+          url: ""
+          weight: 1
+        - name: Kanał
+          url: posts/index.xml
+          weight: 5
 
 # Home page
 params:
   homeInfoParams:
-    Title: Welcome
-    Content: My name is Arusekk.  Not a real name, but I find it the most real for me online.  This is a blog where I write about computer programming and some unpopular opinions.
+    title: Welcome
+    content: My name is Arusekk.  Not a real name, but I find it the most real for me online.  This is a blog where I write about computer programming and some unpopular opinions.  Currently some posts are available in English only, some are in Polish only.
 
   socialIcons:
     - name: Rss
@@ -30,19 +52,10 @@ params:
 menu:
   main:
     - name: Home
-      url: /
+      url: ""
       weight: 1
-    - name: About
-      url: /about/
-      weight: 2
-    - name: Contact
-      url: /contact/
-      weight: 3
-    - name: Blogroll
-      url: /blogroll/
-      weight: 4
     - name: Feed
-      url: /posts/index.xml
+      url: posts/index.xml
       weight: 5
 
 # Other settings

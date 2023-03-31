@@ -1,5 +1,7 @@
 ---
-title: "Contact"
+menu: main
+title: Contact
+weight: 3
 ---
 
 The best way to contact me is to send me an email: [`blog at arusekk.pl`](mailto:blog@arusekk.pl). I reply after a week at most.

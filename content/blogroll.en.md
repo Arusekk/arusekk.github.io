@@ -1,5 +1,7 @@
 ---
-title: "Blogroll"
+menu: main
+title: Blogroll
+weight: 4
 ---
 
 I love the idea of personal blogging.

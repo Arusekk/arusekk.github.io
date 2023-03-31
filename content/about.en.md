@@ -1,3 +1,9 @@
+---
+menu: main
+title: About
+weight: 2
+---
+
 I am a student of joined Computer Science and Math.
 I [enjoy](https://github.com/Arusekk#js-contribution-activity) libre software.
 Living in Wrocław, Poland.
