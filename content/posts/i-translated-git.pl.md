@@ -1,10 +1,11 @@
 ---
+slug: przetlumaczylem-gita
 title: Przetłumaczyłem Gita!
 date: 2020-12-27
 description: Dygresje lingwistyczne o tym, jak trudno się tłumaczy rzeczy
 ---
 
-Odkryłem, że Git nie ma polskiego tłumaczenia!
+Odkryłem, że [Git][git] nie ma polskiego tłumaczenia!
 Okropne uczucie, prawda?
 
 Więc już ma.
@@ -19,6 +20,7 @@ Tak jak hebrajskie liczebniki wspomniane w tym artykule,
 po polsku mówimy „dwie”, ale „dwóch” i „dwa”.
 Więc tłumaczenie napisu (msgid) typu `"Only two %s found."` jest na 100% źle pomyślane.
 
+[git]: https://git-scm.org
 [wine-icu]: https://www.winehq.org/interview/16
 
 To samo dotyczy wielu `%s` w msgid.
@@ -69,7 +71,7 @@ Możemy z niego oczywiście zrobić rzeczownik „zdalność” (ale to po angie
 (nie ma takich słów, ale brzmią równie infantylnie co *remotey* po angielsku).
 
 3. Wymyślanie nowych słów.
-Podstawowym słowem gita jest *commit*.
+Podstawowym słowem Gita jest *commit*.
 Tym razem jest to i rzeczownik i czasownik.
 Wybrałem „zapis” na *a commit* (jak *a record*/*a save*)
 i „złożyć” na *to commit* (jak *put together* = poskładać, czy *hand in* = złożyć jakieś np. pismo).

@@ -6,10 +6,10 @@ defaultLanguage: en
 languages:
   en:
     title: Arusekk blog
-    languageName: English
+    languageName: ":flag_gb: EN"
   pl:
     title: Blog Aruskka
-    languageName: polski
+    languageName: ":flag_pl: PL"
     params:
       homeInfoParams:
         title: Witaj
@@ -26,6 +26,7 @@ languages:
 
 # Home page
 params:
+  displayFullLangName: true
   homeInfoParams:
     title: Welcome
     content: My name is Arusekk.  Not a real name, but I find it the most real for me online.  This is a blog where I write about computer programming and some unpopular opinions.  Currently some posts are available in English only, some are in Polish only.
