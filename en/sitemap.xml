@@ -59,6 +59,16 @@
   </url><url>
     <loc>/posts/die-ipv4-just-die-already/</loc>
     <lastmod>2022-01-10T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="pl"
+                href="/pl/posts/zgin-przepadnij-ipv4-po-prostu-sie-skoncz/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/posts/die-ipv4-just-die-already/"
+                />
   </url><url>
     <loc>/posts/my-domain-is-my-castle/</loc>
     <lastmod>2021-03-23T00:00:00+00:00</lastmod>

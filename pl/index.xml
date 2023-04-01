@@ -5,7 +5,7 @@
     <link>/pl/</link>
     <description>Recent content on Blog Aruskka</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sun, 27 Dec 2020 00:00:00 +0000</lastBuildDate><atom:link href="/pl/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 10 Jan 2022 00:00:00 +0000</lastBuildDate><atom:link href="/pl/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>O mnie</title>
       <link>/pl/o-mnie/</link>
@@ -24,6 +24,15 @@ Dla nerdów Wpisy na tym blogu udostępnione są na licencji Creative Commons BY
       <guid>/pl/kontakt/</guid>
       <description>Najlepiej się ze mną kontaktować przez e-mail: blog at arusekk.pl. Odpowiadam najpóźniej po tygodniu. Jeśli nie zadziała, spróbuj arek_koz na o2.pl.
 Można mnie też znaleźć na Matriksie (@Arusekk:matrix.org) i na Discordzie (@Arusekk#6609). Czasem tam rzadziej zaglądam, ale jeśli masz szczęście i przyłapiesz mnie, jak tam jestem, możemy porozmawiać z najmniejszym opóźnieniem.</description>
+    </item>
+    
+    <item>
+      <title>Zgiń, przepadnij, IPv4, po prostu się skończ!!!1!</title>
+      <link>/pl/posts/zgin-przepadnij-ipv4-po-prostu-sie-skoncz/</link>
+      <pubDate>Mon, 10 Jan 2022 00:00:00 +0000</pubDate>
+      
+      <guid>/pl/posts/zgin-przepadnij-ipv4-po-prostu-sie-skoncz/</guid>
+      <description>IPv4 jest przestarzałe i nie ma przyszłości.  Po prostu to zrozum.  IPv6 jest jedynym rozwiązaniem.</description>
     </item>
     
     <item>
