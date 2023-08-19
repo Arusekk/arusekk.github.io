@@ -4,6 +4,7 @@
     <title>Tags on Blog Aruskka</title>
     <link>/pl/tags/</link>
     <description>Recent content in Tags on Blog Aruskka</description>
-    <generator>Hugo -- gohugo.io</generator><atom:link href="/pl/tags/index.xml" rel="self" type="application/rss+xml" />
+    <generator>Hugo -- gohugo.io</generator>
+    <language>pl</language><atom:link href="/pl/tags/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>
