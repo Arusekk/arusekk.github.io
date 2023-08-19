@@ -64,7 +64,7 @@ in their mobile apps
 
 [blk]: https://www.blik.com/
 
-![bank apps meme](https://media.discordapp.net/attachments/692128024778244118/821691943725301810/photo_2021-03-17_11-30-19.jpg)
+![bank apps meme](https://i.imgflip.com/7wapdm.jpg)
 
 ## My own DNS server
 
