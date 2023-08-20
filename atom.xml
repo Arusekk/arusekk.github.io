@@ -6,7 +6,16 @@
     <description>Recent content in Posts on Arusekk blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 21 Jul 2022 00:00:00 +0000</lastBuildDate><atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 20 Aug 2023 00:00:00 +0000</lastBuildDate><atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Tech vs religion</title>
+      <link>/posts/tech-vs-religion/</link>
+      <pubDate>Sun, 20 Aug 2023 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/tech-vs-religion/</guid>
+      <description>It is 2023 already, and religion, to the dismay of many, still holds on tight.</description>
+    </item>
+    
     <item>
       <title>Rant on TLS PKI</title>
       <link>/posts/rant-on-tls-pki/</link>

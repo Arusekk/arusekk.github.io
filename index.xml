@@ -6,7 +6,7 @@
     <description>Recent content on Arusekk blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 21 Jul 2022 00:00:00 +0000</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 20 Aug 2023 00:00:00 +0000</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>About</title>
       <link>/about/</link>
@@ -36,6 +36,15 @@ You can find me also on Matrix (@Arusekk:matrix.org) and Discord (@Arusekk#6609)
       <description>I love the idea of personal blogging. If you know any search engine that only includes genuine blogs by actual people and excludes all the new-age auto-generated content, advertisements, social media posts and low-effort journalists, please let me know.
 Here is a blogroll of my friends (if you feel left out, reach out!):
 Franciszek Malinka (feed) Disconnect3d (feed) BonusPlay Radosław Miernik (feed) &amp;hellip; and some other blogs I found nice:</description>
+    </item>
+    
+    <item>
+      <title>Tech vs religion</title>
+      <link>/posts/tech-vs-religion/</link>
+      <pubDate>Sun, 20 Aug 2023 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/tech-vs-religion/</guid>
+      <description>It is 2023 already, and religion, to the dismay of many, still holds on tight.</description>
     </item>
     
     <item>
