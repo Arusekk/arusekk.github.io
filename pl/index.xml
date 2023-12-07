@@ -6,7 +6,7 @@
     <description>Recent content on Blog Aruskka</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>pl</language>
-    <lastBuildDate>Sun, 20 Aug 2023 00:00:00 +0000</lastBuildDate><atom:link href="/pl/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 07 Dec 2023 00:00:00 +0000</lastBuildDate><atom:link href="/pl/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>O mnie</title>
       <link>/pl/o-mnie/</link>
@@ -25,6 +25,15 @@ Dla nerdów Wpisy na tym blogu udostępnione są na licencji Creative Commons BY
       <guid>/pl/kontakt/</guid>
       <description>Najlepiej się ze mną kontaktować przez e-mail: blog at arusekk.pl. Odpowiadam najpóźniej po tygodniu. Jeśli nie zadziała, spróbuj arek_koz na o2.pl.
 Można mnie też znaleźć na Matriksie (@Arusekk:matrix.org) i na Discordzie (@Arusekk#6609). Czasem tam rzadziej zaglądam, ale jeśli masz szczęście i przyłapiesz mnie, jak tam jestem, możemy porozmawiać z najmniejszym opóźnieniem.</description>
+    </item>
+    
+    <item>
+      <title>O pociągach</title>
+      <link>/pl/posts/o-pociagach/</link>
+      <pubDate>Thu, 07 Dec 2023 00:00:00 +0000</pubDate>
+      
+      <guid>/pl/posts/o-pociagach/</guid>
+      <description>Kilka artykułów zebranych o pociągach serii Impuls</description>
     </item>
     
     <item>

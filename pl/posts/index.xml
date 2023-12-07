@@ -6,7 +6,16 @@
     <description>Recent content in Posts on Blog Aruskka</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>pl</language>
-    <lastBuildDate>Sun, 20 Aug 2023 00:00:00 +0000</lastBuildDate><atom:link href="/pl/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 07 Dec 2023 00:00:00 +0000</lastBuildDate><atom:link href="/pl/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>O pociągach</title>
+      <link>/pl/posts/o-pociagach/</link>
+      <pubDate>Thu, 07 Dec 2023 00:00:00 +0000</pubDate>
+      
+      <guid>/pl/posts/o-pociagach/</guid>
+      <description>Kilka artykułów zebranych o pociągach serii Impuls</description>
+    </item>
+    
     <item>
       <title>Technika a religia</title>
       <link>/pl/posts/tech-vs-religion/</link>

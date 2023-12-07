@@ -27,7 +27,7 @@
                 />
   </url><url>
     <loc>/pl/</loc>
-    <lastmod>2023-08-20T00:00:00+00:00</lastmod>
+    <lastmod>2023-12-07T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -39,8 +39,11 @@
                 href="/pl/"
                 />
   </url><url>
+    <loc>/pl/posts/o-pociagach/</loc>
+    <lastmod>2023-12-07T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>/pl/posts/</loc>
-    <lastmod>2023-08-20T00:00:00+00:00</lastmod>
+    <lastmod>2023-12-07T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
