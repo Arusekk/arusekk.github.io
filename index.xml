@@ -6,7 +6,7 @@
     <description>Recent content on Arusekk blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 20 Aug 2023 00:00:00 +0000</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 20 Dec 2023 00:00:00 +0000</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>About</title>
       <link>/about/</link>
@@ -36,6 +36,15 @@ You can find me also on Matrix (@Arusekk:matrix.org) and Discord (@Arusekk#6609)
       <description>I love the idea of personal blogging. If you know any search engine that only includes genuine blogs by actual people and excludes all the new-age auto-generated content, advertisements, social media posts and low-effort journalists, please let me know.
 Here is a blogroll of my friends (if you feel left out, reach out!):
 Franciszek Malinka (feed) Disconnect3d (feed) BonusPlay Radosław Miernik (feed) &amp;hellip; and some other blogs I found nice:</description>
+    </item>
+    
+    <item>
+      <title>Facebook messenger custom reactions</title>
+      <link>/posts/fb-custom-reaction/</link>
+      <pubDate>Wed, 20 Dec 2023 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/fb-custom-reaction/</guid>
+      <description>You can react with custom reactions on Facebook Messenger and here&amp;#39;s how</description>
     </item>
     
     <item>

@@ -6,7 +6,16 @@
     <description>Recent content in Posts on Arusekk blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 20 Aug 2023 00:00:00 +0000</lastBuildDate><atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 20 Dec 2023 00:00:00 +0000</lastBuildDate><atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Facebook messenger custom reactions</title>
+      <link>/posts/fb-custom-reaction/</link>
+      <pubDate>Wed, 20 Dec 2023 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/fb-custom-reaction/</guid>
+      <description>You can react with custom reactions on Facebook Messenger and here&amp;#39;s how</description>
+    </item>
+    
     <item>
       <title>Tech vs religion</title>
       <link>/posts/tech-vs-religion/</link>
