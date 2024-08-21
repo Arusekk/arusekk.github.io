@@ -1,0 +1,17 @@
+image: alpine/latest
+packages:
+  - hugo
+  - hut
+oauth: pages.sr.ht/PAGES:RW
+environment:
+  site: arusekk.srht.site
+  cname: blog.arusekk.pl
+tasks:
+- package: |
+    cd $site
+    hugo
+    ./mklinks.sh
+    tar -C public -cvz . > ../site.tar.gz
+- upload: |
+    hut pages publish -d $site site.tar.gz
+    hut pages publish -d $cname site.tar.gz
