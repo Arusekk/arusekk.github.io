@@ -4,10 +4,15 @@ title: About
 weight: 2
 ---
 
-I am a student of joined Computer Science and Math.
+I am a MSc of joined Computer Science and Math.
 I [enjoy](https://github.com/Arusekk#js-contribution-activity) libre software.
 Living in Wrocław, Poland.
-Come see this beautiful city in better times!
+Come see this beautiful city and have a beer with me!
+
+## Security bugs portfolio
+
+* [CVE-2023-2234](https://github.com/zephyrproject-rtos/zephyr/security/advisories/GHSA-jcx5-3v9g-xf9j) (RCE in Zephyr BT HCI)
+* [CVE-2024-34083](https://github.com/aio-libs/aiosmtpd/security/advisories/GHSA-wgjv-9j3q-jhg8) (NOSTARTTLS in aiosmtpd)
 
 ## Nerd Stuff
 

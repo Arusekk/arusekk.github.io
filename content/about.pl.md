@@ -5,7 +5,7 @@ title: O mnie
 weight: 2
 ---
 
-Jestem studentem łączonej informatyki i matematyki.
+Jestem magistrem łączonej informatyki i matematyki.
 [Lubię](https://github.com/Arusekk#js-contribution-activity) wolne oprogramowanie.
 Mieszkam we Wrocławiu w Polsce.
 Zapraszam do tego pięknego miasta!
