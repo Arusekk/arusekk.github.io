@@ -2,7 +2,7 @@
 <html lang="en" dir="auto">
 
 <head>
-	<meta name="generator" content="Hugo 0.133.0"><meta charset="utf-8">
+	<meta name="generator" content="Hugo 0.134.3"><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
@@ -58,10 +58,7 @@
         }
 
     </style>
-</noscript>
-  
-
-<meta property="og:title" content="Arusekk blog" />
+</noscript><meta property="og:title" content="Arusekk blog" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="/" />
@@ -246,13 +243,32 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>Polish English one
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>I just found while English is a strict SVO language, Polish is not, and makes use of it. On the example of one of Henryk Krzyżanowski’s excellent translation samples:
+The brass section was apparently approaching.
+Orkiestra dęta najwyraźniej się zbliżała.
+But, as it appeared to me this morning, if we change ’the’ into ‘a’, the natural translation would differ by order:
+A brass section was apparently approaching.
+Najwyraźniej zbliżała się orkiestra dęta.
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-09-25 00:00:00 +0000 UTC'>September 25, 2024</span></footer>
+  <a class="entry-link" aria-label="post link to Polish English one" href="/posts/polish-english-one/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>Facebook messenger custom reactions
     </h2>
   </header>
   <div class="entry-content">
     <p>Well, not exactly custom, but you can basically put any string there. This is a Javascript snippet that makes it possible to change a :hugging_face: into :people_hugging:. You can of course change it to turn nearly any emoji to any other emoji.
 You can execute it for example by pressing F12 and pasting it in the command line.
-WARNING: read the code before pasting! if I was a cybercriminal I could take over your account; this technique is called Self-XSS....</p>
+WARNING: read the code before pasting! if I was a cybercriminal I could take over your account; this technique is called Self-XSS.
+...</p>
   </div>
   <footer class="entry-footer"><span title='2023-12-20 00:00:00 +0000 UTC'>December 20, 2023</span></footer>
   <a class="entry-link" aria-label="post link to Facebook messenger custom reactions" href="/posts/fb-custom-reaction/"></a>
@@ -265,7 +281,8 @@ WARNING: read the code before pasting! if I was a cybercriminal I could take ove
   </header>
   <div class="entry-content">
     <p>The idea came to me after I read two books one after the other, and they had unexpectedly many observations in common. Hejtoholik (“Hateaholic”) by Michał Wawrzyniak, a Polish artist-mentor-entrepreneur, written using psychological language, and Fear Fighters by Jentezen Franklin, an American pastor (polish translation: “Zwycięstwo nad strachem”) written using christian language.
-I am going to describe my observations about religion in general, but I will focus on catholic faith, which I believe in, although I suspect most of what I write here will still hold concerning many different denominations, especially those christian and middle east....</p>
+I am going to describe my observations about religion in general, but I will focus on catholic faith, which I believe in, although I suspect most of what I write here will still hold concerning many different denominations, especially those christian and middle east.
+...</p>
   </div>
   <footer class="entry-footer"><span title='2023-08-20 00:00:00 +0000 UTC'>August 20, 2023</span></footer>
   <a class="entry-link" aria-label="post link to Tech vs religion" href="/posts/tech-vs-religion/"></a>
@@ -279,7 +296,8 @@ I am going to describe my observations about religion in general, but I will foc
   <div class="entry-content">
     <p>I like modern cryptography. I quite understand some bits of it, since I had an excellent university course on that, and while the rest feels pretty magic, these are my thoughts that should be understood by anyone.
 My general opinion is that encryption is a mistake in most cases, but digital signatures make true sense to me, and I will focus on them.
-If someone gives you much data, they know more than you....</p>
+If someone gives you much data, they know more than you. This is true especially for big integer numbers. Remember RSA? This is the (still widely used) encryption algorithm that assumes that while it is trivial to know n = pq when you know two primes p and q, it is really unlikely and/or computationally expensive to guess p and q from n.
+...</p>
   </div>
   <footer class="entry-footer"><span title='2022-07-21 00:00:00 +0000 UTC'>July 21, 2022</span></footer>
   <a class="entry-link" aria-label="post link to Rant on TLS PKI" href="/posts/rant-on-tls-pki/"></a>
@@ -293,24 +311,11 @@ If someone gives you much data, they know more than you....</p>
   <div class="entry-content">
     <p>IPv4 has been invented in the eighties. IPv6 has quickly followed in the nineties, exactly after fourteen years of IPv4 practical application.
 It’s been nearly 30 years since then, and we’re still stuck with IPv4.
-Stuck? The main problem with IPv4 is its 32-bit addressing. It limits the Internet to 4 billion true participants (in practice even less, because of reserved address ranges, broadcast addresses, masks, and so on): less than half the world population!...</p>
+Stuck? The main problem with IPv4 is its 32-bit addressing. It limits the Internet to 4 billion true participants (in practice even less, because of reserved address ranges, broadcast addresses, masks, and so on): less than half the world population! All its shortcomings come from this single problem.
+...</p>
   </div>
   <footer class="entry-footer"><span title='2022-01-10 00:00:00 +0000 UTC'>January 10, 2022</span></footer>
   <a class="entry-link" aria-label="post link to Die, IPv4, just die already!!!1!" href="/posts/die-ipv4-just-die-already/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>My domain is my castle
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>So here it is! arusekk.pl is finally mine.
-Buying a domain is straightforward. All I did was find the registry of my favorite TLD (which is .pl for Poland), registry maintained by NASK, reachable at dns.pl.
-There at the list of registrars I narrowed down the list to those supporting IPv6 domain delegation (I had yet to know what it means, but I thought that it would be better to have it), DNSSEC (which I knew was something important), and that the registrar must be a Polish entity....</p>
-  </div>
-  <footer class="entry-footer"><span title='2021-03-23 00:00:00 +0000 UTC'>March 23, 2021</span></footer>
-  <a class="entry-link" aria-label="post link to My domain is my castle" href="/posts/my-domain-is-my-castle/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

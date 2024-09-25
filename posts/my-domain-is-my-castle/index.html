@@ -57,10 +57,7 @@
         }
 
     </style>
-</noscript>
-  
-
-<meta property="og:title" content="My domain is my castle" />
+</noscript><meta property="og:title" content="My domain is my castle" />
 <meta property="og:description" content="I spent many many days learing how everything domain-related works, and here are my thoughts and the least intuitive facts." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/posts/my-domain-is-my-castle/" /><meta property="article:section" content="posts" />
@@ -283,70 +280,70 @@ future-proof enough even to allow defining your own types of DNS records.</p>
 <p>Even if you don&rsquo;t have your own server, you need to get to know some of the DNS record types.
 The most important are (in the order of decreasing significance):</p>
 <table>
-<thead>
-<tr>
-<th style="text-align:center">Record</th>
-<th style="text-align:left">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center"><code>SOA</code></td>
-<td style="text-align:left">contact info and expiry policy</td>
-</tr>
-<tr>
-<td style="text-align:center"><code>AAAA</code></td>
-<td style="text-align:left">an IPv6 address</td>
-</tr>
-<tr>
-<td style="text-align:center"><code>A</code></td>
-<td style="text-align:left">an IPv4 address (BTW, it is time for IPv4 to die already)</td>
-</tr>
-<tr>
-<td style="text-align:center"><code>NS</code></td>
-<td style="text-align:left">delegating sub-zone elsewhere, most likely multiple for redundancy, also set <em>upstream</em></td>
-</tr>
-<tr>
-<td style="text-align:center"><code>CNAME</code></td>
-<td style="text-align:left">a symbolic link / a pointer (sadly, cannot be combined with most other record types)</td>
-</tr>
-<tr>
-<td style="text-align:center"><code>MX</code></td>
-<td style="text-align:left"><strong>domain name</strong> and priority of mail exchange server, most likely multiple for redundancy</td>
-</tr>
-<tr>
-<td style="text-align:center"><code>TXT</code></td>
-<td style="text-align:left">unstructured textual info, mostly used for SPF and DKIM anti-spam mechanisms</td>
-</tr>
-<tr>
-<td style="text-align:center"><code>DS</code></td>
-<td style="text-align:left">DNSSEC: hash of key to be used by servers indicated with <code>NS</code>, only set <em>upstream</em></td>
-</tr>
-<tr>
-<td style="text-align:center"><code>DNSKEY</code></td>
-<td style="text-align:left">DNSSEC: (auto-inserted) the actual public key info used by this server to sign the zone</td>
-</tr>
-<tr>
-<td style="text-align:center"><code>RRSIG</code></td>
-<td style="text-align:left">DNSSEC: (auto-inserted) signature with the key</td>
-</tr>
-<tr>
-<td style="text-align:center"><code>NSEC</code></td>
-<td style="text-align:left">DNSSEC: (auto-inserted) next record in zone (proving non-existence of records lexicographically between two records)</td>
-</tr>
-<tr>
-<td style="text-align:center"><code>NSEC3</code></td>
-<td style="text-align:left">DNSSEC: (auto-inserted) version of the above immune to zone enumeration</td>
-</tr>
-<tr>
-<td style="text-align:center"><code>NSEC5</code></td>
-<td style="text-align:left">DNSSEC: (auto-inserted) [upcoming] version of the above immune to some other &ldquo;vulnerability&rdquo;</td>
-</tr>
-<tr>
-<td style="text-align:center"><code>TLSA</code></td>
-<td style="text-align:left">DANE: quite a new feature — DNS-based Authentication of Named Entities, allows you to specify an additional or alternative trust anchor for TLS certificates</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: center">Record</th>
+          <th style="text-align: left">Description</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center"><code>SOA</code></td>
+          <td style="text-align: left">contact info and expiry policy</td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><code>AAAA</code></td>
+          <td style="text-align: left">an IPv6 address</td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><code>A</code></td>
+          <td style="text-align: left">an IPv4 address (BTW, it is time for IPv4 to die already)</td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><code>NS</code></td>
+          <td style="text-align: left">delegating sub-zone elsewhere, most likely multiple for redundancy, also set <em>upstream</em></td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><code>CNAME</code></td>
+          <td style="text-align: left">a symbolic link / a pointer (sadly, cannot be combined with most other record types)</td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><code>MX</code></td>
+          <td style="text-align: left"><strong>domain name</strong> and priority of mail exchange server, most likely multiple for redundancy</td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><code>TXT</code></td>
+          <td style="text-align: left">unstructured textual info, mostly used for SPF and DKIM anti-spam mechanisms</td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><code>DS</code></td>
+          <td style="text-align: left">DNSSEC: hash of key to be used by servers indicated with <code>NS</code>, only set <em>upstream</em></td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><code>DNSKEY</code></td>
+          <td style="text-align: left">DNSSEC: (auto-inserted) the actual public key info used by this server to sign the zone</td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><code>RRSIG</code></td>
+          <td style="text-align: left">DNSSEC: (auto-inserted) signature with the key</td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><code>NSEC</code></td>
+          <td style="text-align: left">DNSSEC: (auto-inserted) next record in zone (proving non-existence of records lexicographically between two records)</td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><code>NSEC3</code></td>
+          <td style="text-align: left">DNSSEC: (auto-inserted) version of the above immune to zone enumeration</td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><code>NSEC5</code></td>
+          <td style="text-align: left">DNSSEC: (auto-inserted) [upcoming] version of the above immune to some other &ldquo;vulnerability&rdquo;</td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><code>TLSA</code></td>
+          <td style="text-align: left">DANE: quite a new feature — DNS-based Authentication of Named Entities, allows you to specify an additional or alternative trust anchor for TLS certificates</td>
+      </tr>
+  </tbody>
 </table>
 <h2 id="dnssec">DNSSEC<a hidden class="anchor" aria-hidden="true" href="#dnssec">#</a></h2>
 <p>DNSSEC was the hardest part.

@@ -6,15 +6,31 @@
     <description>Recent content on Arusekk blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 20 Dec 2023 00:00:00 +0000</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 25 Sep 2024 00:00:00 +0000</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>About</title>
       <link>/about/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>/about/</guid>
-      <description>I am a MSc of joined Computer Science and Math. I enjoy libre software. Living in Wrocław, Poland. Come see this beautiful city and have a beer with me!
-Security bugs portfolio CVE-2023-2234 (RCE in Zephyr BT HCI) CVE-2024-34083 (NOSTARTTLS in aiosmtpd) Nerd Stuff The posts on this blog are licensed under the Creative Commons BY-SA 4.0 license. I built this blog using Hugo, markdown, PaperMod, and GitLab Pages. You can take a look at the source if you’re curious as to how it works.</description>
+      <description>&lt;p&gt;I am a MSc of joined Computer Science and Math.
+I &lt;a href=&#34;https://github.com/Arusekk#js-contribution-activity&#34;&gt;enjoy&lt;/a&gt; libre software.
+Living in Wrocław, Poland.
+Come see this beautiful city and have a beer with me!&lt;/p&gt;
+&lt;h2 id=&#34;security-bugs-portfolio&#34;&gt;Security bugs portfolio&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/zephyrproject-rtos/zephyr/security/advisories/GHSA-jcx5-3v9g-xf9j&#34;&gt;CVE-2023-2234&lt;/a&gt; (RCE in Zephyr BT HCI)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/aio-libs/aiosmtpd/security/advisories/GHSA-wgjv-9j3q-jhg8&#34;&gt;CVE-2024-34083&lt;/a&gt; (NOSTARTTLS in aiosmtpd)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;nerd-stuff&#34;&gt;Nerd Stuff&lt;/h2&gt;
+&lt;p&gt;The posts on this blog are licensed under the Creative Commons &lt;a href=&#34;https://creativecommons.org/licenses/by-sa/4.0/&#34;&gt;BY-SA 4.0&lt;/a&gt; license.
+I built this blog using &lt;a href=&#34;https://gohugo.io&#34;&gt;Hugo&lt;/a&gt;,
+&lt;a href=&#34;https://en.wikipedia.org/wiki/Markdown&#34;&gt;markdown&lt;/a&gt;,
+&lt;a href=&#34;https://git.io/hugopapermod&#34;&gt;PaperMod&lt;/a&gt;,
+and &lt;a href=&#34;https://docs.gitlab.com/ee/user/project/pages/&#34;&gt;GitLab Pages&lt;/a&gt;.
+You can take a look at &lt;a href=&#34;https://github.com/Arusekk/arusekk.github.io&#34;&gt;the source&lt;/a&gt; if you’re curious as to how it works.
+There is no support for comments on this blog, as all its pages are statically generated;
+if you truly feel compelled to comment, there are many news aggregators that provide you with such a space.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -23,8 +39,10 @@ Security bugs portfolio CVE-2023-2234 (RCE in Zephyr BT HCI) CVE-2024-34083 (NOS
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>/contact/</guid>
-      <description>The best way to contact me is to send me an email: blog at arusekk.pl. I reply after a week at most. If it does not work, try arek_koz at o2.pl.
-You can find me also on Matrix (@Arusekk:matrix.org) and Discord (@Arusekk#6609). I sometimes lag more on those, but if you are lucky and catch me online, we can talk with the least ping.</description>
+      <description>&lt;p&gt;The best way to contact me is to send me an email: &lt;a href=&#34;mailto:blog@arusekk.pl&#34;&gt;&lt;code&gt;blog at arusekk.pl&lt;/code&gt;&lt;/a&gt;. I reply after a week at most.
+If it does not work, try &lt;code&gt;arek_koz&lt;/code&gt; at &lt;code&gt;o2.pl&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;You can find me also on Matrix (&lt;code&gt;@Arusekk:matrix.org&lt;/code&gt;) and Discord (&lt;code&gt;@Arusekk#6609&lt;/code&gt;).
+I sometimes lag more on those, but if you are lucky and catch me online, we can talk with the least ping.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -33,9 +51,28 @@ You can find me also on Matrix (@Arusekk:matrix.org) and Discord (@Arusekk#6609)
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>/blogroll/</guid>
-      <description>I love the idea of personal blogging. If you know any search engine that only includes genuine blogs by actual people and excludes all the new-age auto-generated content, advertisements, social media posts and low-effort journalists, please let me know.
-Here is a blogroll of my friends (if you feel left out, reach out!):
-Franciszek Malinka (feed) Disconnect3d (feed) BonusPlay Radosław Miernik (feed) &amp;hellip; and some other blogs I found nice:</description>
+      <description>&lt;p&gt;I love the idea of personal blogging.
+If you know any search engine that only includes genuine blogs by actual people
+and excludes all the new-age auto-generated content, advertisements,
+social media posts and low-effort journalists,
+please let me know.&lt;/p&gt;
+&lt;p&gt;Here is a blogroll of my friends (if you feel left out, reach out!):&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://framal.xyz&#34;&gt;Franciszek Malinka&lt;/a&gt; (&lt;a href=&#34;https://framal.xyz/feed&#34;&gt;feed&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://disconnect3d.pl&#34;&gt;Disconnect3d&lt;/a&gt; (&lt;a href=&#34;https://disconnect3d.pl/feed&#34;&gt;feed&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://bonusplay.pl&#34;&gt;BonusPlay&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://radekmie.dev&#34;&gt;Radosław Miernik&lt;/a&gt; (&lt;a href=&#34;https://radekmie.dev/atom.xml&#34;&gt;feed&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&amp;hellip; and some other blogs I found nice:&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Polish English one</title>
+      <link>/posts/polish-english-one/</link>
+      <pubDate>Wed, 25 Sep 2024 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/polish-english-one/</guid>
+      <description>A nice quirk I found about Polish/English translation</description>
     </item>
     
     <item>

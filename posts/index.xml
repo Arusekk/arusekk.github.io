@@ -6,7 +6,16 @@
     <description>Recent content in Posts on Arusekk blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 20 Dec 2023 00:00:00 +0000</lastBuildDate><atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 25 Sep 2024 00:00:00 +0000</lastBuildDate><atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Polish English one</title>
+      <link>/posts/polish-english-one/</link>
+      <pubDate>Wed, 25 Sep 2024 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/polish-english-one/</guid>
+      <description>A nice quirk I found about Polish/English translation</description>
+    </item>
+    
     <item>
       <title>Facebook messenger custom reactions</title>
       <link>/posts/fb-custom-reaction/</link>
