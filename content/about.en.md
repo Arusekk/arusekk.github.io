@@ -20,7 +20,7 @@ The posts on this blog are licensed under the Creative Commons [BY-SA 4.0](https
 I built this blog using [Hugo](https://gohugo.io),
 [markdown](https://en.wikipedia.org/wiki/Markdown),
 [PaperMod](https://git.io/hugopapermod),
-and [GitLab Pages](https://docs.gitlab.com/ee/user/project/pages/).
+and [SourceHut Pages](https://srht.site).
 You can take a look at [the source](https://github.com/Arusekk/arusekk.github.io) if you’re curious as to how it works.
 There is no support for comments on this blog, as all its pages are statically generated;
 if you truly feel compelled to comment, there are many news aggregators that provide you with such a space.
