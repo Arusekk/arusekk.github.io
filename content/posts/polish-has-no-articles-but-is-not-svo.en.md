@@ -1,5 +1,5 @@
 ---
-title: Polish English one
+title: Polish has no articles but it is not SVO
 date: 2024-09-25
 description: A nice quirk I found about Polish/English translation
 ---
