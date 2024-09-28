@@ -6,7 +6,7 @@ description: A story of a new laptop and hard obstacles in the way of getting it
 
 Recently my old laptop started losing keyboard keys,
 and I heard that in 2021 it is time to let go of that good ol' laptop
-with loud HDD, CD station, shiny HD-ready LCD, dissolved keys, cracked screws,
+with loud HDD, CD station, glossy HD-ready LCD, dissolved keys, cracked screws,
 two jacks, snappy sound, rumbling mic, 640x480 webcam, 4GiB RAM,
 2x bithread i5-4200M @ 2.50 GHz,
 especially that I use unstable Gentoo GNU/Linux distro,
