@@ -14,7 +14,6 @@ languages:
       homeInfoParams:
         title: Witaj
         content: Jestem Arusekk.  Nie jakieś prawdziwe imię, ale w sieci jestem najbardziej znany właśnie pod takim.  To jest blog, na którym piszę o programowaniu i dzielę się niepopularnymi opiniami.  Póki co niektóre wpisy są dostępne tylko po polsku, inne tylko po angielsku.
-      dateFormat: 2 stycznia 2006
     menu:
       main:
         - name: Wpisy
@@ -27,6 +26,7 @@ languages:
 # Home page
 params:
   displayFullLangName: true
+  dateFormat: ":date_long"
   homeInfoParams:
     title: Welcome
     content: My name is Arusekk.  Not a real name, but I find it the most real for me online.  This is a blog where I write about computer programming and some unpopular opinions.  Currently some posts are available in English only, some are in Polish only.
