@@ -1,6 +1,7 @@
 baseURL: /
 title: Arusekk blog
 theme: papermod
+enableRobotsTXT: true
 
 defaultLanguage: en
 languages:
