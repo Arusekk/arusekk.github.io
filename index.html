@@ -11,7 +11,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <link rel="canonical" href="/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.5cfc680b1eeaeef9efbced92d46c2a9e876b72ee14fba85846afc4cff9e6e6f8.css" integrity="sha256-XPxoCx7q7vnvvO2S1Gwqnodrcu4U&#43;6hYRq/Ez/nm5vg=" rel="preload stylesheet" as="style">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.fc220c15db4aef0318bbf30adc45d33d4d7c88deff3238b23eb255afdc472ca6.css" integrity="sha256-/CIMFdtK7wMYu/MK3EXTPU18iN7/MjiyPrJVr9xHLKY=" rel="preload stylesheet" as="style">
 <link rel="icon" href="/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -39,7 +39,7 @@
                 --secondary: rgb(155, 156, 157);
                 --tertiary: rgb(65, 66, 68);
                 --content: rgb(196, 196, 197);
-                --hljs-bg: rgb(46, 46, 51);
+                --code-block-bg: rgb(46, 46, 51);
                 --code-bg: rgb(55, 56, 62);
                 --border: rgb(51, 51, 51);
             }
@@ -165,8 +165,9 @@
         My name is Arusekk.  Not a real name, but I find it the most real for me online.  This is a blog where I write about computer programming and some unpopular opinions.  Currently some posts are available in English only, some are in Polish only.
     </div>
     <footer class="entry-footer">
-        <div class="social-icons">
-    <a href="posts/index.xml" target="_blank" rel="noopener noreferrer me" title="Rss">
+        <div class="social-icons" >
+    <a href="posts/index.xml" target="_blank" rel="noopener noreferrer me"
+        title="Rss">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
     stroke-linecap="round" stroke-linejoin="round">
     <path d="M4 11a9 9 0 0 1 9 9" />
@@ -174,7 +175,8 @@
     <circle cx="5" cy="19" r="1" />
 </svg>
     </a>
-    <a href="https://github.com/Arusekk" target="_blank" rel="noopener noreferrer me" title="GitHub">
+    <a href="https://github.com/Arusekk" target="_blank" rel="noopener noreferrer me"
+        title="GitHub">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
     stroke-linecap="round" stroke-linejoin="round">
     <path
@@ -182,7 +184,8 @@
     </path>
 </svg>
     </a>
-    <a href="https://gitlab.com/Arusekk" target="_blank" rel="noopener noreferrer me" title="GitLab">
+    <a href="https://gitlab.com/Arusekk" target="_blank" rel="noopener noreferrer me"
+        title="GitLab">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
     stroke-linecap="round" stroke-linejoin="round">
     <path
@@ -190,7 +193,8 @@
     </path>
 </svg>
     </a>
-    <a href="https://www.linkedin.com/in/arusekk/" target="_blank" rel="noopener noreferrer me" title="LinkedIn">
+    <a href="https://www.linkedin.com/in/arusekk/" target="_blank" rel="noopener noreferrer me"
+        title="LinkedIn">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
     stroke-linecap="round" stroke-linejoin="round">
     <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
@@ -198,15 +202,16 @@
     <circle cx="4" cy="4" r="2"></circle>
 </svg>
     </a>
-    <a href="https://matrix.to/#/@arusekk:matrix.org" target="_blank" rel="noopener noreferrer me" title="Matrix">
-        <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+    <a href="https://matrix.to/#/@arusekk:matrix.org" target="_blank" rel="noopener noreferrer me"
+        title="Matrix">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
     <path
         d="M.632.55v22.9H2.28V24H0V0h2.28v.55zm7.043 7.26v1.157h.033c.309-.443.683-.784 1.117-1.024.433-.245.936-.365 1.5-.365.54 0 1.033.107 1.481.314.448.208.785.582 1.02 1.108.254-.374.6-.706 1.034-.992.434-.287.95-.43 1.546-.43.453 0 .872.056 1.26.167.388.11.716.286.993.53.276.245.489.559.646.951.152.392.23.863.23 1.417v5.728h-2.349V11.52c0-.286-.01-.559-.032-.812a1.755 1.755 0 0 0-.18-.66 1.106 1.106 0 0 0-.438-.448c-.194-.11-.457-.166-.785-.166-.332 0-.6.064-.803.189a1.38 1.38 0 0 0-.48.499 1.946 1.946 0 0 0-.231.696 5.56 5.56 0 0 0-.06.785v4.768h-2.35v-4.8c0-.254-.004-.503-.018-.752a2.074 2.074 0 0 0-.143-.688 1.052 1.052 0 0 0-.415-.503c-.194-.125-.476-.19-.854-.19-.111 0-.259.024-.439.074-.18.051-.36.143-.53.282-.171.138-.319.337-.439.595-.12.259-.18.6-.18 1.02v4.966H5.46V7.81zm15.693 15.64V.55H21.72V0H24v24h-2.28v-.55z" />
 </svg>
     </a>
-    <a href="https://ctftime.org/user/102157" target="_blank" rel="noopener noreferrer me" title="CTFtime">
-        <svg version="1.0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220.000000 200.000000"
-    preserveAspectRatio="xMidYMid meet">
+    <a href="https://ctftime.org/user/102157" target="_blank" rel="noopener noreferrer me"
+        title="CTFtime">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220.000000 200.000000" preserveAspectRatio="xMidYMid meet">
     <g transform="translate(0.000000,200.000000) scale(0.100000,-0.100000)" fill="currentColor" stroke="none">
         <path d="M365 1499 c201 -275 365 -503 365 -507 0 -4 -84 -120 -188 -259 -103
             -139 -263 -355 -356 -480 -93 -125 -173 -229 -178 -231 -45 -19 101 -22 992
@@ -218,14 +223,16 @@
     </g>
 </svg>
     </a>
-    <a href="https://stackoverflow.com/users/3869724/arusekk" target="_blank" rel="noopener noreferrer me" title="StackOverflow">
+    <a href="https://stackoverflow.com/users/3869724/arusekk" target="_blank" rel="noopener noreferrer me"
+        title="StackOverflow">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
     stroke-linecap="round" stroke-linejoin="round">
     <path
         d="M2.913 16.041v6.848h17.599v-6.848M7.16 18.696h8.925M7.65 13.937l8.675 1.8M9.214 9.124l8.058 3.758M12.086 4.65l6.849 5.66M15.774 1.111l5.313 7.162" />
 </svg>
     </a>
-    <a href="https://infosec.exchange/@Arusekk" target="_blank" rel="noopener noreferrer me" title="Mastodon">
+    <a href="https://infosec.exchange/@Arusekk" target="_blank" rel="noopener noreferrer me"
+        title="Mastodon">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
     stroke-linecap="round" stroke-linejoin="round">
     <path
@@ -243,7 +250,7 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2>Polish has no articles but it is not SVO
+    <h2 class="entry-hint-parent">Polish has no articles but it is not SVO
     </h2>
   </header>
   <div class="entry-content">
@@ -261,7 +268,7 @@ Najwyraźniej zbliżała się orkiestra dęta.
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2>Facebook messenger custom reactions
+    <h2 class="entry-hint-parent">Facebook messenger custom reactions
     </h2>
   </header>
   <div class="entry-content">
@@ -276,7 +283,7 @@ WARNING: read the code before pasting! if I was a cybercriminal I could take ove
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2>Tech vs religion
+    <h2 class="entry-hint-parent">Tech vs religion
     </h2>
   </header>
   <div class="entry-content">
@@ -290,7 +297,7 @@ I am going to describe my observations about religion in general, but I will foc
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2>Rant on TLS PKI
+    <h2 class="entry-hint-parent">Rant on TLS PKI
     </h2>
   </header>
   <div class="entry-content">
@@ -305,7 +312,7 @@ If someone gives you much data, they know more than you. This is true especially
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2>Die, IPv4, just die already!!!1!
+    <h2 class="entry-hint-parent">Die, IPv4, just die already!!!1!
     </h2>
   </header>
   <div class="entry-content">
@@ -326,7 +333,8 @@ Stuck? The main problem with IPv4 is its 32-bit addressing. It limits the Intern
     </main>
     
 <footer class="footer">
-    <span>&copy; 2024 <a href="/">Arusekk blog</a></span>
+        <span>&copy; 2024 <a href="/">Arusekk blog</a></span> · 
+
     <span>
         Powered by
         <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &

@@ -4,7 +4,8 @@
     <title>Categories on Blog Aruskka</title>
     <link>/pl/categories/</link>
     <description>Recent content in Categories on Blog Aruskka</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>pl</language><atom:link href="/pl/categories/index.xml" rel="self" type="application/rss+xml" />
+    <generator>Hugo -- 0.135.0</generator>
+    <language>pl</language>
+    <atom:link href="/pl/categories/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>
