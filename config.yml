@@ -26,6 +26,7 @@ languages:
 
 # Home page
 params:
+  ShowReadingTime: true
   displayFullLangName: true
   dateFormat: ":date_long"
   homeInfoParams:
