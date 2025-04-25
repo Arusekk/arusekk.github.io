@@ -69,4 +69,5 @@ menu:
       weight: 5
 
 # Other settings
-paginate: 5
+pagination:
+  PagerSize: 5
