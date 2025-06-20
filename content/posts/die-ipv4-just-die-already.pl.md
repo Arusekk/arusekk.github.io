@@ -105,7 +105,7 @@ aby nawiązać połączenie.
 
 Czasem ten chocholi taniec uniemożliwia
 jakiś gorliwy NAT oszczędzający zasoby
-(zwany symetrycznym NATem: najwzniońlejszym wytworzem ludzkiej niekompetencji),
+(zwany symetrycznym NATem: najwznioślejszym wytworzem ludzkiej niekompetencji),
 więc jedyną pozostałą opcją jest przepychanie wszystkiego
 przez jakiś serwer strony trzeciej.
 I to się nazywa TURN
