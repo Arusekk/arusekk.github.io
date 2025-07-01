@@ -2,143 +2,143 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>/about/</loc>
+    <loc>https://blog.arusekk.pl/about/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="pl"
-                href="/pl/o-mnie/"
+                href="https://blog.arusekk.pl/pl/o-mnie/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="/about/"
+                href="https://blog.arusekk.pl/about/"
                 />
   </url><url>
-    <loc>/contact/</loc>
+    <loc>https://blog.arusekk.pl/contact/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="pl"
-                href="/pl/kontakt/"
+                href="https://blog.arusekk.pl/pl/kontakt/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="/contact/"
+                href="https://blog.arusekk.pl/contact/"
                 />
   </url><url>
-    <loc>/blogroll/</loc>
+    <loc>https://blog.arusekk.pl/blogroll/</loc>
   </url><url>
-    <loc>/</loc>
+    <loc>https://blog.arusekk.pl/</loc>
     <lastmod>2024-09-25T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="pl"
-                href="/pl/"
+                href="https://blog.arusekk.pl/pl/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="/"
+                href="https://blog.arusekk.pl/"
                 />
   </url><url>
-    <loc>/posts/polish-has-no-articles-but-is-not-svo/</loc>
+    <loc>https://blog.arusekk.pl/posts/polish-has-no-articles-but-is-not-svo/</loc>
     <lastmod>2024-09-25T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/posts/</loc>
+    <loc>https://blog.arusekk.pl/posts/</loc>
     <lastmod>2024-09-25T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="pl"
-                href="/pl/posts/"
+                href="https://blog.arusekk.pl/pl/posts/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="/posts/"
+                href="https://blog.arusekk.pl/posts/"
                 />
   </url><url>
-    <loc>/posts/fb-custom-reaction/</loc>
+    <loc>https://blog.arusekk.pl/posts/fb-custom-reaction/</loc>
     <lastmod>2023-12-20T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/posts/tech-vs-religion/</loc>
+    <loc>https://blog.arusekk.pl/posts/tech-vs-religion/</loc>
     <lastmod>2023-08-20T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="pl"
-                href="/pl/posts/tech-vs-religion/"
+                href="https://blog.arusekk.pl/pl/posts/tech-vs-religion/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="/posts/tech-vs-religion/"
+                href="https://blog.arusekk.pl/posts/tech-vs-religion/"
                 />
   </url><url>
-    <loc>/posts/rant-on-tls-pki/</loc>
+    <loc>https://blog.arusekk.pl/posts/rant-on-tls-pki/</loc>
     <lastmod>2022-07-21T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/posts/die-ipv4-just-die-already/</loc>
+    <loc>https://blog.arusekk.pl/posts/die-ipv4-just-die-already/</loc>
     <lastmod>2022-01-10T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="pl"
-                href="/pl/posts/zgin-przepadnij-ipv4-po-prostu-sie-skoncz/"
+                href="https://blog.arusekk.pl/pl/posts/zgin-przepadnij-ipv4-po-prostu-sie-skoncz/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="/posts/die-ipv4-just-die-already/"
+                href="https://blog.arusekk.pl/posts/die-ipv4-just-die-already/"
                 />
   </url><url>
-    <loc>/posts/my-domain-is-my-castle/</loc>
+    <loc>https://blog.arusekk.pl/posts/my-domain-is-my-castle/</loc>
     <lastmod>2021-03-23T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/posts/average-day-of-a-floss-developer/</loc>
+    <loc>https://blog.arusekk.pl/posts/average-day-of-a-floss-developer/</loc>
     <lastmod>2021-02-18T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/posts/thoughts-on-opinions/</loc>
+    <loc>https://blog.arusekk.pl/posts/thoughts-on-opinions/</loc>
     <lastmod>2021-02-07T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/posts/an-adventure-with-acer-swift/</loc>
+    <loc>https://blog.arusekk.pl/posts/an-adventure-with-acer-swift/</loc>
     <lastmod>2021-01-19T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/posts/i-translated-git/</loc>
+    <loc>https://blog.arusekk.pl/posts/i-translated-git/</loc>
     <lastmod>2020-12-27T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="pl"
-                href="/pl/posts/przetlumaczylem-gita/"
+                href="https://blog.arusekk.pl/pl/posts/przetlumaczylem-gita/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="/posts/i-translated-git/"
+                href="https://blog.arusekk.pl/posts/i-translated-git/"
                 />
   </url><url>
-    <loc>/posts/overencryption-killing-interplanetary-networks/</loc>
+    <loc>https://blog.arusekk.pl/posts/overencryption-killing-interplanetary-networks/</loc>
     <lastmod>2020-11-04T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/categories/</loc>
+    <loc>https://blog.arusekk.pl/categories/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="pl"
-                href="/pl/categories/"
+                href="https://blog.arusekk.pl/pl/categories/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="/categories/"
+                href="https://blog.arusekk.pl/categories/"
                 />
   </url><url>
-    <loc>/tags/</loc>
+    <loc>https://blog.arusekk.pl/tags/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="pl"
-                href="/pl/tags/"
+                href="https://blog.arusekk.pl/pl/tags/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="/tags/"
+                href="https://blog.arusekk.pl/tags/"
                 />
   </url>
 </urlset>

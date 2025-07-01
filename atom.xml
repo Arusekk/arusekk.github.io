@@ -2,87 +2,87 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Posts on Arusekk blog</title>
-    <link>/posts/</link>
+    <link>https://blog.arusekk.pl/posts/</link>
     <description>Recent content in Posts on Arusekk blog</description>
-    <generator>Hugo -- 0.147.8</generator>
+    <generator>Hugo -- 0.147.9</generator>
     <language>en</language>
     <lastBuildDate>Wed, 25 Sep 2024 00:00:00 +0000</lastBuildDate>
-    <atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://blog.arusekk.pl/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Polish has no articles but it is not SVO</title>
-      <link>/posts/polish-has-no-articles-but-is-not-svo/</link>
+      <link>https://blog.arusekk.pl/posts/polish-has-no-articles-but-is-not-svo/</link>
       <pubDate>Wed, 25 Sep 2024 00:00:00 +0000</pubDate>
-      <guid>/posts/polish-has-no-articles-but-is-not-svo/</guid>
+      <guid>https://blog.arusekk.pl/posts/polish-has-no-articles-but-is-not-svo/</guid>
       <description>A nice quirk I found about Polish/English translation</description>
     </item>
     <item>
       <title>Facebook messenger custom reactions</title>
-      <link>/posts/fb-custom-reaction/</link>
+      <link>https://blog.arusekk.pl/posts/fb-custom-reaction/</link>
       <pubDate>Wed, 20 Dec 2023 00:00:00 +0000</pubDate>
-      <guid>/posts/fb-custom-reaction/</guid>
+      <guid>https://blog.arusekk.pl/posts/fb-custom-reaction/</guid>
       <description>You can react with custom reactions on Facebook Messenger and here&amp;#39;s how</description>
     </item>
     <item>
       <title>Tech vs religion</title>
-      <link>/posts/tech-vs-religion/</link>
+      <link>https://blog.arusekk.pl/posts/tech-vs-religion/</link>
       <pubDate>Sun, 20 Aug 2023 00:00:00 +0000</pubDate>
-      <guid>/posts/tech-vs-religion/</guid>
+      <guid>https://blog.arusekk.pl/posts/tech-vs-religion/</guid>
       <description>It is 2023 already, and religion, to the dismay of many, still holds on tight.</description>
     </item>
     <item>
       <title>Rant on TLS PKI</title>
-      <link>/posts/rant-on-tls-pki/</link>
+      <link>https://blog.arusekk.pl/posts/rant-on-tls-pki/</link>
       <pubDate>Thu, 21 Jul 2022 00:00:00 +0000</pubDate>
-      <guid>/posts/rant-on-tls-pki/</guid>
+      <guid>https://blog.arusekk.pl/posts/rant-on-tls-pki/</guid>
       <description>There are some fundamental design flaws in X.509 / WebPKI (HTTPS/TLS key infrasructure), and I am freaked out nobody has noticed.  Or have they?</description>
     </item>
     <item>
       <title>Die, IPv4, just die already!!!1!</title>
-      <link>/posts/die-ipv4-just-die-already/</link>
+      <link>https://blog.arusekk.pl/posts/die-ipv4-just-die-already/</link>
       <pubDate>Mon, 10 Jan 2022 00:00:00 +0000</pubDate>
-      <guid>/posts/die-ipv4-just-die-already/</guid>
+      <guid>https://blog.arusekk.pl/posts/die-ipv4-just-die-already/</guid>
       <description>IPv4 is obsolete and has no future.  Just deal with it.  IPv6 is the way to go.</description>
     </item>
     <item>
       <title>My domain is my castle</title>
-      <link>/posts/my-domain-is-my-castle/</link>
+      <link>https://blog.arusekk.pl/posts/my-domain-is-my-castle/</link>
       <pubDate>Tue, 23 Mar 2021 00:00:00 +0000</pubDate>
-      <guid>/posts/my-domain-is-my-castle/</guid>
+      <guid>https://blog.arusekk.pl/posts/my-domain-is-my-castle/</guid>
       <description>I spent many many days learing how everything domain-related works, and here are my thoughts and the least intuitive facts.</description>
     </item>
     <item>
       <title>Average day of a FLOSS developer</title>
-      <link>/posts/average-day-of-a-floss-developer/</link>
+      <link>https://blog.arusekk.pl/posts/average-day-of-a-floss-developer/</link>
       <pubDate>Thu, 18 Feb 2021 00:00:00 +0000</pubDate>
-      <guid>/posts/average-day-of-a-floss-developer/</guid>
+      <guid>https://blog.arusekk.pl/posts/average-day-of-a-floss-developer/</guid>
       <description>It feels fun to be part of a nice phenomenon.</description>
     </item>
     <item>
       <title>Thoughts on opinions</title>
-      <link>/posts/thoughts-on-opinions/</link>
+      <link>https://blog.arusekk.pl/posts/thoughts-on-opinions/</link>
       <pubDate>Sun, 07 Feb 2021 00:00:00 +0000</pubDate>
-      <guid>/posts/thoughts-on-opinions/</guid>
+      <guid>https://blog.arusekk.pl/posts/thoughts-on-opinions/</guid>
       <description>Why believing the wrong opinion could make your life cursed.</description>
     </item>
     <item>
       <title>An adventure with Acer Swift</title>
-      <link>/posts/an-adventure-with-acer-swift/</link>
+      <link>https://blog.arusekk.pl/posts/an-adventure-with-acer-swift/</link>
       <pubDate>Tue, 19 Jan 2021 00:00:00 +0000</pubDate>
-      <guid>/posts/an-adventure-with-acer-swift/</guid>
+      <guid>https://blog.arusekk.pl/posts/an-adventure-with-acer-swift/</guid>
       <description>A story of a new laptop and hard obstacles in the way of getting it to work</description>
     </item>
     <item>
       <title>I translated Git!</title>
-      <link>/posts/i-translated-git/</link>
+      <link>https://blog.arusekk.pl/posts/i-translated-git/</link>
       <pubDate>Sun, 27 Dec 2020 00:00:00 +0000</pubDate>
-      <guid>/posts/i-translated-git/</guid>
+      <guid>https://blog.arusekk.pl/posts/i-translated-git/</guid>
       <description>Linguistic digressions on how hard it is to translate stuff</description>
     </item>
     <item>
       <title>Overencryption killing interplanetary networks</title>
-      <link>/posts/overencryption-killing-interplanetary-networks/</link>
+      <link>https://blog.arusekk.pl/posts/overencryption-killing-interplanetary-networks/</link>
       <pubDate>Wed, 04 Nov 2020 00:00:00 +0000</pubDate>
-      <guid>/posts/overencryption-killing-interplanetary-networks/</guid>
+      <guid>https://blog.arusekk.pl/posts/overencryption-killing-interplanetary-networks/</guid>
       <description>Complaints about wide adoption of HTTPS and its design goals</description>
     </item>
   </channel>

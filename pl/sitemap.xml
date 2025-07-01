@@ -2,120 +2,120 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>/pl/o-mnie/</loc>
+    <loc>https://blog.arusekk.pl/pl/o-mnie/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="/about/"
+                href="https://blog.arusekk.pl/about/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="pl"
-                href="/pl/o-mnie/"
+                href="https://blog.arusekk.pl/pl/o-mnie/"
                 />
   </url><url>
-    <loc>/pl/kontakt/</loc>
+    <loc>https://blog.arusekk.pl/pl/kontakt/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="/contact/"
+                href="https://blog.arusekk.pl/contact/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="pl"
-                href="/pl/kontakt/"
+                href="https://blog.arusekk.pl/pl/kontakt/"
                 />
   </url><url>
-    <loc>/pl/</loc>
+    <loc>https://blog.arusekk.pl/pl/</loc>
     <lastmod>2023-12-07T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="/"
+                href="https://blog.arusekk.pl/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="pl"
-                href="/pl/"
+                href="https://blog.arusekk.pl/pl/"
                 />
   </url><url>
-    <loc>/pl/posts/o-pociagach/</loc>
+    <loc>https://blog.arusekk.pl/pl/posts/o-pociagach/</loc>
     <lastmod>2023-12-07T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/pl/posts/</loc>
+    <loc>https://blog.arusekk.pl/pl/posts/</loc>
     <lastmod>2023-12-07T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="/posts/"
+                href="https://blog.arusekk.pl/posts/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="pl"
-                href="/pl/posts/"
+                href="https://blog.arusekk.pl/pl/posts/"
                 />
   </url><url>
-    <loc>/pl/posts/tech-vs-religion/</loc>
+    <loc>https://blog.arusekk.pl/pl/posts/tech-vs-religion/</loc>
     <lastmod>2023-08-20T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="/posts/tech-vs-religion/"
+                href="https://blog.arusekk.pl/posts/tech-vs-religion/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="pl"
-                href="/pl/posts/tech-vs-religion/"
+                href="https://blog.arusekk.pl/pl/posts/tech-vs-religion/"
                 />
   </url><url>
-    <loc>/pl/posts/zgin-przepadnij-ipv4-po-prostu-sie-skoncz/</loc>
+    <loc>https://blog.arusekk.pl/pl/posts/zgin-przepadnij-ipv4-po-prostu-sie-skoncz/</loc>
     <lastmod>2022-01-10T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="/posts/die-ipv4-just-die-already/"
+                href="https://blog.arusekk.pl/posts/die-ipv4-just-die-already/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="pl"
-                href="/pl/posts/zgin-przepadnij-ipv4-po-prostu-sie-skoncz/"
+                href="https://blog.arusekk.pl/pl/posts/zgin-przepadnij-ipv4-po-prostu-sie-skoncz/"
                 />
   </url><url>
-    <loc>/pl/posts/przetlumaczylem-gita/</loc>
+    <loc>https://blog.arusekk.pl/pl/posts/przetlumaczylem-gita/</loc>
     <lastmod>2020-12-27T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="/posts/i-translated-git/"
+                href="https://blog.arusekk.pl/posts/i-translated-git/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="pl"
-                href="/pl/posts/przetlumaczylem-gita/"
+                href="https://blog.arusekk.pl/pl/posts/przetlumaczylem-gita/"
                 />
   </url><url>
-    <loc>/pl/categories/</loc>
+    <loc>https://blog.arusekk.pl/pl/categories/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="/categories/"
+                href="https://blog.arusekk.pl/categories/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="pl"
-                href="/pl/categories/"
+                href="https://blog.arusekk.pl/pl/categories/"
                 />
   </url><url>
-    <loc>/pl/tags/</loc>
+    <loc>https://blog.arusekk.pl/pl/tags/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="/tags/"
+                href="https://blog.arusekk.pl/tags/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="pl"
-                href="/pl/tags/"
+                href="https://blog.arusekk.pl/pl/tags/"
                 />
   </url>
 </urlset>

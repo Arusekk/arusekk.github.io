@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Blog Aruskka</title>
-    <link>/pl/</link>
+    <link>https://blog.arusekk.pl/pl/</link>
     <description>Recent content on Blog Aruskka</description>
-    <generator>Hugo -- 0.147.8</generator>
+    <generator>Hugo -- 0.147.9</generator>
     <language>pl</language>
     <lastBuildDate>Thu, 07 Dec 2023 00:00:00 +0000</lastBuildDate>
-    <atom:link href="/pl/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://blog.arusekk.pl/pl/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>O mnie</title>
-      <link>/pl/o-mnie/</link>
+      <link>https://blog.arusekk.pl/pl/o-mnie/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>/pl/o-mnie/</guid>
+      <guid>https://blog.arusekk.pl/pl/o-mnie/</guid>
       <description>&lt;p&gt;Jestem magistrem łączonej informatyki i matematyki.
 &lt;a href=&#34;https://github.com/Arusekk#js-contribution-activity&#34;&gt;Lubię&lt;/a&gt; wolne oprogramowanie.
 Mieszkam we Wrocławiu w Polsce.
@@ -29,9 +29,9 @@ jeśli czujesz się wyjątkowo zobowiązany(a) do skomentowania czegoś, jest pe
     </item>
     <item>
       <title>Kontakt</title>
-      <link>/pl/kontakt/</link>
+      <link>https://blog.arusekk.pl/pl/kontakt/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>/pl/kontakt/</guid>
+      <guid>https://blog.arusekk.pl/pl/kontakt/</guid>
       <description>&lt;p&gt;Najlepiej się ze mną kontaktować przez e-mail: &lt;a href=&#34;mailto:blog@arusekk.pl&#34;&gt;&lt;code&gt;blog at arusekk.pl&lt;/code&gt;&lt;/a&gt;.  Odpowiadam najpóźniej po tygodniu.
 Jeśli nie zadziała, spróbuj &lt;code&gt;arek_koz&lt;/code&gt; na &lt;code&gt;o2.pl&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;Można mnie też znaleźć na Matriksie (&lt;code&gt;@Arusekk:matrix.org&lt;/code&gt;) i na Discordzie (&lt;code&gt;@Arusekk#6609&lt;/code&gt;).
@@ -39,30 +39,30 @@ Czasem tam rzadziej zaglądam, ale jeśli masz szczęście i przyłapiesz mnie, 
     </item>
     <item>
       <title>O pociągach</title>
-      <link>/pl/posts/o-pociagach/</link>
+      <link>https://blog.arusekk.pl/pl/posts/o-pociagach/</link>
       <pubDate>Thu, 07 Dec 2023 00:00:00 +0000</pubDate>
-      <guid>/pl/posts/o-pociagach/</guid>
+      <guid>https://blog.arusekk.pl/pl/posts/o-pociagach/</guid>
       <description>Kilka artykułów zebranych o pociągach serii Impuls</description>
     </item>
     <item>
       <title>Technika a religia</title>
-      <link>/pl/posts/tech-vs-religion/</link>
+      <link>https://blog.arusekk.pl/pl/posts/tech-vs-religion/</link>
       <pubDate>Sun, 20 Aug 2023 00:00:00 +0000</pubDate>
-      <guid>/pl/posts/tech-vs-religion/</guid>
+      <guid>https://blog.arusekk.pl/pl/posts/tech-vs-religion/</guid>
       <description>Jest już 2023, a religie, ku zdziwieniu wielu, wciąż świetnie się trzymają.</description>
     </item>
     <item>
       <title>Zgiń, przepadnij, IPv4, po prostu się skończ!!!1!</title>
-      <link>/pl/posts/zgin-przepadnij-ipv4-po-prostu-sie-skoncz/</link>
+      <link>https://blog.arusekk.pl/pl/posts/zgin-przepadnij-ipv4-po-prostu-sie-skoncz/</link>
       <pubDate>Mon, 10 Jan 2022 00:00:00 +0000</pubDate>
-      <guid>/pl/posts/zgin-przepadnij-ipv4-po-prostu-sie-skoncz/</guid>
+      <guid>https://blog.arusekk.pl/pl/posts/zgin-przepadnij-ipv4-po-prostu-sie-skoncz/</guid>
       <description>IPv4 jest przestarzałe i nie ma przyszłości.  Po prostu to zrozum.  IPv6 jest jedynym rozwiązaniem.</description>
     </item>
     <item>
       <title>Przetłumaczyłem Gita!</title>
-      <link>/pl/posts/przetlumaczylem-gita/</link>
+      <link>https://blog.arusekk.pl/pl/posts/przetlumaczylem-gita/</link>
       <pubDate>Sun, 27 Dec 2020 00:00:00 +0000</pubDate>
-      <guid>/pl/posts/przetlumaczylem-gita/</guid>
+      <guid>https://blog.arusekk.pl/pl/posts/przetlumaczylem-gita/</guid>
       <description>Dygresje lingwistyczne o tym, jak trudno się tłumaczy rzeczy</description>
     </item>
   </channel>
