@@ -14,6 +14,11 @@ Come see this beautiful city and have a beer with me!
 * [CVE-2023-2234](https://github.com/zephyrproject-rtos/zephyr/security/advisories/GHSA-jcx5-3v9g-xf9j) (RCE in Zephyr BT HCI)
 * [CVE-2024-34083](https://github.com/aio-libs/aiosmtpd/security/advisories/GHSA-wgjv-9j3q-jhg8) (NOSTARTTLS in aiosmtpd)
 
+## Projects
+
+* [Pwntools](https://github.com/Gallopsled/pwntools) - Binary exploitation framework
+* [uglendix](https://sr.ht/~arusekk/uglendix) - Plan9/Linux distro (11th IWP9)
+
 ## Nerd Stuff
 
 The posts on this blog are licensed under the Creative Commons [BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) license.
