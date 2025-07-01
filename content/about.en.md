@@ -17,7 +17,7 @@ Come see this beautiful city and have a beer with me!
 ## Projects
 
 * [Pwntools](https://github.com/Gallopsled/pwntools) - Binary exploitation framework
-* [uglendix](https://sr.ht/~arusekk/uglendix) - Plan9/Linux distro (11th IWP9)
+* [uglendix](https://sr.ht/~arusekk/uglendix) - Plan9/Linux distro (11th [IWP9](https://iwp9.org))
 
 ## Nerd Stuff
 
