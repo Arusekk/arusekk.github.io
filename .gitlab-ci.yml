@@ -1,4 +1,4 @@
-image: registry.gitlab.com/pages/hugo/hugo_extended:latest
+image: hugomods/hugo:exts
 
 # Set this if you intend to use Git submodules
 variables:
