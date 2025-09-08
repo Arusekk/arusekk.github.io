@@ -2,7 +2,7 @@
 <html lang="en" dir="auto">
 
 <head>
-	<meta name="generator" content="Hugo 0.149.0"><meta charset="utf-8">
+	<meta name="generator" content="Hugo 0.149.1"><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
@@ -13,7 +13,7 @@
 <link rel="canonical" href="https://blog.arusekk.pl/">
 <meta name="google-site-verification" content="bYg8j9Mad2AS5t14kMMccNgC-2zDjGk48iuoGhFvXe0">
 <meta name="msvalidate.01" content="561966B916832399DDA58ED4584121A9">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.8fe10233a706bc87f2e08b3cf97b8bd4c0a80f10675a143675d59212121037c0.css" integrity="sha256-j&#43;ECM6cGvIfy4Is8&#43;XuL1MCoDxBnWhQ2ddWSEhIQN8A=" rel="preload stylesheet" as="style">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.2211ca3164be7830024f6aad2b3a2e520843a64f8f048445c3401c1249aa051d.css" integrity="sha256-IhHKMWS&#43;eDACT2qtKzouUghDpk&#43;PBIRFw0AcEkmqBR0=" rel="preload stylesheet" as="style">
 <link rel="icon" href="https://blog.arusekk.pl/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="https://blog.arusekk.pl/favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="https://blog.arusekk.pl/favicon-32x32.png">
@@ -252,6 +252,21 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">Plan 9 setup on OpenWRT
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Ever wanted to try Plan 9 but it did not work? Just kidding.
+My setup involves a Linux router as a file server, a Raspberry Pi 2 CPU server, and a generic netboot config for amd64 terminals (including QEMU).
+File server on the router means DHCP (of course it does it already; OpenWRT uses dnsmasq), PXE (TFTP provided by atftpd) and finally a 9P server (u9fs; maybe in the future you can run an actual file server, like gefs, with Uglendix).
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-05-23 00:00:00 +0000 UTC'>May 23, 2025</span>&nbsp;·&nbsp;3 min</footer>
+  <a class="entry-link" aria-label="post link to Plan 9 setup on OpenWRT" href="https://blog.arusekk.pl/posts/plan9-openwrt/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">Polish has no articles but it is not SVO
     </h2>
   </header>
@@ -310,21 +325,6 @@ If someone gives you much data, they know more than you. This is true especially
   </div>
   <footer class="entry-footer"><span title='2022-07-21 00:00:00 +0000 UTC'>July 21, 2022</span>&nbsp;·&nbsp;5 min</footer>
   <a class="entry-link" aria-label="post link to Rant on TLS PKI" href="https://blog.arusekk.pl/posts/rant-on-tls-pki/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">Die, IPv4, just die already!!!1!
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>IPv4 has been invented in the eighties. IPv6 has quickly followed in the nineties, exactly after fourteen years of IPv4 practical application.
-It’s been nearly 30 years since then, and we’re still stuck with IPv4.
-Stuck? The main problem with IPv4 is its 32-bit addressing. It limits the Internet to 4 billion true participants (in practice even less, because of reserved address ranges, broadcast addresses, masks, and so on): less than half the world population! All its shortcomings come from this single problem.
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2022-01-10 00:00:00 +0000 UTC'>January 10, 2022</span>&nbsp;·&nbsp;6 min</footer>
-  <a class="entry-link" aria-label="post link to Die, IPv4, just die already!!!1!" href="https://blog.arusekk.pl/posts/die-ipv4-just-die-already/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

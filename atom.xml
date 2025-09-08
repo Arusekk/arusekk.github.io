@@ -4,10 +4,17 @@
     <title>Posts on Arusekk blog</title>
     <link>https://blog.arusekk.pl/posts/</link>
     <description>Recent content in Posts on Arusekk blog</description>
-    <generator>Hugo -- 0.149.0</generator>
+    <generator>Hugo -- 0.149.1</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 25 Sep 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 23 May 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://blog.arusekk.pl/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Plan 9 setup on OpenWRT</title>
+      <link>https://blog.arusekk.pl/posts/plan9-openwrt/</link>
+      <pubDate>Fri, 23 May 2025 00:00:00 +0000</pubDate>
+      <guid>https://blog.arusekk.pl/posts/plan9-openwrt/</guid>
+      <description>Go set up your own Plan 9 network on a Linux router</description>
+    </item>
     <item>
       <title>Polish has no articles but it is not SVO</title>
       <link>https://blog.arusekk.pl/posts/polish-has-no-articles-but-is-not-svo/</link>

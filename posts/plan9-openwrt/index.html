@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Plan 9 setup on OpenWRT | Arusekk blog</title>
+<meta name="keywords" content="">
+<meta name="description" content="Go set up your own Plan 9 network on a Linux router">
+<meta name="author" content="">
+<link rel="canonical" href="https://blog.arusekk.pl/posts/plan9-openwrt/">
+<meta name="google-site-verification" content="bYg8j9Mad2AS5t14kMMccNgC-2zDjGk48iuoGhFvXe0">
+<meta name="msvalidate.01" content="561966B916832399DDA58ED4584121A9">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.2211ca3164be7830024f6aad2b3a2e520843a64f8f048445c3401c1249aa051d.css" integrity="sha256-IhHKMWS&#43;eDACT2qtKzouUghDpk&#43;PBIRFw0AcEkmqBR0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://blog.arusekk.pl/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://blog.arusekk.pl/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://blog.arusekk.pl/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://blog.arusekk.pl/apple-touch-icon.png">
+<link rel="mask-icon" href="https://blog.arusekk.pl/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://blog.arusekk.pl/posts/plan9-openwrt/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:url" content="https://blog.arusekk.pl/posts/plan9-openwrt/">
+  <meta property="og:site_name" content="Arusekk blog">
+  <meta property="og:title" content="Plan 9 setup on OpenWRT">
+  <meta property="og:description" content="Go set up your own Plan 9 network on a Linux router">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-05-23T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-05-23T00:00:00+00:00">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Plan 9 setup on OpenWRT">
+<meta name="twitter:description" content="Go set up your own Plan 9 network on a Linux router">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://blog.arusekk.pl/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Plan 9 setup on OpenWRT",
+      "item": "https://blog.arusekk.pl/posts/plan9-openwrt/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Plan 9 setup on OpenWRT",
+  "name": "Plan 9 setup on OpenWRT",
+  "description": "Go set up your own Plan 9 network on a Linux router",
+  "keywords": [
+    
+  ],
+  "articleBody": "Ever wanted to try Plan 9 but it did not work? Just kidding.\nMy setup involves a Linux router as a file server, a Raspberry Pi 2 CPU server, and a generic netboot config for amd64 terminals (including QEMU).\nFile server on the router means DHCP (of course it does it already; OpenWRT uses dnsmasq), PXE (TFTP provided by atftpd) and finally a 9P server (u9fs; maybe in the future you can run an actual file server, like gefs, with Uglendix).\nI should add an auth server there, too, and a secstore server. But for now no auth, just allow anyone to impersonate anyone I guess.\nYou can netboot a QEMU using:\n#!/bin/sh tftpsrv=192.168.1.1 # libslirp 4.9.0+ required bootfile=/386/9bootpxe #bootfile=/amd64/9pc64 qemu-system-x86_64 \\ -cpu host \\ -accel kvm \\ -m 1024 \\ -nic user,model=virtio,mac=00:20:91:37:33:73,tftp-server-name=$tftpsrv,bootfile=$bootfile \\ -device qemu-xhci,id=xhci \\ -device usb-tablet,bus=xhci.0 \\ \"$@\" I had to add a /cfg/pxe/default to TFTP, containing at least bootfile=/amd64/9pc64.\nRaspberry Pi 2 CPU server Raspberry Pi 2 does not have network booting without SD card. But you can work around this by inserting an SD card with just bootcode.bin file.\nMy DHCP server is dnsmasq. RPi built-in network boot software is PXEClient, which does not recognize the ‘bootfile’ option of DHCP/BOOTP.\n# fs \u0026 auth - note the space: the first byte is ignored (option length?) dhcp-option-force=vendor:plan9,130,\" 192.168.1.1\" dhcp-option-force=vendor:plan9,131,\" 192.168.1.1\" dhcp-vendorclass=set:rpi,PXEClient:Arch:00000:UNDI:002001 pxe-service=tag:rpi,0,\"Raspberry Pi Boot\" # the below does not just work: RPi ignores DHCP bootfile #dhcp-boot=tag:rpi,arm/9pi2 Raspi does not have working NVRAM yet as far as 9front goes (9legacy has some more support for pi nvram but still not enough in my experience). So apparently the SD card needs to contain a 512-byte file called plan9.nvr as well. Otherwise the boot will not be fully hands-free, and you will have to fill in nvram variables on every reboot.\nIf you forget to note the serial number of your raspi, no worries. tcpdump will let you know what files are requested over TFTP.\nOnce set up, you need to first boot the Pi with a monitor and a keyboard (unless you know what to put in plan9.nvr). In case you only have a keyboard and want to type blind, here are the things it asks for, before even asking for bootargs:\nauthid: authdom: key: password: confirm password: You need authid to match an existing user on the fileserver. The rest are arbitrary I think.\nFull file tree So the full file tree on my Raspberry Pi 2 SD Card (FAT32 formatted) is:\ndisk |- bootcode.bin (from /sys/src/boot/bcm/bootcode.bin) \\- plan9.nvr (512B of NULs) The full TFTP file tree is:\ntftp |- 386 (symlink to ../plan9/386) |- amd64 (symlink to ../plan9/amd64) |- arm (symlink to ../plan9/arm) |- cfg (symlink to ../plan9/cfg) |- config.txt (symlink to cfg/pxe/9pi.ini) |- fixup_cd.elf (symlink to ../plan9/sys/src/boot/bcm/fixup_cd.dat) \\- start_cd.elf (symlink to ../plan9/sys/src/boot/bcm/start_cd.dat) The full /cfg file tree is:\ncfg |+ pi9/ |\\- cpurc (currently empty, but will start network services) \\+ pxe/ |- 9pi.ini (see below) |- serial7f (see below) \\- default (see below) My /cfg/pxe/9pi.ini contains:\n[0x......7f] cmdline=cfg/pxe/......7f [pi0] kernel=arm/9pi [pi1] kernel=arm/9pi [pi2] kernel=arm/9pi2 [pi3] kernel=arm/9pi2 core_freq=250 [all] gpu_mem=16 enable_uart=0 boot_delay=1 My /cfg/pxe/......7f contains (note spaces instead of newlines, and quoting):\nservice=cpu nobootprompt=tcp fs=192.168.1.1 auth=192.168.1.1 nvram='#S/sdM0/dos' nvroff=dos user=glenda My /cfg/pxe/default contains config for 386/9bootpxe, since it is the only way of booting reading the file:\n# config for starting shell right away nobootprompt=tcp bootargs=tcp fs=192.168.1.1 auth=192.168.1.1 user=glenda monitor=vesa vgasize=1024x768x16 mouseport=ps2 bootfile=/amd64/9pc64 I also added the following to /lib/ndb:\nipnet=home ip=192.168.1.0 ipmask=255.255.255.0 ipgw=192.168.1.1 dns=192.168.1.1 auth=192.168.1.1 dnsdom=arusekk.pl cpu=pi9 ip=192.168.1.2 sys=pi9 dom=pi9.home ether=b827........ ",
+  "wordCount" : "586",
+  "inLanguage": "en",
+  "datePublished": "2025-05-23T00:00:00Z",
+  "dateModified": "2025-05-23T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://blog.arusekk.pl/posts/plan9-openwrt/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Arusekk blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://blog.arusekk.pl/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://blog.arusekk.pl/" accesskey="h" title="Arusekk blog (Alt + H)">Arusekk blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                <ul class="lang-switch"><li>|</li>
+                    <li>
+                        <a href="https://blog.arusekk.pl/pl/" title="🇵🇱 PL"
+                            aria-label=":flag_pl: PL">🇵🇱 PL</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://blog.arusekk.pl/" title="Home">
+                    <span>Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://blog.arusekk.pl/about/" title="About">
+                    <span>About</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://blog.arusekk.pl/contact/" title="Contact">
+                    <span>Contact</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://blog.arusekk.pl/blogroll/" title="Blogroll">
+                    <span>Blogroll</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://blog.arusekk.pl/posts/index.xml" title="Feed">
+                    <span>Feed</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      Plan 9 setup on OpenWRT
+    </h1>
+    <div class="post-description">
+      Go set up your own Plan 9 network on a Linux router
+    </div>
+    <div class="post-meta"><span title='2025-05-23 00:00:00 +0000 UTC'>May 23, 2025</span>&nbsp;·&nbsp;3 min
+
+</div>
+  </header> 
+  <div class="post-content"><p>Ever wanted to try Plan 9 but it did not work? Just kidding.</p>
+<p>My setup involves a Linux router as a file server,
+a Raspberry Pi 2 CPU server,
+and a generic netboot config for amd64 terminals (including QEMU).</p>
+<p>File server on the router means DHCP (of course it does it already; OpenWRT uses dnsmasq),
+PXE (TFTP provided by atftpd)
+and finally a 9P server
+(u9fs; maybe in the future you can run an actual file server, like gefs, with Uglendix).</p>
+<p>I should add an auth server there, too, and a secstore server.
+But for now no auth, just allow anyone to impersonate anyone I guess.</p>
+<p>You can netboot a QEMU using:</p>
+<pre tabindex="0"><code>#!/bin/sh
+
+tftpsrv=192.168.1.1  # libslirp 4.9.0+ required
+bootfile=/386/9bootpxe
+#bootfile=/amd64/9pc64
+
+qemu-system-x86_64 \
+        -cpu host \
+        -accel kvm \
+        -m 1024 \
+        -nic user,model=virtio,mac=00:20:91:37:33:73,tftp-server-name=$tftpsrv,bootfile=$bootfile \
+        -device qemu-xhci,id=xhci \
+        -device usb-tablet,bus=xhci.0 \
+        &#34;$@&#34;
+</code></pre><p>I had to add a /cfg/pxe/default to TFTP, containing at least <code>bootfile=/amd64/9pc64</code>.</p>
+<h1 id="raspberry-pi-2-cpu-server">Raspberry Pi 2 CPU server<a hidden class="anchor" aria-hidden="true" href="#raspberry-pi-2-cpu-server">#</a></h1>
+<p>Raspberry Pi 2 does not have network booting without SD card.
+But you can work around this by inserting an SD card with just <code>bootcode.bin</code> file.</p>
+<p>My DHCP server is dnsmasq. RPi built-in network boot software is PXEClient,
+which does not recognize the &lsquo;bootfile&rsquo; option of DHCP/BOOTP.</p>
+<pre tabindex="0"><code># fs &amp; auth - note the space: the first byte is ignored (option length?)
+dhcp-option-force=vendor:plan9,130,&#34; 192.168.1.1&#34;
+dhcp-option-force=vendor:plan9,131,&#34; 192.168.1.1&#34;
+
+dhcp-vendorclass=set:rpi,PXEClient:Arch:00000:UNDI:002001
+pxe-service=tag:rpi,0,&#34;Raspberry Pi Boot&#34;
+# the below does not just work: RPi ignores DHCP bootfile
+#dhcp-boot=tag:rpi,arm/9pi2
+</code></pre><p>Raspi does not have working NVRAM yet as far as 9front goes
+(9legacy has some more support for pi nvram but still not enough in my experience).
+So apparently the SD card needs to contain a 512-byte file called plan9.nvr as well.
+Otherwise the boot will not be fully hands-free,
+and you will have to fill in nvram variables on every reboot.</p>
+<p>If you forget to note the serial number of your raspi, no worries.
+<code>tcpdump</code> will let you know what files are requested over TFTP.</p>
+<p>Once set up, you need to first boot the Pi with a monitor and a keyboard
+(unless you know what to put in plan9.nvr).
+In case you only have a keyboard and want to type blind, here are the things it asks for,
+before even asking for bootargs:</p>
+<pre tabindex="0"><code>authid:
+authdom:
+key:
+password:
+confirm password:
+</code></pre><p>You need authid to match an existing user on the fileserver.
+The rest are arbitrary I think.</p>
+<h1 id="full-file-tree">Full file tree<a hidden class="anchor" aria-hidden="true" href="#full-file-tree">#</a></h1>
+<p>So the full file tree on my Raspberry Pi 2 SD Card (FAT32 formatted) is:</p>
+<pre tabindex="0"><code>disk
+|- bootcode.bin (from /sys/src/boot/bcm/bootcode.bin)
+\- plan9.nvr (512B of NULs)
+</code></pre><p>The full TFTP file tree is:</p>
+<pre tabindex="0"><code>tftp
+|- 386 (symlink to ../plan9/386)
+|- amd64 (symlink to ../plan9/amd64)
+|- arm (symlink to ../plan9/arm)
+|- cfg (symlink to ../plan9/cfg)
+|- config.txt (symlink to cfg/pxe/9pi.ini)
+|- fixup_cd.elf (symlink to ../plan9/sys/src/boot/bcm/fixup_cd.dat)
+\- start_cd.elf (symlink to ../plan9/sys/src/boot/bcm/start_cd.dat)
+</code></pre><p>The full <code>/cfg</code> file tree is:</p>
+<pre tabindex="0"><code>cfg
+|+ pi9/
+|\- cpurc (currently empty, but will start network services)
+\+ pxe/
+ |- 9pi.ini (see below)
+ |- serial7f (see below)
+ \- default (see below)
+</code></pre><p>My /cfg/pxe/9pi.ini contains:</p>
+<pre tabindex="0"><code>[0x......7f]
+cmdline=cfg/pxe/......7f
+[pi0]
+kernel=arm/9pi
+[pi1]
+kernel=arm/9pi
+[pi2]
+kernel=arm/9pi2
+[pi3]
+kernel=arm/9pi2
+core_freq=250
+[all]
+gpu_mem=16
+enable_uart=0
+boot_delay=1
+</code></pre><p>My <code>/cfg/pxe/......7f</code> contains (note spaces instead of newlines, and quoting):</p>
+<pre tabindex="0"><code>service=cpu nobootprompt=tcp fs=192.168.1.1 auth=192.168.1.1 nvram=&#39;#S/sdM0/dos&#39; nvroff=dos user=glenda
+</code></pre><p>My <code>/cfg/pxe/default</code> contains config for <code>386/9bootpxe</code>, since it is the only way of booting reading the file:</p>
+<pre tabindex="0"><code># config for starting shell right away
+nobootprompt=tcp
+bootargs=tcp
+fs=192.168.1.1
+auth=192.168.1.1
+user=glenda
+monitor=vesa
+vgasize=1024x768x16
+mouseport=ps2
+bootfile=/amd64/9pc64
+</code></pre><p>I also added the following to <code>/lib/ndb</code>:</p>
+<pre tabindex="0"><code>ipnet=home ip=192.168.1.0 ipmask=255.255.255.0
+	ipgw=192.168.1.1
+	dns=192.168.1.1
+	auth=192.168.1.1
+	dnsdom=arusekk.pl
+	cpu=pi9
+ip=192.168.1.2 sys=pi9 dom=pi9.home ether=b827........
+</code></pre>
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="https://blog.arusekk.pl/">Arusekk blog</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>
