@@ -4,10 +4,17 @@
     <title>Posts on Blog Aruskka</title>
     <link>https://blog.arusekk.pl/pl/posts/</link>
     <description>Recent content in Posts on Blog Aruskka</description>
-    <generator>Hugo -- 0.149.1</generator>
+    <generator>Hugo -- 0.152.2</generator>
     <language>pl</language>
-    <lastBuildDate>Thu, 07 Dec 2023 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 17 Dec 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://blog.arusekk.pl/pl/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Czym się różnią banki</title>
+      <link>https://blog.arusekk.pl/pl/posts/banks/</link>
+      <pubDate>Wed, 17 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>https://blog.arusekk.pl/pl/posts/banks/</guid>
+      <description>Notatki o różnicach między moimi bankami i ich warunkami/ofertami</description>
+    </item>
     <item>
       <title>O pociągach</title>
       <link>https://blog.arusekk.pl/pl/posts/o-pociagach/</link>
