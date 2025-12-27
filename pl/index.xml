@@ -4,9 +4,9 @@
     <title>Blog Aruskka</title>
     <link>https://blog.arusekk.pl/pl/</link>
     <description>Recent content on Blog Aruskka</description>
-    <generator>Hugo -- 0.152.2</generator>
+    <generator>Hugo -- 0.153.3</generator>
     <language>pl</language>
-    <lastBuildDate>Wed, 17 Dec 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 27 Dec 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://blog.arusekk.pl/pl/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>O mnie</title>
@@ -36,6 +36,13 @@ jeśli czujesz się wyjątkowo zobowiązany(a) do skomentowania czegoś, jest pe
 Jeśli nie zadziała, spróbuj &lt;code&gt;arek_koz&lt;/code&gt; na &lt;code&gt;o2.pl&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;Można mnie też znaleźć na Matriksie (&lt;code&gt;@Arusekk:matrix.org&lt;/code&gt;) i na Discordzie (&lt;code&gt;@Arusekk#6609&lt;/code&gt;).
 Czasem tam rzadziej zaglądam, ale jeśli masz szczęście i przyłapiesz mnie, jak tam jestem, możemy porozmawiać z najmniejszym opóźnieniem.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Progress 2025 w52</title>
+      <link>https://blog.arusekk.pl/pl/posts/progress-2025w52/</link>
+      <pubDate>Sat, 27 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>https://blog.arusekk.pl/pl/posts/progress-2025w52/</guid>
+      <description>Co tam u mnie w tym tygodniu</description>
     </item>
     <item>
       <title>Czym się różnią banki</title>
