@@ -1,6 +1,6 @@
 ---
 title: Do not buy Acer laptops
-date: 2025-01-06
+date: 2026-01-06
 description: A story of an old laptop and hard obstacles with still using it.
 ---
 
