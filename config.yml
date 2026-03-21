@@ -26,7 +26,8 @@ languages:
 
 # Home page
 params:
-  ShowReadingTime: true
+  author: Arusekk
+  showReadingTime: true
   displayFullLangName: true
   dateFormat: ":date_long"
   homeInfoParams:
@@ -35,9 +36,9 @@ params:
 
   analytics:
     google:
-      SiteVerificationTag: bYg8j9Mad2AS5t14kMMccNgC-2zDjGk48iuoGhFvXe0
+      siteVerificationTag: bYg8j9Mad2AS5t14kMMccNgC-2zDjGk48iuoGhFvXe0
     bing:
-      SiteVerificationTag: 561966B916832399DDA58ED4584121A9
+      siteVerificationTag: 561966B916832399DDA58ED4584121A9
 
 
   socialIcons:
@@ -70,4 +71,4 @@ menu:
 
 # Other settings
 pagination:
-  PagerSize: 5
+  pagerSize: 5
