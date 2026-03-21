@@ -8,7 +8,7 @@
 <title>Facebook messenger custom reactions | Arusekk blog</title>
 <meta name="keywords" content="">
 <meta name="description" content="You can react with custom reactions on Facebook Messenger and here&#39;s how">
-<meta name="author" content="">
+<meta name="author" content="Arusekk">
 <link rel="canonical" href="https://blog.arusekk.pl/posts/fb-custom-reaction/">
 <meta name="google-site-verification" content="bYg8j9Mad2AS5t14kMMccNgC-2zDjGk48iuoGhFvXe0">
 <meta name="msvalidate.01" content="561966B916832399DDA58ED4584121A9">
@@ -106,6 +106,10 @@
   "inLanguage": "en",
   "datePublished": "2023-12-20T00:00:00Z",
   "dateModified": "2023-12-20T00:00:00Z",
+  "author":{
+    "@type": "Person",
+    "name": "Arusekk"
+  },
   "mainEntityOfPage": {
     "@type": "WebPage",
     "@id": "https://blog.arusekk.pl/posts/fb-custom-reaction/"
@@ -207,7 +211,7 @@
     <div class="post-description">
       You can react with custom reactions on Facebook Messenger and here&#39;s how
     </div>
-    <div class="post-meta"><span title='2023-12-20 00:00:00 +0000 UTC'>December 20, 2023</span>&nbsp;·&nbsp;2 min
+    <div class="post-meta"><span title='2023-12-20 00:00:00 +0000 UTC'>December 20, 2023</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Arusekk
 
 </div>
   </header> 
@@ -221,7 +225,7 @@ if I was a cybercriminal I could take over your account; this technique is calle
 and you might probably get banned if you are not careful
 (take extra caution against accidental spam, maybe practice on a test account).
 I however developed it on my official-ish account and did not get banned (yet™).</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#a6e22e">oldSend</span><span style="color:#f92672">=</span>window.<span style="color:#a6e22e">oldSend</span><span style="color:#f92672">||</span><span style="color:#a6e22e">WebSocket</span>.<span style="color:#a6e22e">prototype</span>.<span style="color:#a6e22e">send</span>;<span style="color:#a6e22e">FBOFFSET</span><span style="color:#f92672">=</span><span style="color:#ae81ff">14</span>;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#a6e22e">oldSend</span><span style="color:#f92672">=</span>window.<span style="color:#a6e22e">oldSend</span><span style="color:#f92672">||</span><span style="color:#a6e22e">WebSocket</span>.<span style="color:#a6e22e">prototype</span>.<span style="color:#a6e22e">send</span>;<span style="color:#a6e22e">FBOFFSET</span><span style="color:#f92672">=</span><span style="color:#ae81ff">14</span>;
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">WebSocket</span>.<span style="color:#a6e22e">prototype</span>.<span style="color:#a6e22e">send</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>() {
 </span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">try</span> {
 </span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">arg</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Uint8Array</span>(<span style="color:#a6e22e">arguments</span>[<span style="color:#ae81ff">0</span>]);
@@ -241,7 +245,7 @@ to replace all occurrences of a specific emoji (<code>:hugging_face:</code>) wit
 And it takes extra caution not to change anything in case something goes wrong.</p>
 <p>It was quite sad to see how a byte array is not a convenient thing in JS, and neither is encoding/decoding UTF-8.
 The same code in Python (my personal favourite) would roughly look like (IMO simpler):</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-py" data-lang="py"><span style="display:flex;"><span><span style="color:#66d9ef">if</span> <span style="color:#e6db74">&#39;oldSend&#39;</span> <span style="color:#f92672">not</span> <span style="color:#f92672">in</span> globals():
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-py" data-lang="py"><span style="display:flex;"><span><span style="color:#66d9ef">if</span> <span style="color:#e6db74">&#39;oldSend&#39;</span> <span style="color:#f92672">not</span> <span style="color:#f92672">in</span> globals():
 </span></span><span style="display:flex;"><span>    oldSend <span style="color:#f92672">=</span> WebSocket<span style="color:#f92672">.</span>send
 </span></span><span style="display:flex;"><span>FBOFFSET <span style="color:#f92672">=</span> <span style="color:#ae81ff">14</span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">newSend</span>(self, <span style="color:#f92672">*</span>args):

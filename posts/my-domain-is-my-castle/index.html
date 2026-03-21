@@ -8,7 +8,7 @@
 <title>My domain is my castle | Arusekk blog</title>
 <meta name="keywords" content="">
 <meta name="description" content="I spent many many days learing how everything domain-related works, and here are my thoughts and the least intuitive facts.">
-<meta name="author" content="">
+<meta name="author" content="Arusekk">
 <link rel="canonical" href="https://blog.arusekk.pl/posts/my-domain-is-my-castle/">
 <meta name="google-site-verification" content="bYg8j9Mad2AS5t14kMMccNgC-2zDjGk48iuoGhFvXe0">
 <meta name="msvalidate.01" content="561966B916832399DDA58ED4584121A9">
@@ -106,6 +106,10 @@
   "inLanguage": "en",
   "datePublished": "2021-03-23T00:00:00Z",
   "dateModified": "2021-03-23T00:00:00Z",
+  "author":{
+    "@type": "Person",
+    "name": "Arusekk"
+  },
   "mainEntityOfPage": {
     "@type": "WebPage",
     "@id": "https://blog.arusekk.pl/posts/my-domain-is-my-castle/"
@@ -207,7 +211,7 @@
     <div class="post-description">
       I spent many many days learing how everything domain-related works, and here are my thoughts and the least intuitive facts.
     </div>
-    <div class="post-meta"><span title='2021-03-23 00:00:00 +0000 UTC'>March 23, 2021</span>&nbsp;·&nbsp;7 min
+    <div class="post-meta"><span title='2021-03-23 00:00:00 +0000 UTC'>March 23, 2021</span>&nbsp;·&nbsp;7 min&nbsp;·&nbsp;Arusekk
 
 </div>
   </header> 
@@ -410,7 +414,7 @@ rzęch meaning something so old that it wheezes).</p>
 Wikipedia describes it quite well and graphically,
 without all the bloaty preambles typical to RFC / IETF / IANA documents.</p>
 <p>Thankfully, I found <a href="https://flippingbinary.com/2018/02/26/lets-encrypt-with-tlsa-dane/">a tutorial</a>:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>openssl x509 -in /etc/letsencrypt/live/arusekk.pl/cert.pem -noout -pubkey |
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>openssl x509 -in /etc/letsencrypt/live/arusekk.pl/cert.pem -noout -pubkey |
 </span></span><span style="display:flex;"><span>  openssl pkey -pubin -outform DER |
 </span></span><span style="display:flex;"><span>  openssl dgst -sha256 -binary |
 </span></span><span style="display:flex;"><span>  hexdump -ve <span style="color:#e6db74">&#39;/1 &#34;%02x&#34;&#39;</span>

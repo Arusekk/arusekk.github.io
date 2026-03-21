@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="pl" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Eduroam | Blog Aruskka</title>
+<meta name="keywords" content="">
+<meta name="description" content="Jak w końcu zrobić sobie dostęp do uczelnianego wi-fi, ale bez cudowania">
+<meta name="author" content="Arusekk">
+<link rel="canonical" href="https://blog.arusekk.pl/pl/posts/eduroam/">
+<meta name="google-site-verification" content="bYg8j9Mad2AS5t14kMMccNgC-2zDjGk48iuoGhFvXe0">
+<meta name="msvalidate.01" content="561966B916832399DDA58ED4584121A9">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.2211ca3164be7830024f6aad2b3a2e520843a64f8f048445c3401c1249aa051d.css" integrity="sha256-IhHKMWS&#43;eDACT2qtKzouUghDpk&#43;PBIRFw0AcEkmqBR0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://blog.arusekk.pl/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://blog.arusekk.pl/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://blog.arusekk.pl/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://blog.arusekk.pl/apple-touch-icon.png">
+<link rel="mask-icon" href="https://blog.arusekk.pl/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="pl" href="https://blog.arusekk.pl/pl/posts/eduroam/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:url" content="https://blog.arusekk.pl/pl/posts/eduroam/">
+  <meta property="og:site_name" content="Blog Aruskka">
+  <meta property="og:title" content="Eduroam">
+  <meta property="og:description" content="Jak w końcu zrobić sobie dostęp do uczelnianego wi-fi, ale bez cudowania">
+  <meta property="og:locale" content="pl">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2026-03-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-03-20T00:00:00+00:00">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Eduroam">
+<meta name="twitter:description" content="Jak w końcu zrobić sobie dostęp do uczelnianego wi-fi, ale bez cudowania">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Eduroam",
+      "item": "https://blog.arusekk.pl/pl/posts/eduroam/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Eduroam",
+  "name": "Eduroam",
+  "description": "Jak w końcu zrobić sobie dostęp do uczelnianego wi-fi, ale bez cudowania",
+  "keywords": [
+    
+  ],
+  "articleBody": "Łączenie się do wi-fi jeszcze nigdy nie było tak skomplikowane jak eduroam. Dlaczego? Bo zamiast rotować hasło za każdym razem, gdy ktoś ma mieć odebrany dostęp, każdy loguje się do tego wi-fi swoim własnym hasłem. A że jest to skrajnie niebezpieczne, bo ktokolwiek może postawić wi-fi o tej nazwie i przechwycić hasło do uczelnianej poczty, to trzeba się upewnić, że swoje bezcenne poświadczenia wysyłamy tylko zaufanemu serwerowi. Sytuację komplikuje mnogość standardów, jakby nie mogli się wszyscy zwyczajnie dogadać. Na domiar złego każda uczelnia ma kompletnie inne podejście, politykę i wykonanie.\nDalej skupię się na UWr (dobra wiadomość dla PWr: macie podobnie). Inne uczelnie mogą mieć wszystko kompletnie inaczej, jedyna wspólna część to dość ustandaryzowane informacje w skrypcie instalacyjnym z cat.eduroam.org. Po pobraniu odpowiedniego skryptu możemy zajrzeć do certykifatów, które zawiera:\n$ awk '/BEGIN CERT/,/END CERT/' \u003c eduroam-linux-UoW.py | openssl asn1parse | grep -i root 143:d=5 hl=2 l= 55 prim: PRINTABLESTRING :Hellenic Academic and Research Institutions RootCA 2015 344:d=5 hl=2 l= 55 prim: PRINTABLESTRING :Hellenic Academic and Research Institutions RootCA 2015 Uwaga: openssl asn1parse czyta tylko pierwszy blok. Przeczytanie pozostałych pozostawione jest jako ćwiczenie dla czytelnika.\neduroam UWr Sam certyfikat w formacie PEM wyciągnąłem mniej więcej poleceniem powyżej i można go pobrać tu o.\nUwaga: NIE UFAJ MI! Porównaj, czy naprawdę wyciągnąłem ze skryptu do pobrania pod adresem https://cat.eduroam.org/user/API.php?action=downloadInstaller\u0026profile=1670\u0026device=linux\nOkazuje się, że ten certyfikat jest podpisany przez CA, które już z dużą pewnością jest zaufane w każdym systemie. Mowa o Hellenic Academic and Research Institutions Root CA, dawniej pod rozwiniętą nazwą, teraz skrócone do HARICA. (Twoja uczelnia może nie być taka fajna! Na przykład Politechnika Łódzka ma własny certyfikat TU Lodz Root.)\nW takim razie wcale nie trzeba pobierać certyfikatu i nadal mieć bezpiecznie!\nPEAP czy TTLS Wszystko jedno. Działają oba, więc jeśli się da, to włączam oba, w razie gdyby jedno miało… przestać działać.\nwpa_supplicant $ cat \u003e\u003e /etc/wpa_supplicant/wpa_supplicant.conf \u003c",
+  "wordCount" : "413",
+  "inLanguage": "pl",
+  "datePublished": "2026-03-20T00:00:00Z",
+  "dateModified": "2026-03-20T00:00:00Z",
+  "author":{
+    "@type": "Person",
+    "name": "Arusekk"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://blog.arusekk.pl/pl/posts/eduroam/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Blog Aruskka",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://blog.arusekk.pl/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://blog.arusekk.pl/pl/" accesskey="h" title="Blog Aruskka (Alt + H)">Blog Aruskka</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                <ul class="lang-switch"><li>|</li>
+                    <li>
+                        <a href="https://blog.arusekk.pl/" title="🇬🇧 EN"
+                            aria-label=":flag_gb: EN">🇬🇧 EN</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://blog.arusekk.pl/pl/" title="Wpisy">
+                    <span>Wpisy</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://blog.arusekk.pl/pl/o-mnie/" title="O mnie">
+                    <span>O mnie</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://blog.arusekk.pl/pl/kontakt/" title="Kontakt">
+                    <span>Kontakt</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://blog.arusekk.pl/pl/posts/index.xml" title="Kanał">
+                    <span>Kanał</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      Eduroam
+    </h1>
+    <div class="post-description">
+      Jak w końcu zrobić sobie dostęp do uczelnianego wi-fi, ale bez cudowania
+    </div>
+    <div class="post-meta"><span title='2026-03-20 00:00:00 +0000 UTC'>20 marca 2026</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Arusekk
+
+</div>
+  </header> 
+  <div class="post-content"><p>Łączenie się do wi-fi jeszcze nigdy nie było tak skomplikowane jak eduroam.
+Dlaczego? Bo zamiast rotować hasło za każdym razem, gdy ktoś ma mieć odebrany dostęp,
+każdy loguje się do tego wi-fi swoim własnym hasłem.
+A że jest to skrajnie niebezpieczne, bo ktokolwiek może postawić wi-fi o tej nazwie
+i <em>przechwycić hasło</em> do uczelnianej poczty,
+to trzeba się upewnić, że swoje bezcenne poświadczenia wysyłamy tylko zaufanemu serwerowi.
+Sytuację komplikuje mnogość standardów, jakby nie mogli się wszyscy zwyczajnie dogadać.
+Na domiar złego każda uczelnia ma kompletnie inne podejście, politykę i wykonanie.</p>
+<p>Dalej skupię się na UWr (dobra wiadomość dla PWr: macie podobnie).
+Inne uczelnie mogą mieć wszystko kompletnie inaczej, jedyna wspólna część to
+dość ustandaryzowane informacje w skrypcie instalacyjnym z <a href="https://cat.eduroam.org">cat.eduroam.org</a>.
+Po pobraniu odpowiedniego skryptu możemy zajrzeć do certykifatów, które zawiera:</p>
+<pre tabindex="0"><code>$ awk &#39;/BEGIN CERT/,/END CERT/&#39; &lt; eduroam-linux-UoW.py | openssl asn1parse | grep -i root
+  143:d=5  hl=2 l=  55 prim: PRINTABLESTRING   :Hellenic Academic and Research Institutions RootCA 2015
+  344:d=5  hl=2 l=  55 prim: PRINTABLESTRING   :Hellenic Academic and Research Institutions RootCA 2015
+</code></pre><p>Uwaga: <code>openssl asn1parse</code> czyta tylko pierwszy blok.
+Przeczytanie pozostałych pozostawione jest jako ćwiczenie dla czytelnika.</p>
+<h1 id="eduroam-uwr">eduroam UWr<a hidden class="anchor" aria-hidden="true" href="#eduroam-uwr">#</a></h1>
+<p>Sam certyfikat w formacie PEM wyciągnąłem mniej więcej poleceniem powyżej i można go pobrać <a href="/eduroam-UoW.pem">tu o</a>.</p>
+<p>Uwaga: NIE UFAJ MI!
+Porównaj, czy naprawdę wyciągnąłem ze skryptu do pobrania pod adresem
+<a href="https://cat.eduroam.org/user/API.php?action=downloadInstaller&amp;profile=1670&amp;device=linux">https://cat.eduroam.org/user/API.php?action=downloadInstaller&profile=1670&device=linux</a></p>
+<p>Okazuje się, że ten certyfikat jest podpisany przez CA, które już z dużą pewnością jest
+zaufane w każdym systemie. Mowa o Hellenic Academic and Research Institutions Root CA,
+dawniej pod rozwiniętą nazwą, teraz skrócone do HARICA.
+(Twoja uczelnia może nie być taka fajna!
+Na przykład Politechnika Łódzka ma własny certyfikat TU Lodz Root.)</p>
+<p>W takim razie wcale nie trzeba pobierać certyfikatu i nadal mieć bezpiecznie!</p>
+<h2 id="peap-czy-ttls">PEAP czy TTLS<a hidden class="anchor" aria-hidden="true" href="#peap-czy-ttls">#</a></h2>
+<p>Wszystko jedno.
+Działają oba, więc jeśli się da, to włączam oba, w razie gdyby jedno miało&hellip; przestać działać.</p>
+<h2 id="wpa_supplicant">wpa_supplicant<a hidden class="anchor" aria-hidden="true" href="#wpa_supplicant">#</a></h2>
+<pre tabindex="0"><code>$ cat &gt;&gt; /etc/wpa_supplicant/wpa_supplicant.conf &lt;&lt;EOF
+network={
+        ssid=&#34;eduroam&#34;
+        eap=TTLS PEAP
+        anonymous_identity=&#34;anonymous@uwr.edu.pl&#34;
+        identity=&#34;123456@uwr.edu.pl&#34;
+        password=&#34;hunter2&#34;
+        phase2=&#34;auth=MSCHAPV2&#34;
+        ca_cert=&#34;/usr/share/ca-certificates/mozilla/Hellenic_Academic_and_Research_Institutions_RootCA_2015.crt&#34;
+        ca_cert=&#34;/usr/share/ca-certificates/mozilla/HARICA_TLS_RSA_Root_CA_2021.crt&#34;
+}
+EOF
+</code></pre><h2 id="iwd">IWD<a hidden class="anchor" aria-hidden="true" href="#iwd">#</a></h2>
+<p>zaś iwd można ustawić tak:</p>
+<pre tabindex="0"><code>$ cat &gt; /var/lib/iwd/eduroam.8021x &lt;&lt;EOF
+[Security]
+EAP-Method=PEAP
+EAP-Identity=anonymous@uwr.edu.pl
+EAP-PEAP-CACert=/usr/share/ca-certificates/mozilla/HARICA_TLS_RSA_Root_CA_2021.crt
+EAP-PEAP-ServerDomainMask=radius.uwr.edu.pl
+EAP-PEAP-Phase2-Method=MSCHAPV2
+EAP-PEAP-Phase2-Identity=123456@uwr.edu.pl
+EAP-PEAP-Phase2-Password=hunter2
+
+[Settings]
+AutoConnect=true
+EOF
+</code></pre><h2 id="connman">ConnMan<a hidden class="anchor" aria-hidden="true" href="#connman">#</a></h2>
+<pre tabindex="0"><code>$ cat &gt; /var/lib/connman/eduroam.config &lt;&lt;EOF
+[service_eduroam]
+Type=wifi
+Name=eduroam
+EAP=peap
+CACertFile=/usr/share/ca-certificates/mozilla/HARICA_TLS_RSA_Root_CA_2021.crt
+Phase2=MSCHAPV2
+Identity=123456@uwr.edu.pl
+AnonymousIdentity=anonymous@uwr.edu.pl
+Passphrase=hunter2
+EOF
+</code></pre><h2 id="networkmanager">NetworkManager<a hidden class="anchor" aria-hidden="true" href="#networkmanager">#</a></h2>
+<pre tabindex="0"><code>nmcli connection add type wifi con-name eduroam         \
+        connection.permissions $LOGNAME                 \
+        802-11-wireless.ssid eduroam                    \
+        802-11-wireless-security.key-mgmt wpa-eap       \
+        802-11-wireless-security.group ccmp,tkip        \
+        802-11-wireless-security.pairwise ccmp          \
+        802-11-wireless-security.proto rsn              \
+        802-1x.altsubject-matches DNS:radius.uwr.edu.pl \
+        802-1x.anonymous-identity anonymous@uwr.edu.pl  \
+        802-1x.eap peap                                 \
+        802-1x.identity 123456@uwr.edu.pl               \
+        802-1x.password hunter2                         \
+        802-1x.phase2-auth mschapv2                     \
+        ipv4.method auto                                \
+        ipv6.addr-gen-mode stable-privacy               \
+        ipv6.method auto
+</code></pre>
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://blog.arusekk.pl/pl/">Blog Aruskka</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>
