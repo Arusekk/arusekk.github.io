@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Lovely nonces (ASIS CTF Quals 2021) - the unintended way | Arusekk blog</title>
+<meta name="keywords" content="">
+<meta name="description" content="Unintended solution for a CTF challenge">
+<meta name="author" content="Arusekk &amp; haqpl">
+<link rel="canonical" href="https://blog.arusekk.pl/posts/asisctf-2021-lovely-nonces/">
+<meta name="google-site-verification" content="bYg8j9Mad2AS5t14kMMccNgC-2zDjGk48iuoGhFvXe0">
+<meta name="msvalidate.01" content="561966B916832399DDA58ED4584121A9">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.aeb04085357f24835232aa89766467110fb6da019fa0a790d4d097b3949d7276.css" integrity="sha256-rrBAhTV/JINSMqqJdmRnEQ&#43;22gGfoKeQ1NCXs5SdcnY=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://blog.arusekk.pl/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://blog.arusekk.pl/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://blog.arusekk.pl/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://blog.arusekk.pl/apple-touch-icon.png">
+<link rel="mask-icon" href="https://blog.arusekk.pl/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://blog.arusekk.pl/posts/asisctf-2021-lovely-nonces/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:url" content="https://blog.arusekk.pl/posts/asisctf-2021-lovely-nonces/">
+  <meta property="og:site_name" content="Arusekk blog">
+  <meta property="og:title" content="Lovely nonces (ASIS CTF Quals 2021) - the unintended way">
+  <meta property="og:description" content="Unintended solution for a CTF challenge">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2021-10-25T00:00:00+00:00">
+    <meta property="article:modified_time" content="2021-10-25T00:00:00+00:00">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Lovely nonces (ASIS CTF Quals 2021) - the unintended way">
+<meta name="twitter:description" content="Unintended solution for a CTF challenge">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://blog.arusekk.pl/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Lovely nonces (ASIS CTF Quals 2021) - the unintended way",
+      "item": "https://blog.arusekk.pl/posts/asisctf-2021-lovely-nonces/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Lovely nonces (ASIS CTF Quals 2021) - the unintended way",
+  "name": "Lovely nonces (ASIS CTF Quals 2021) - the unintended way",
+  "description": "Unintended solution for a CTF challenge",
+  "keywords": [
+    
+  ],
+  "articleBody": "Lovely nonces (ASIS CTF Quals 2021): the unintended way Originally published in justCatTheFish repo.\nThe quasi-crypto part by Arusekk\nThe first thing I noticed in this task was unsafe random nonce generation. Unpredictable random values in Node.js should be generated using crypto.random*() and not Math.random(), which is designed to be fast, not safe.\nSo while the others were working on an XSS payload that would work, I searched v8 (the JavaScript engine used by Node.js) sources for the implementation behind Math.random(). It turned out to be xorshift128, which is a wonderful algorithm, passing strict randomness tests, while still being very fast. But since it only uses bitwise xor and shift operations, it is trivial to predict.\nSince the internal state of xorshift128 is 128 bits (actually 2 ** 128 - 1 possible values), I counted how many nonces (one nonce = 16 independent chars from a set of 36, 36 ** 16 possible values) are necessary to reconstruct the xorshift128 rng internal state, which would allow us to reconstruct all nonces generated in the challenge (and so be able to predict them):\n\u003e\u003e\u003e import math \u003e\u003e\u003e math.log((2 ** 128 - 1), 36 ** 16) 1.5474112289381663 Meaning that slightly more than one and a half nonce would be enough.\nSo I wrote a simple Z3-based SAT solver for two consecutive nonces:\nimport z3 nonce0 = \"zyovm6kz13cmhb7f\" nonce1 = \"fgfleffuh9n5nz67\" xorshift0 = z3.BitVec('state0', 64) xorshift1 = z3.BitVec('state1', 64) s = z3.Solver() for x in nonce0 + nonce1: v = 'abcdefghijklmnopqrstuvwxyz0123456789'.index(x) s.add((z3.LShR(xorshift0, 12) * 36) \u003e\u003e 52 == v) x0 = xorshift1 x1 = xorshift0 xorshift0 = x0 x1 ^= x1 \u003c\u003c 23 x1 ^= z3.LShR(x1, 17) x1 ^= x0 x1 ^= z3.LShR(x0, 26) xorshift1 = x1 print(s.check()) mod = s.model() print('%016x' % mod.evaluate(xorshift0).as_long()) print('%016x' % mod.evaluate(xorshift1).as_long()) (wasting 1h on figuring out that a \u003e\u003e b is an arithmetic shift by default, and it is necessary to use z3.LShR(a, b) to bypass that)\nThen I wasted another hour debugging, just to find out that v8 uses caching and returns the values in partially reverse order, so if xorshift were to return all the integers in order, Math.random() would return such a sequence:\n63, 62, 61, ..., 1, 0, 127, 126, 125, ..., 65, 64, 191, 190, ..., 129, 128, ... But then I found out that z3 is gravely slow, too slow for this task for sure (running it for an hour in the background did not find a single solution).\nSo I decided to write a custom implementation using basic linear algebra, you can find the whole code in fake-http-server.py (there are comments with explanation).\nIt turned out that with my algorithm, 3 nonces were needed to fully recover the random state. Not sure if this was 100% necessary, it could probably be reduced back to 2.\nIn order to minimize the chance of someone getting a nonce between our nonces, we just sent the string GET / HTTP/1.1GET / HTTP/1.1GET / HTTP/1.1 over a TCP connection to the server, taking advantage of HTTP pipelining. It works quite well, and gives the correct results once in 4 times on average.\nThe web part by haqpl\nHaving predicted the nonce we only needed to overcome one additional limitation resulting from the source code of the application itself:\n\u003cscript nonce=\"dkcyhcb6yo61lkfg\"\u003e document.location.hash = \"\"; window.onhashchange = ()=\u003e{ if(document.location.hash) desc.innerHTML = decodeURIComponent(document.location.hash.slice(1)); document.location.hash = \"\"; }; \u003c/script\u003e The hash fragment is deleted upon the page loads so we couldn’t pass the URL to the admin directly. Luckily we can alter the hash fragment after execution of deletion leveraging iframe or top-level navigation - window.open. First, we tried iframes, however, we quickly realized that it won’t gib flags.\nLooking at the code of the admin:\nawait page.setCookie({ name: 'flag', value: process.env.FLAG || \"flag{fake-flag}\", domain: \"localhost\", expires: now() + 1000, }); we realized that Cookie containing the flag has no SameSite attribute set meaning that its default Lax and therefore won’t be sent in a few cases, including ours - iframe.\nThat left us with top-level navigation which worked like a charm.\n",
+  "wordCount" : "674",
+  "inLanguage": "en",
+  "datePublished": "2021-10-25T00:00:00Z",
+  "dateModified": "2021-10-25T00:00:00Z",
+  "author":{
+    "@type": "Person",
+    "name": "Arusekk \u0026 haqpl"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://blog.arusekk.pl/posts/asisctf-2021-lovely-nonces/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Arusekk blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://blog.arusekk.pl/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://blog.arusekk.pl/" accesskey="h" title="Arusekk blog (Alt + H)">Arusekk blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                <ul class="lang-switch"><li>|</li>
+                    <li>
+                        <a href="https://blog.arusekk.pl/pl/" title="🇵🇱 PL"
+                            aria-label=":flag_pl: PL">🇵🇱 PL</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://blog.arusekk.pl/" title="Home">
+                    <span>Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://blog.arusekk.pl/about/" title="About">
+                    <span>About</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://blog.arusekk.pl/contact/" title="Contact">
+                    <span>Contact</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://blog.arusekk.pl/blogroll/" title="Blogroll">
+                    <span>Blogroll</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://blog.arusekk.pl/posts/index.xml" title="Feed">
+                    <span>Feed</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      Lovely nonces (ASIS CTF Quals 2021) - the unintended way
+    </h1>
+    <div class="post-description">
+      Unintended solution for a CTF challenge
+    </div>
+    <div class="post-meta"><span title='2021-10-25 00:00:00 +0000 UTC'>October 25, 2021</span>&nbsp;·&nbsp;4 min&nbsp;·&nbsp;Arusekk &amp; haqpl
+
+</div>
+  </header> 
+  <div class="post-content"><h1 id="lovely-nonces-asis-ctf-quals-2021-the-unintended-way">Lovely nonces (ASIS CTF Quals 2021): the unintended way<a hidden class="anchor" aria-hidden="true" href="#lovely-nonces-asis-ctf-quals-2021-the-unintended-way">#</a></h1>
+<p><em>Originally published in <a href="https://github.com/justcatthefish/ctf-writeups/tree/master/2021-10-24-AsisQualsCTF2021/web_lovely_nonces">justCatTheFish repo</a>.</em></p>
+<h2 id="the-quasi-crypto-part">The quasi-crypto part<a hidden class="anchor" aria-hidden="true" href="#the-quasi-crypto-part">#</a></h2>
+<p><em>by <a href="/">Arusekk</a></em></p>
+<p>The first thing I noticed in this task was unsafe random nonce generation.
+Unpredictable random values in Node.js should be generated using
+<a href="https://nodejs.org/api/crypto.html#cryptorandombytessize-callback"><code>crypto.random*()</code></a>
+and not <code>Math.random()</code>, which is designed to be fast, not safe.</p>
+<p>So while the others were working on an XSS payload that would work,
+I searched v8 (the JavaScript engine used by Node.js) sources for
+the implementation behind <code>Math.random()</code>.
+It turned out to be xorshift128, which is a wonderful algorithm,
+passing strict randomness tests, while still being very fast.
+But since it only uses bitwise xor and shift operations, it is trivial
+to predict.</p>
+<p>Since the internal state of xorshift128 is 128 bits
+(actually <code>2 ** 128 - 1</code> possible values),
+I counted how many nonces (one nonce = 16 independent chars from a set of 36,
+<code>36 ** 16</code> possible values) are necessary to reconstruct the xorshift128 rng
+internal state, which would allow us to reconstruct all nonces generated
+in the challenge (and so be able to predict them):</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-py" data-lang="py"><span style="display:flex;"><span><span style="color:#f92672">&gt;&gt;&gt;</span> <span style="color:#f92672">import</span> math
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&gt;&gt;&gt;</span> math<span style="color:#f92672">.</span>log((<span style="color:#ae81ff">2</span> <span style="color:#f92672">**</span> <span style="color:#ae81ff">128</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>), <span style="color:#ae81ff">36</span> <span style="color:#f92672">**</span> <span style="color:#ae81ff">16</span>)
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1.5474112289381663</span>
+</span></span></code></pre></div><p>Meaning that slightly more than one and a half nonce would be enough.</p>
+<p>So I wrote a simple Z3-based SAT solver for two consecutive nonces:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-py" data-lang="py"><span style="display:flex;"><span><span style="color:#f92672">import</span> z3
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>nonce0 <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;zyovm6kz13cmhb7f&#34;</span>
+</span></span><span style="display:flex;"><span>nonce1 <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;fgfleffuh9n5nz67&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>xorshift0 <span style="color:#f92672">=</span> z3<span style="color:#f92672">.</span>BitVec(<span style="color:#e6db74">&#39;state0&#39;</span>, <span style="color:#ae81ff">64</span>)
+</span></span><span style="display:flex;"><span>xorshift1 <span style="color:#f92672">=</span> z3<span style="color:#f92672">.</span>BitVec(<span style="color:#e6db74">&#39;state1&#39;</span>, <span style="color:#ae81ff">64</span>)
+</span></span><span style="display:flex;"><span>s <span style="color:#f92672">=</span> z3<span style="color:#f92672">.</span>Solver()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> x <span style="color:#f92672">in</span> nonce0 <span style="color:#f92672">+</span> nonce1:
+</span></span><span style="display:flex;"><span>    v <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;abcdefghijklmnopqrstuvwxyz0123456789&#39;</span><span style="color:#f92672">.</span>index(x)
+</span></span><span style="display:flex;"><span>    s<span style="color:#f92672">.</span>add((z3<span style="color:#f92672">.</span>LShR(xorshift0, <span style="color:#ae81ff">12</span>) <span style="color:#f92672">*</span> <span style="color:#ae81ff">36</span>) <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">52</span> <span style="color:#f92672">==</span> v)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    x0 <span style="color:#f92672">=</span> xorshift1
+</span></span><span style="display:flex;"><span>    x1 <span style="color:#f92672">=</span> xorshift0
+</span></span><span style="display:flex;"><span>    xorshift0 <span style="color:#f92672">=</span> x0
+</span></span><span style="display:flex;"><span>    x1 <span style="color:#f92672">^=</span> x1 <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">23</span>
+</span></span><span style="display:flex;"><span>    x1 <span style="color:#f92672">^=</span> z3<span style="color:#f92672">.</span>LShR(x1, <span style="color:#ae81ff">17</span>)
+</span></span><span style="display:flex;"><span>    x1 <span style="color:#f92672">^=</span> x0
+</span></span><span style="display:flex;"><span>    x1 <span style="color:#f92672">^=</span> z3<span style="color:#f92672">.</span>LShR(x0, <span style="color:#ae81ff">26</span>)
+</span></span><span style="display:flex;"><span>    xorshift1 <span style="color:#f92672">=</span> x1
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(s<span style="color:#f92672">.</span>check())
+</span></span><span style="display:flex;"><span>mod <span style="color:#f92672">=</span> s<span style="color:#f92672">.</span>model()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#39;</span><span style="color:#e6db74">%016x</span><span style="color:#e6db74">&#39;</span> <span style="color:#f92672">%</span> mod<span style="color:#f92672">.</span>evaluate(xorshift0)<span style="color:#f92672">.</span>as_long())
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#39;</span><span style="color:#e6db74">%016x</span><span style="color:#e6db74">&#39;</span> <span style="color:#f92672">%</span> mod<span style="color:#f92672">.</span>evaluate(xorshift1)<span style="color:#f92672">.</span>as_long())
+</span></span></code></pre></div><p>(wasting 1h on figuring out that <code>a &gt;&gt; b</code> is an <a href="https://en.wikipedia.org/wiki/Arithmetic_shift">arithmetic shift</a> by default,
+and it is necessary to use <code>z3.LShR(a, b)</code> to bypass that)</p>
+<p>Then I wasted another hour debugging, just to find out that v8 uses <a href="https://github.com/v8/v8/blob/17a99fec258bcc07ea9fc5e4fabcce259751db03/src/numbers/math-random.cc">caching</a>
+and returns the values in partially reverse order, so if xorshift were to return
+all the integers in order, Math.random() would return such a sequence:</p>
+<pre tabindex="0"><code>63, 62, 61, ..., 1, 0, 127, 126, 125, ..., 65, 64, 191, 190, ..., 129, 128, ...
+</code></pre><p>But then I found out that z3 is gravely slow, too slow for this task for sure
+(running it for an hour in the background did not find a single solution).</p>
+<p>So I decided to write a custom implementation using basic linear algebra,
+you can find the whole code in <a href="https://github.com/justcatthefish/ctf-writeups/blob/master/2021-10-24-AsisQualsCTF2021/web_lovely_nonces/fake-http-server.py">fake-http-server.py</a> (there are comments with explanation).</p>
+<p>It turned out that with my algorithm, 3 nonces were needed to fully recover the
+random state. Not sure if this was 100% necessary, it could probably be
+reduced back to 2.</p>
+<p>In order to minimize the chance of someone getting a nonce between our nonces,
+we just sent the string
+<code>GET / HTTP/1.1&lt;CRLF&gt;&lt;CRLF&gt;GET / HTTP/1.1&lt;CRLF&gt;&lt;CRLF&gt;GET / HTTP/1.1&lt;CRLF&gt;&lt;CRLF&gt;</code>
+over a TCP connection to the server, taking advantage of HTTP pipelining.
+It works quite well, and gives the correct results once in 4 times on average.</p>
+<h2 id="the-web-part">The web part<a hidden class="anchor" aria-hidden="true" href="#the-web-part">#</a></h2>
+<p><em>by <a href="//twitter.com/haqpl">haqpl</a></em></p>
+<p>Having predicted the nonce we only needed to overcome one additional limitation resulting
+from the source code of the application itself:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">nonce</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;dkcyhcb6yo61lkfg&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>    	document.<span style="color:#a6e22e">location</span>.<span style="color:#a6e22e">hash</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>;
+</span></span><span style="display:flex;"><span>    	window.<span style="color:#a6e22e">onhashchange</span> <span style="color:#f92672">=</span> ()=&gt;{
+</span></span><span style="display:flex;"><span>    		<span style="color:#66d9ef">if</span>(document.<span style="color:#a6e22e">location</span>.<span style="color:#a6e22e">hash</span>) <span style="color:#a6e22e">desc</span>.<span style="color:#a6e22e">innerHTML</span> <span style="color:#f92672">=</span> decodeURIComponent(document.<span style="color:#a6e22e">location</span>.<span style="color:#a6e22e">hash</span>.<span style="color:#a6e22e">slice</span>(<span style="color:#ae81ff">1</span>));
+</span></span><span style="display:flex;"><span>    		document.<span style="color:#a6e22e">location</span>.<span style="color:#a6e22e">hash</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>;
+</span></span><span style="display:flex;"><span>	};
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">script</span>&gt;
+</span></span></code></pre></div><p>The hash fragment is deleted upon the page loads so we couldn&rsquo;t pass the URL to
+the admin directly. Luckily we can alter the hash fragment after execution
+of deletion leveraging <code>iframe</code> or top-level navigation - <code>window.open</code>. First, we tried
+<code>iframe</code>s, however, we quickly realized that it won&rsquo;t gib flags.</p>
+<p>Looking at the code of the admin:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-py" data-lang="py"><span style="display:flex;"><span><span style="color:#66d9ef">await</span> page<span style="color:#f92672">.</span>setCookie({
+</span></span><span style="display:flex;"><span>	name: <span style="color:#e6db74">&#39;flag&#39;</span>,
+</span></span><span style="display:flex;"><span>	value: process<span style="color:#f92672">.</span>env<span style="color:#f92672">.</span>FLAG <span style="color:#f92672">||</span> <span style="color:#e6db74">&#34;flag{fake-flag}&#34;</span>,
+</span></span><span style="display:flex;"><span>	domain: <span style="color:#e6db74">&#34;localhost&#34;</span>,
+</span></span><span style="display:flex;"><span>	expires: now() <span style="color:#f92672">+</span> <span style="color:#ae81ff">1000</span>,
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><p>we realized that Cookie containing the flag has no <code>SameSite</code> attribute set meaning
+that its default <code>Lax</code> and therefore won&rsquo;t be sent in a few cases, including ours - <code>iframe</code>.</p>
+<p>That left us with top-level navigation which worked like a charm.</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://blog.arusekk.pl/">Arusekk blog</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

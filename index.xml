@@ -4,7 +4,7 @@
     <title>Arusekk blog</title>
     <link>https://blog.arusekk.pl/</link>
     <description>Recent content on Arusekk blog</description>
-    <generator>Hugo -- 0.158.0</generator>
+    <generator>Hugo -- 0.160.1</generator>
     <language>en</language>
     <lastBuildDate>Sat, 21 Mar 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://blog.arusekk.pl/index.xml" rel="self" type="application/rss+xml" />
@@ -130,6 +130,13 @@ please let me know.&lt;/p&gt;
       <description>IPv4 is obsolete and has no future.  Just deal with it.  IPv6 is the way to go.</description>
     </item>
     <item>
+      <title>Lovely nonces (ASIS CTF Quals 2021) - the unintended way</title>
+      <link>https://blog.arusekk.pl/posts/asisctf-2021-lovely-nonces/</link>
+      <pubDate>Mon, 25 Oct 2021 00:00:00 +0000</pubDate>
+      <guid>https://blog.arusekk.pl/posts/asisctf-2021-lovely-nonces/</guid>
+      <description>Unintended solution for a CTF challenge</description>
+    </item>
+    <item>
       <title>My domain is my castle</title>
       <link>https://blog.arusekk.pl/posts/my-domain-is-my-castle/</link>
       <pubDate>Tue, 23 Mar 2021 00:00:00 +0000</pubDate>
@@ -142,6 +149,13 @@ please let me know.&lt;/p&gt;
       <pubDate>Thu, 18 Feb 2021 00:00:00 +0000</pubDate>
       <guid>https://blog.arusekk.pl/posts/average-day-of-a-floss-developer/</guid>
       <description>It feels fun to be part of a nice phenomenon.</description>
+    </item>
+    <item>
+      <title>TI 1337 Plus CE (DiceCTF 2021 challenge)</title>
+      <link>https://blog.arusekk.pl/posts/dicectf-2021-ti1337-plusce/</link>
+      <pubDate>Wed, 10 Feb 2021 00:00:00 +0000</pubDate>
+      <guid>https://blog.arusekk.pl/posts/dicectf-2021-ti1337-plusce/</guid>
+      <description>Unintended solution for a CTF challenge</description>
     </item>
     <item>
       <title>Thoughts on opinions</title>

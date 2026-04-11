@@ -2,7 +2,7 @@
 <html lang="en" dir="auto">
 
 <head>
-	<meta name="generator" content="Hugo 0.158.0"><meta charset="utf-8">
+	<meta name="generator" content="Hugo 0.160.1"><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
@@ -13,7 +13,7 @@
 <link rel="canonical" href="https://blog.arusekk.pl/">
 <meta name="google-site-verification" content="bYg8j9Mad2AS5t14kMMccNgC-2zDjGk48iuoGhFvXe0">
 <meta name="msvalidate.01" content="561966B916832399DDA58ED4584121A9">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.2211ca3164be7830024f6aad2b3a2e520843a64f8f048445c3401c1249aa051d.css" integrity="sha256-IhHKMWS&#43;eDACT2qtKzouUghDpk&#43;PBIRFw0AcEkmqBR0=" rel="preload stylesheet" as="style">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.aeb04085357f24835232aa89766467110fb6da019fa0a790d4d097b3949d7276.css" integrity="sha256-rrBAhTV/JINSMqqJdmRnEQ&#43;22gGfoKeQ1NCXs5SdcnY=" rel="preload stylesheet" as="style">
 <link rel="icon" href="https://blog.arusekk.pl/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="https://blog.arusekk.pl/favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="https://blog.arusekk.pl/favicon-32x32.png">
@@ -221,17 +221,18 @@ Stuck? The main problem with IPv4 is its 32-bit addressing. It limits the Intern
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2 class="entry-hint-parent">My domain is my castle
+    <h2 class="entry-hint-parent">Lovely nonces (ASIS CTF Quals 2021) - the unintended way
     </h2>
   </header>
   <div class="entry-content">
-    <p>So here it is! arusekk.pl is finally mine.
-Buying a domain is straightforward. All I did was find the registry of my favorite TLD (which is .pl for Poland), registry maintained by NASK, reachable at dns.pl.
-There at the list of registrars I narrowed down the list to those supporting IPv6 domain delegation (I had yet to know what it means, but I thought that it would be better to have it), DNSSEC (which I knew was something important), and that the registrar must be a Polish entity.
+    <p>Lovely nonces (ASIS CTF Quals 2021): the unintended way Originally published in justCatTheFish repo.
+The quasi-crypto part by Arusekk
+The first thing I noticed in this task was unsafe random nonce generation. Unpredictable random values in Node.js should be generated using crypto.random*() and not Math.random(), which is designed to be fast, not safe.
+So while the others were working on an XSS payload that would work, I searched v8 (the JavaScript engine used by Node.js) sources for the implementation behind Math.random(). It turned out to be xorshift128, which is a wonderful algorithm, passing strict randomness tests, while still being very fast. But since it only uses bitwise xor and shift operations, it is trivial to predict.
 ...</p>
   </div>
-  <footer class="entry-footer"><span title='2021-03-23 00:00:00 +0000 UTC'>March 23, 2021</span>&nbsp;·&nbsp;7 min&nbsp;·&nbsp;Arusekk</footer>
-  <a class="entry-link" aria-label="post link to My domain is my castle" href="https://blog.arusekk.pl/posts/my-domain-is-my-castle/"></a>
+  <footer class="entry-footer"><span title='2021-10-25 00:00:00 +0000 UTC'>October 25, 2021</span>&nbsp;·&nbsp;4 min&nbsp;·&nbsp;Arusekk &amp; haqpl</footer>
+  <a class="entry-link" aria-label="post link to Lovely nonces (ASIS CTF Quals 2021) - the unintended way" href="https://blog.arusekk.pl/posts/asisctf-2021-lovely-nonces/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

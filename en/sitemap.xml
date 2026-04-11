@@ -46,6 +46,16 @@
   </url><url>
     <loc>https://blog.arusekk.pl/posts/</loc>
     <lastmod>2026-03-21T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="pl"
+                href="https://blog.arusekk.pl/pl/posts/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://blog.arusekk.pl/posts/"
+                />
   </url><url>
     <loc>https://blog.arusekk.pl/posts/do-not-buy-acer-laptops/</loc>
     <lastmod>2026-01-06T00:00:00+00:00</lastmod>
@@ -91,11 +101,17 @@
                 href="https://blog.arusekk.pl/posts/die-ipv4-just-die-already/"
                 />
   </url><url>
+    <loc>https://blog.arusekk.pl/posts/asisctf-2021-lovely-nonces/</loc>
+    <lastmod>2021-10-25T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://blog.arusekk.pl/posts/my-domain-is-my-castle/</loc>
     <lastmod>2021-03-23T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blog.arusekk.pl/posts/average-day-of-a-floss-developer/</loc>
     <lastmod>2021-02-18T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://blog.arusekk.pl/posts/dicectf-2021-ti1337-plusce/</loc>
+    <lastmod>2021-02-10T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blog.arusekk.pl/posts/thoughts-on-opinions/</loc>
     <lastmod>2021-02-07T00:00:00+00:00</lastmod>

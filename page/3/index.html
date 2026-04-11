@@ -2,7 +2,7 @@
 <html lang="en" dir="auto">
 
 <head>
-	<meta name="generator" content="Hugo 0.158.0"><meta charset="utf-8">
+	<meta name="generator" content="Hugo 0.160.1"><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
@@ -13,7 +13,7 @@
 <link rel="canonical" href="https://blog.arusekk.pl/">
 <meta name="google-site-verification" content="bYg8j9Mad2AS5t14kMMccNgC-2zDjGk48iuoGhFvXe0">
 <meta name="msvalidate.01" content="561966B916832399DDA58ED4584121A9">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.2211ca3164be7830024f6aad2b3a2e520843a64f8f048445c3401c1249aa051d.css" integrity="sha256-IhHKMWS&#43;eDACT2qtKzouUghDpk&#43;PBIRFw0AcEkmqBR0=" rel="preload stylesheet" as="style">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.aeb04085357f24835232aa89766467110fb6da019fa0a790d4d097b3949d7276.css" integrity="sha256-rrBAhTV/JINSMqqJdmRnEQ&#43;22gGfoKeQ1NCXs5SdcnY=" rel="preload stylesheet" as="style">
 <link rel="icon" href="https://blog.arusekk.pl/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="https://blog.arusekk.pl/favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="https://blog.arusekk.pl/favicon-32x32.png">
@@ -162,6 +162,21 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">My domain is my castle
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>So here it is! arusekk.pl is finally mine.
+Buying a domain is straightforward. All I did was find the registry of my favorite TLD (which is .pl for Poland), registry maintained by NASK, reachable at dns.pl.
+There at the list of registrars I narrowed down the list to those supporting IPv6 domain delegation (I had yet to know what it means, but I thought that it would be better to have it), DNSSEC (which I knew was something important), and that the registrar must be a Polish entity.
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2021-03-23 00:00:00 +0000 UTC'>March 23, 2021</span>&nbsp;·&nbsp;7 min&nbsp;·&nbsp;Arusekk</footer>
+  <a class="entry-link" aria-label="post link to My domain is my castle" href="https://blog.arusekk.pl/posts/my-domain-is-my-castle/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">Average day of a FLOSS developer
     </h2>
   </header>
@@ -172,6 +187,23 @@ I heard that Wine supports GTK3 themes, so I wanted to check it out, but there w
   </div>
   <footer class="entry-footer"><span title='2021-02-18 00:00:00 +0000 UTC'>February 18, 2021</span>&nbsp;·&nbsp;3 min&nbsp;·&nbsp;Arusekk</footer>
   <a class="entry-link" aria-label="post link to Average day of a FLOSS developer" href="https://blog.arusekk.pl/posts/average-day-of-a-floss-developer/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">TI 1337 Plus CE (DiceCTF 2021 challenge)
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>TI 1337 Plus CE Originally published in justCatTheFish repo.
+Writeup written by Arusekk. Solved by Arusekk, haqpl and Disconnect3d.
+We included the task files in ./taskfiles/.
+In the task, you have to take control over a patched (sandboxed) CPython. The patch checks the opcodes against a blacklist, and if any matches, it goes exit(1). It also forbids using variables beginning with _.
+The checks are perfored only if current environment is missing a secret COMPILE_SECRET and the current frame’s code object has co_filename set to anything other than a predefined string (FROZEN_SECRET).
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2021-02-10 00:00:00 +0000 UTC'>February 10, 2021</span>&nbsp;·&nbsp;6 min&nbsp;·&nbsp;Arusekk</footer>
+  <a class="entry-link" aria-label="post link to TI 1337 Plus CE (DiceCTF 2021 challenge)" href="https://blog.arusekk.pl/posts/dicectf-2021-ti1337-plusce/"></a>
 </article>
 
 <article class="post-entry"> 
@@ -200,40 +232,12 @@ While this may be a helpful advice, the worst part is that it will not make you 
   <footer class="entry-footer"><span title='2021-01-19 00:00:00 +0000 UTC'>January 19, 2021</span>&nbsp;·&nbsp;5 min&nbsp;·&nbsp;Arusekk</footer>
   <a class="entry-link" aria-label="post link to An adventure with Acer Swift" href="https://blog.arusekk.pl/posts/an-adventure-with-acer-swift/"></a>
 </article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">I translated Git!
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>I found that Git has no Polish translation! Terrible feeling, right?
-So now it has one. I spent every evening for a month before Christmas on translating it.
-So here are the main things I noticed:
-Software designers (or whoever does the things I mean) are very anglocentric. They mostly don’t care about other languages, even the similar ones, not to mention the exotic (search for designed well). Like Hebrew numerals in that article, in Polish we also say “dwie” for two (female), but “dwóch” for two (male) and “dwa” for two (neutral). So a msgid saying &#34;Only two %s found.&#34; is a 100% bad design. The same goes for having many %s in a msgid. Hey, GNU printf supports &#34;%1$s not found because of %2$s&#34;, all non-C languages also have some way to numer the percent-esses. And then you can of course translate it to &#34;%2$s caused no results for %1$s&#34; if it sounds more natural in the target language.
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2020-12-27 00:00:00 +0000 UTC'>December 27, 2020</span>&nbsp;·&nbsp;3 min&nbsp;·&nbsp;Arusekk</footer>
-  <a class="entry-link" aria-label="post link to I translated Git!" href="https://blog.arusekk.pl/posts/i-translated-git/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">Overencryption killing interplanetary networks
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>As years went by, we tried so hard to push everybody towards encrypting everything. Just in case. Of course, whenever I see a HTTP (no S here) form asking you for password, or credit card details, I don’t know whether to be angry, or to feel sympathy for those who are unable to set up simple encryption.
-And yes, it was very hard to do encryption in the past. It consumed CPU, memory, other valuable resources, and was not even widely supported. The first web pages ever were created way before SSL was even thought of, as were the first browsers. There started to be educational campaigns (which I am a very keen advocate of), like natashenka’s (my personal favourite), or Let’s Encrypt’s, or Google’s.
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2020-11-04 00:00:00 +0000 UTC'>November 4, 2020</span>&nbsp;·&nbsp;4 min&nbsp;·&nbsp;Arusekk</footer>
-  <a class="entry-link" aria-label="post link to Overencryption killing interplanetary networks" href="https://blog.arusekk.pl/posts/overencryption-killing-interplanetary-networks/"></a>
-</article>
 <footer class="page-footer">
   <nav class="pagination">
     <a class="prev" href="https://blog.arusekk.pl/page/2/">
       «&nbsp;Prev&nbsp;
+    </a>
+    <a class="next" href="https://blog.arusekk.pl/page/4/">Next&nbsp;&nbsp;»
     </a>
   </nav>
 </footer>
