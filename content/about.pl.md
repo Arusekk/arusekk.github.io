@@ -17,7 +17,7 @@ Zbudowałem ten blog przy użyciu [Hugo](https://gohugo.io),
 [markdown](https://en.wikipedia.org/wiki/Markdown),
 [PaperMod](https://git.io/hugopapermod)
 i [SourceHut Pages](https://srht.site).
-[Źródła](https://github.com/Arusekk/arusekk.github.io) są dostępne, jeśli chcesz się przekonać, jak to wszystko działa.
+[Źródła](https://sr.ht/~arusekk/arusekk.srht.site) są dostępne, jeśli chcesz się przekonać, jak to wszystko działa.
 Nie ma na tym blogu miejsca na komentarze, bo wszystkie jego strony są generowane statycznie;
 jeśli czujesz się wyjątkowo zobowiązany(a) do skomentowania czegoś, jest pełno agregatorów artykułów, które dają taką możliwość.
 
