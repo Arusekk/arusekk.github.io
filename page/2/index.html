@@ -162,6 +162,24 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">Polish has no articles but it is not SVO
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>I just found while English is a strict SVO language, Polish is not, and makes use of it. On the example of one of Henryk Krzyżanowski’s excellent translation samples:
+The brass section was apparently approaching.
+Orkiestra dęta najwyraźniej się zbliżała.
+But, as it appeared to me this morning, if we change ’the’ into ‘a’, the natural translation would differ by order:
+A brass section was apparently approaching.
+Najwyraźniej zbliżała się orkiestra dęta.
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-09-25 00:00:00 +0000 UTC'>September 25, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Arusekk</footer>
+  <a class="entry-link" aria-label="post link to Polish has no articles but it is not SVO" href="https://blog.arusekk.pl/posts/polish-has-no-articles-but-is-not-svo/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">Facebook messenger custom reactions
     </h2>
   </header>
@@ -217,22 +235,6 @@ Stuck? The main problem with IPv4 is its 32-bit addressing. It limits the Intern
   </div>
   <footer class="entry-footer"><span title='2022-01-10 00:00:00 +0000 UTC'>January 10, 2022</span>&nbsp;·&nbsp;6 min&nbsp;·&nbsp;Arusekk</footer>
   <a class="entry-link" aria-label="post link to Die, IPv4, just die already!!!1!" href="https://blog.arusekk.pl/posts/die-ipv4-just-die-already/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">Lovely nonces (ASIS CTF Quals 2021) - the unintended way
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>Lovely nonces (ASIS CTF Quals 2021): the unintended way Originally published in justCatTheFish repo.
-The quasi-crypto part by Arusekk
-The first thing I noticed in this task was unsafe random nonce generation. Unpredictable random values in Node.js should be generated using crypto.random*() and not Math.random(), which is designed to be fast, not safe.
-So while the others were working on an XSS payload that would work, I searched v8 (the JavaScript engine used by Node.js) sources for the implementation behind Math.random(). It turned out to be xorshift128, which is a wonderful algorithm, passing strict randomness tests, while still being very fast. But since it only uses bitwise xor and shift operations, it is trivial to predict.
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2021-10-25 00:00:00 +0000 UTC'>October 25, 2021</span>&nbsp;·&nbsp;4 min&nbsp;·&nbsp;Arusekk &amp; haqpl</footer>
-  <a class="entry-link" aria-label="post link to Lovely nonces (ASIS CTF Quals 2021) - the unintended way" href="https://blog.arusekk.pl/posts/asisctf-2021-lovely-nonces/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

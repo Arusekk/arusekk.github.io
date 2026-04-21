@@ -6,8 +6,15 @@
     <description>Recent content in Posts on Arusekk blog</description>
     <generator>Hugo -- 0.160.1</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 21 Mar 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 21 Apr 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://blog.arusekk.pl/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>1-Click Linux alpha is out now!</title>
+      <link>https://blog.arusekk.pl/posts/1-click-linux-alpha/</link>
+      <pubDate>Tue, 21 Apr 2026 00:00:00 +0000</pubDate>
+      <guid>https://blog.arusekk.pl/posts/1-click-linux-alpha/</guid>
+      <description>Install Linux alongside your Windows, or instead of it.</description>
+    </item>
     <item>
       <title>1-Click Linux Installer</title>
       <link>https://blog.arusekk.pl/posts/1-click-linux/</link>
