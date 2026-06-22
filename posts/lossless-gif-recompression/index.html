@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Lossless GIF recompression via exhaustive search | Arusekk blog</title>
+<meta name="keywords" content="">
+<meta name="description" content="Exploring GIFs, flexiGIF and LZW compression">
+<meta name="author" content="Arusekk">
+<link rel="canonical" href="https://blog.arusekk.pl/posts/lossless-gif-recompression/">
+<meta name="google-site-verification" content="bYg8j9Mad2AS5t14kMMccNgC-2zDjGk48iuoGhFvXe0">
+<meta name="msvalidate.01" content="561966B916832399DDA58ED4584121A9">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.aeb04085357f24835232aa89766467110fb6da019fa0a790d4d097b3949d7276.css" integrity="sha256-rrBAhTV/JINSMqqJdmRnEQ&#43;22gGfoKeQ1NCXs5SdcnY=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://blog.arusekk.pl/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://blog.arusekk.pl/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://blog.arusekk.pl/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://blog.arusekk.pl/apple-touch-icon.png">
+<link rel="mask-icon" href="https://blog.arusekk.pl/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://blog.arusekk.pl/posts/lossless-gif-recompression/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:url" content="https://blog.arusekk.pl/posts/lossless-gif-recompression/">
+  <meta property="og:site_name" content="Arusekk blog">
+  <meta property="og:title" content="Lossless GIF recompression via exhaustive search">
+  <meta property="og:description" content="Exploring GIFs, flexiGIF and LZW compression">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2026-06-22T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-06-22T00:00:00+00:00">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Lossless GIF recompression via exhaustive search">
+<meta name="twitter:description" content="Exploring GIFs, flexiGIF and LZW compression">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://blog.arusekk.pl/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Lossless GIF recompression via exhaustive search",
+      "item": "https://blog.arusekk.pl/posts/lossless-gif-recompression/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Lossless GIF recompression via exhaustive search",
+  "name": "Lossless GIF recompression via exhaustive search",
+  "description": "Exploring GIFs, flexiGIF and LZW compression",
+  "keywords": [
+    
+  ],
+  "articleBody": "A bit of history GIF is the oldest widespread compressed image format. Today, it is mostly famous for allowing animations in an image file, but I am not so interested in that use.\nActually, it turns out this was the only image format ever supported by NCSA Mosaic. Your website must have a GIF fallback for all critical images if it ever wants to truly support old browsers. I’m not talking old as in old Chromium. I mean actual Mosaic, Netscape, IE, Netsurf, Dillo, Konqueror - like those you can try on oldweb.today. (You are probably not interested in supporting them, but this is a fun exercise.)\nI really wanted the 1-Click Linux website to look acceptable even in the oldest browsers, so I decided that I would use with fallback to GIF. I believe each modern web feature, if used in production, should be reasonably widely compatible on itself already, and then only have one fallback, which should be the one with absolute 1000% compatibility.\nProblem The problem is, GIF compression is not impressive. Let’s face it, in 2026 you should most likely only use SVG and WebP (lossy for photos, lossless for small-pallette drawings/logos). Not PNG, not JPEG, and God forbid AI, DWG or any other proprietary format (looking at you, DICOM). Well, okay, at least on the web (as the name says, WebP).\nA partial solution is to use a small image. The truly old devices have truly small screen sizes, like 240x320 Nokia phones. So an icon or logo fallback can safely be 128x128, as 256x256 might not even fit on the screen.\nCan we do better? Yes. There is an entire field dedicated to image optimisation, and it starts with stripping metadata. Then we can remove unused colors from the palette, then remove rarely used colors from the palette, and so on.\nBut none of the steps above mention actual compression itself!\nZopfliPNG I heard about zopflipng. PNG uses DEFLATE, the compression format known from ZIP and GZIP. This is a variant of LZ77 with Huffman coding. In this format, and quite commonly in other compression formats, there are many different ways to represent the exact same uncompressed data.\nDEFLATE is also the name of an algorithm that generates a reasonably compressed input, and it can be tuned to spend more time compressing in hopes to achieve better compression (for the same data, remember?). But there are many syntactically valid DEFLATE streams that are never produced by DEFLATE the algorithm, which is kind of funny, because you can make a ZIP that contains itself, but anyway, some of them are even better than the largest ‘compression level’.\nNow, Zopfli is the software that performs an exhaustive search across all possible syntactically valid streams, in order to find what is actually the smallest number of bits to represent the given uncompressed input. Then ZopfliPNG is the variant that does it for PNG and also explores the PNG pixel encodings. We need to be careful here, because finding the actual best compression for an arbitrary format can be equivalent to solving the halting problem. But the compression formats we talk about today have some helpful invariants guaranteeing the search always halts.\nZopfliGIF? There is no ZopfliGIF, but there is flexiGIF, which does almost exactly that. It is obviously a wonderful tool, and you should go use it on all your GIFs. But the thing is, GIF uses a very different compression scheme - LZW. And I found a baffling remark in its README, saying that it can leave files larger than the original algorithm. This was very suspicious. So I set out on an exploration. ‘It was made by a single human - therefore I can understand it, too.’ - thought I.\nLZW Then I found it a bit difficult to understand, because like all the papers from that time, the original description insists on building the data format around the algorithm. But we, decades later, already know that this is a mistake: for us, interoperability-focused people, the data format is more interesting, of course, than the algorithm. Changing the format requires changing the decoder software. Keep the format, change the encoder software, and enjoy still using the same decoders. Compatibility.\nTo save you some time, let me describe it to you: compressed stream consists of actions, each either saying ‘yield this byte’, or naming a previous action and saying ’re-do all of this operation again, but then also add the first byte of the action that followed’. (The edge case of choosing the last action works just fine, and is called KwKwK in the paper.) (GIF also has an ’end of data’ action and a ‘zero the state’ action, but this is not relevant.)\nSimple, right? Well, it does sound simpler to me at least. Way simpler than starting the understanding by reading 9 lines of compression pseudocode, and 9 lines of corresponding decompression pseudocode.\nThen the algorithm can be simply expressed as the greedy approach, looking at all the previous actions, and taking the longest one that matches what follows. This is doubly reasonable, since (a) what is locally best at least has a chance of being globally best, and (b) it always adds a new ‘word’ to the ‘vocabulary’.\nTo save you some time, here is an example stream for compression:\na b a b a b a a b a a b a a a b One of the possible ways (the greedy way) to split it is:\na b a-b a-b-a a-b-a-a b-a a a-b 1. Say a. (no way to say ab; replaying this action will say ab) 2. Say b. (no way to say ba; replaying this action will say ba) 3. Replay action 1. (says ab, no way to say aba; replaying this one will say aba) 4. Replay action 3. (says aba, no way to say abaa; replaying this one will say abaa) 5. Replay action 4. (says abaa, no way to say abaab; replaying this one will say abaab) 6. Replay action 2. (says ba, no way to say baa; replaying this one will say baa) 7. Say a. (no way to say aa; replaying this one will say aa) 8. Replay action 1. (says ab. no way to say abEOF; the last one is never replayed, but it would go aba or abb depending on what would be the first letter of 9) But it is not the only way. Let’s see:\na b a-b a-b-a a-b-a a-b-a-a a-b 1. Say a. (no way to say ab; replaying this action will say ab) 2. Say b. (no way to say ba; replaying this action will say ba) 3. Replay action 1. (says ab, no way to say aba; replaying this one will say aba) 4. Replay action 3. (says aba, no way to say abaa; replaying this one will say abaa) 5. Replay action 3. (says aba, although 4 would say abaa; replaying this one will say abaa - the same as replaying 4! a wasted dictionary slot!) 6. Replay action 4. (says abaa, no way to say abaab; replaying this one will say abaab) 7. Replay action 1. (says ab. no way to say abEOF; the last one is never replayed, but it would go aba or abb depending on what would be the first letter of 8) One action less! However, notice the note on step 5.\nOkay, so back to flexiGIF. The thing done by it is flexible parsing. What this means is that the program does not immediately decide on a furthest-reaching action, but defers the decision until it knows what would be the furthest-reaching combination of two actions. Then it emits the first action, but still holds the second one for reassessment. This is called one-step lookahead. So basically still greedy, but now uses two actions.\nIn theory, it should be way better, and even optimal, but what happened on step 5 means there is now a wasted dictionary slot, and it is lost forever (at least until a reset happens). So this is why flexiGIF can give worse results. It fully gives up on greedy compression and sticks to ‘for each (sub)greedy match, find the greedy next match; emit the former’.\nZGIF That’s where I needed to write my own thing. I was wondering, ‘how slow would it be to actually check all the possibilities?’ So I tried it and what have I found out? GLACIALLY SLOW. (Here I should note that Python is not the best choice for CPU-bound software. I want to take the opportunity to learn Zig.) It takes 4 minutes on my laptop to fully compress a 16x16 image. That’s 256 bytes uncompressed. And it takes several minutes. Wow.\nI must be computing the same thing several times, right? (No, it’s just things that provide no improvements. The first version took 30 minutes.)\nSo I decided that there should be an option to make it just a little faster, by skipping all explorations that cannot be immediately extended beyond what’s currently best (uhm, limiting the search to 1-step lookahead). This worsens the results (does not find the actually best solution), but going from 4m down to 4s while still beating the current state-of-the-art is a win worth considering.\nYou can take a look at the ZGIF repository on SourceHut. The code is not in any way clean, but you can see my thought process in the Git history - going from A* to dynamic programming to a hybrid search with pruning.\nHope it is useful to you!\n",
+  "wordCount" : "1592",
+  "inLanguage": "en",
+  "datePublished": "2026-06-22T00:00:00Z",
+  "dateModified": "2026-06-22T00:00:00Z",
+  "author":{
+    "@type": "Person",
+    "name": "Arusekk"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://blog.arusekk.pl/posts/lossless-gif-recompression/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Arusekk blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://blog.arusekk.pl/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://blog.arusekk.pl/" accesskey="h" title="Arusekk blog (Alt + H)">Arusekk blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                <ul class="lang-switch"><li>|</li>
+                    <li>
+                        <a href="https://blog.arusekk.pl/pl/" title="🇵🇱 PL"
+                            aria-label=":flag_pl: PL">🇵🇱 PL</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://blog.arusekk.pl/" title="Home">
+                    <span>Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://blog.arusekk.pl/about/" title="About">
+                    <span>About</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://blog.arusekk.pl/contact/" title="Contact">
+                    <span>Contact</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://blog.arusekk.pl/blogroll/" title="Blogroll">
+                    <span>Blogroll</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://blog.arusekk.pl/posts/index.xml" title="Feed">
+                    <span>Feed</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      Lossless GIF recompression via exhaustive search
+    </h1>
+    <div class="post-description">
+      Exploring GIFs, flexiGIF and LZW compression
+    </div>
+    <div class="post-meta"><span title='2026-06-22 00:00:00 +0000 UTC'>June 22, 2026</span>&nbsp;·&nbsp;8 min&nbsp;·&nbsp;Arusekk
+
+</div>
+  </header> 
+  <div class="post-content"><h2 id="a-bit-of-history">A bit of history<a hidden class="anchor" aria-hidden="true" href="#a-bit-of-history">#</a></h2>
+<p>GIF is the oldest widespread compressed image format.
+Today, it is mostly famous for allowing animations in an image file, but I am not so interested in that use.</p>
+<p>Actually, it turns out this was the only image format ever supported by NCSA Mosaic.
+Your website must have a GIF fallback for all critical images if it ever wants to truly support old browsers. I&rsquo;m not talking old as in old Chromium.
+I mean actual Mosaic, Netscape, IE, Netsurf, Dillo, Konqueror - like those you can try on <a href="https://oldweb.today">oldweb.today</a>.
+(You are probably not interested in supporting them, but this is a fun exercise.)</p>
+<p>I really wanted the <a href="https://1clicklinux.org">1-Click Linux</a> website to look acceptable even in the oldest browsers,
+so I decided that I would use <code>&lt;picture&gt;</code> with fallback to GIF.
+I believe each modern web feature, if used in production, should be reasonably widely compatible on itself already,
+and then only have one fallback, which should be the one with absolute 1000% compatibility.</p>
+<h2 id="problem">Problem<a hidden class="anchor" aria-hidden="true" href="#problem">#</a></h2>
+<p>The problem is, GIF compression is not impressive.
+Let&rsquo;s face it, in 2026 you should most likely only use SVG and WebP (lossy for photos, lossless for small-pallette drawings/logos).
+Not PNG, not JPEG, and God forbid AI, DWG or any other proprietary format (looking at you, DICOM).
+Well, okay, at least on the web (as the name says, WebP).</p>
+<p>A partial solution is to use a small image.
+The truly old devices have truly small screen sizes, like 240x320 Nokia phones.
+So an icon or logo fallback can safely be 128x128, as 256x256 might not even fit on the screen.</p>
+<p>Can we do better? Yes. There is an entire field dedicated to image optimisation, and it starts with stripping metadata.
+Then we can remove unused colors from the palette, then remove rarely used colors from the palette, and so on.</p>
+<p>But none of the steps above mention actual compression itself!</p>
+<h2 id="zopflipng">ZopfliPNG<a hidden class="anchor" aria-hidden="true" href="#zopflipng">#</a></h2>
+<p>I heard about zopflipng. PNG uses DEFLATE, the compression format known from ZIP and GZIP. This is a variant of LZ77 with Huffman coding.
+In this format, and quite commonly in other compression formats, there are many different ways to represent the exact same uncompressed data.</p>
+<p>DEFLATE is also the name of an algorithm that generates a reasonably compressed input,
+and it can be tuned to spend more time compressing in hopes to achieve better compression (for the same data, remember?).
+But there are many syntactically valid DEFLATE streams that are never produced by DEFLATE the algorithm,
+which is kind of funny, because <a href="https://research.swtch.com/zip">you can make a ZIP that contains itself</a>, but anyway,
+some of them are even better than the largest &lsquo;compression level&rsquo;.</p>
+<p>Now, Zopfli is the software that performs an exhaustive search across all possible syntactically valid streams,
+in order to find what is actually the smallest number of bits to represent the given uncompressed input.
+Then ZopfliPNG is the variant that does it for PNG and also explores the PNG pixel encodings.
+We need to be careful here, because finding the actual best compression for an arbitrary format can be equivalent to solving the halting problem.
+But the compression formats we talk about today have some helpful invariants guaranteeing the search always halts.</p>
+<h2 id="zopfligif">ZopfliGIF?<a hidden class="anchor" aria-hidden="true" href="#zopfligif">#</a></h2>
+<p>There is no ZopfliGIF, but there is flexiGIF, which does almost exactly that.
+It is obviously a wonderful tool, and you should go use it on all your GIFs.
+But the thing is, GIF uses a very different compression scheme - LZW.
+And I found a baffling remark in its README, saying that it can leave files larger than the original algorithm.
+This was very suspicious.
+So I set out on an exploration. &lsquo;It was made by a single human - therefore I can understand it, too.&rsquo; - thought I.</p>
+<h2 id="lzw">LZW<a hidden class="anchor" aria-hidden="true" href="#lzw">#</a></h2>
+<p>Then I found it a bit difficult to understand, because like all the papers from that time,
+the original description insists on building the data format around the algorithm.
+But we, decades later, already know that this is a mistake:
+for us, interoperability-focused people, the data format is more interesting,
+of course, than the algorithm.
+Changing the format requires changing the decoder software.
+Keep the format, change the encoder software, and enjoy still using the same decoders.
+Compatibility.</p>
+<p>To save you some time, let me describe it to you: compressed stream consists of actions,
+each either saying &lsquo;yield this byte&rsquo;,
+or naming a previous action and saying &rsquo;re-do all of this operation again, but then also add the first byte of the action that followed&rsquo;.
+(The edge case of choosing the last action works just fine, and is called KwKwK in the paper.)
+(GIF also has an &rsquo;end of data&rsquo; action and a &lsquo;zero the state&rsquo; action, but this is not relevant.)</p>
+<p>Simple, right?
+Well, it does sound simpler to me at least. Way simpler than starting the understanding by reading 9 lines of compression pseudocode,
+and 9 lines of corresponding decompression pseudocode.</p>
+<p>Then the algorithm can be simply expressed as the greedy approach, looking at all the previous actions, and taking the longest one that matches what follows.
+This is doubly reasonable,
+since (a) what is locally best at least has a chance of being globally best,
+and (b) it always adds a new &lsquo;word&rsquo; to the &lsquo;vocabulary&rsquo;.</p>
+<p>To save you some time, here is an example stream for compression:</p>
+<pre tabindex="0"><code>a b a b a b a a b a a b a a a b
+</code></pre><p>One of the possible ways (the greedy way) to split it is:</p>
+<pre tabindex="0"><code>a b a-b a-b-a a-b-a-a b-a a a-b
+1. Say a. (no way to say ab; replaying this action will say ab)
+2. Say b. (no way to say ba; replaying this action will say ba)
+3. Replay action 1. (says ab, no way to say aba; replaying this one will say aba)
+4. Replay action 3. (says aba, no way to say abaa; replaying this one will say abaa)
+5. Replay action 4. (says abaa, no way to say abaab; replaying this one will say abaab)
+6. Replay action 2. (says ba, no way to say baa; replaying this one will say baa)
+7. Say a. (no way to say aa; replaying this one will say aa)
+8. Replay action 1. (says ab. no way to say abEOF; the last one is never replayed,
+                     but it would go aba or abb depending on what would be
+                     the first letter of 9)
+</code></pre><p>But it is not the only way. Let&rsquo;s see:</p>
+<pre tabindex="0"><code>a b a-b a-b-a a-b-a a-b-a-a a-b
+1. Say a. (no way to say ab; replaying this action will say ab)
+2. Say b. (no way to say ba; replaying this action will say ba)
+3. Replay action 1. (says ab, no way to say aba; replaying this one will say aba)
+4. Replay action 3. (says aba, no way to say abaa; replaying this one will say abaa)
+5. Replay action 3. (says aba, although 4 would say abaa; replaying this one will say abaa
+                     - the same as replaying 4! a wasted dictionary slot!)
+6. Replay action 4. (says abaa, no way to say abaab; replaying this one will say abaab)
+7. Replay action 1. (says ab. no way to say abEOF; the last one is never replayed,
+                     but it would go aba or abb depending on what would be
+                     the first letter of 8)
+</code></pre><p>One action less! However, notice the note on step 5.</p>
+<p>Okay, so back to flexiGIF. The thing done by it is <em>flexible parsing</em>.
+What this means is that the program does not immediately decide on a furthest-reaching action,
+but defers the decision until it knows what would be the furthest-reaching combination of two actions.
+Then it emits the first action, but still holds the second one for reassessment.
+This is called one-step lookahead. So basically still greedy, but now uses two actions.</p>
+<p>In theory, it should be way better, and even optimal,
+but what happened on step 5 means there is now a wasted dictionary slot,
+and it is lost forever (at least until a reset happens).
+So this is why flexiGIF can give worse results.
+It fully gives up on greedy compression
+and sticks to &lsquo;for each (sub)greedy match, find the greedy next match; emit the former&rsquo;.</p>
+<h2 id="zgif">ZGIF<a hidden class="anchor" aria-hidden="true" href="#zgif">#</a></h2>
+<p>That&rsquo;s where I needed to write my own thing. I was wondering, &lsquo;how slow would it be to actually check all the possibilities?&rsquo;
+So I tried it and what have I found out?
+GLACIALLY SLOW.
+(Here I should note that Python is not the best choice for CPU-bound software.
+I want to take the opportunity to learn Zig.)
+It takes 4 minutes on my laptop to fully compress a 16x16 image.
+That&rsquo;s 256 bytes uncompressed.
+And it takes several minutes.
+Wow.</p>
+<p>I must be computing the same thing several times, right?
+(No, it&rsquo;s just things that provide no improvements. The first version took 30 minutes.)</p>
+<p>So I decided that there should be an option to make it just a little faster,
+by skipping all explorations that cannot be immediately extended beyond what&rsquo;s currently best (uhm, limiting the search to 1-step lookahead).
+This worsens the results (does not find the actually best solution),
+but going from 4m down to 4s while still beating the current state-of-the-art is a win worth considering.</p>
+<p>You can take a look at <a href="https://git.sr.ht/~arusekk/zgif/">the ZGIF repository on SourceHut</a>.
+The code is not in any way clean,
+but you can see my thought process in the Git history -
+going from A* to dynamic programming to a hybrid search with pruning.</p>
+<p>Hope it is useful to you!</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://blog.arusekk.pl/">Arusekk blog</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>
