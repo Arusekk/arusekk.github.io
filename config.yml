@@ -58,6 +58,8 @@ params:
       url: https://stackoverflow.com/users/3869724/arusekk
     - name: Mastodon
       url: https://infosec.exchange/@Arusekk
+    - name: X
+      url: https://x.com/arusekk_pl
 
 # Navbar
 menu:
