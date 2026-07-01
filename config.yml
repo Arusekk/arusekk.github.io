@@ -60,6 +60,8 @@ params:
       url: https://infosec.exchange/@Arusekk
     - name: X
       url: https://x.com/arusekk_pl
+    - name: YouTube
+      url: https://youtube.com/@arusekk
 
 # Navbar
 menu:
