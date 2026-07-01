@@ -29,7 +29,7 @@
     <loc>https://blog.arusekk.pl/blogroll/</loc>
   </url><url>
     <loc>https://blog.arusekk.pl/</loc>
-    <lastmod>2026-06-22T00:00:00+00:00</lastmod>
+    <lastmod>2026-07-01T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -41,11 +41,11 @@
                 href="https://blog.arusekk.pl/pl/"
                 />
   </url><url>
-    <loc>https://blog.arusekk.pl/posts/lossless-gif-recompression/</loc>
-    <lastmod>2026-06-22T00:00:00+00:00</lastmod>
+    <loc>https://blog.arusekk.pl/posts/day-70-of-selling-free-software/</loc>
+    <lastmod>2026-07-01T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blog.arusekk.pl/posts/</loc>
-    <lastmod>2026-06-22T00:00:00+00:00</lastmod>
+    <lastmod>2026-07-01T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -56,6 +56,9 @@
                 hreflang="pl"
                 href="https://blog.arusekk.pl/pl/posts/"
                 />
+  </url><url>
+    <loc>https://blog.arusekk.pl/posts/lossless-gif-recompression/</loc>
+    <lastmod>2026-06-22T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blog.arusekk.pl/posts/1-click-linux-alpha/</loc>
     <lastmod>2026-04-21T00:00:00+00:00</lastmod>
@@ -144,13 +147,13 @@
     <loc>https://blog.arusekk.pl/categories/</loc>
     <xhtml:link
                 rel="alternate"
-                hreflang="pl"
-                href="https://blog.arusekk.pl/pl/categories/"
+                hreflang="en"
+                href="https://blog.arusekk.pl/categories/"
                 />
     <xhtml:link
                 rel="alternate"
-                hreflang="en"
-                href="https://blog.arusekk.pl/categories/"
+                hreflang="pl"
+                href="https://blog.arusekk.pl/pl/categories/"
                 />
   </url><url>
     <loc>https://blog.arusekk.pl/tags/</loc>

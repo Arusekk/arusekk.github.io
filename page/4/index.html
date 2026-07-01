@@ -78,7 +78,7 @@
   "description": "",
   "logo": "https://blog.arusekk.pl/favicon.ico",
   "sameAs": [
-      "posts/index.xml", "https://github.com/Arusekk", "https://gitlab.com/Arusekk", "https://www.linkedin.com/in/arusekk/", "https://matrix.to/#/@arusekk:matrix.org", "https://ctftime.org/user/102157", "https://stackoverflow.com/users/3869724/arusekk", "https://infosec.exchange/@Arusekk", "https://x.com/arusekk_pl"
+      "posts/index.xml", "https://github.com/Arusekk", "https://gitlab.com/Arusekk", "https://www.linkedin.com/in/arusekk/", "https://matrix.to/#/@arusekk:matrix.org", "https://ctftime.org/user/102157", "https://stackoverflow.com/users/3869724/arusekk", "https://infosec.exchange/@Arusekk", "https://x.com/arusekk_pl", "https://youtube.com/@arusekk"
   ]
 }
 </script>
@@ -159,6 +159,23 @@
     </nav>
 </header>
 <main class="main"> 
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">TI 1337 Plus CE (DiceCTF 2021 challenge)
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>TI 1337 Plus CE Originally published in justCatTheFish repo.
+Writeup written by Arusekk. Solved by Arusekk, haqpl and Disconnect3d.
+We included the task files in ./taskfiles/.
+In the task, you have to take control over a patched (sandboxed) CPython. The patch checks the opcodes against a blacklist, and if any matches, it goes exit(1). It also forbids using variables beginning with _.
+The checks are perfored only if current environment is missing a secret COMPILE_SECRET and the current frame’s code object has co_filename set to anything other than a predefined string (FROZEN_SECRET).
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2021-02-10 00:00:00 +0000 UTC'>February 10, 2021</span>&nbsp;·&nbsp;6 min&nbsp;·&nbsp;Arusekk</footer>
+  <a class="entry-link" aria-label="post link to TI 1337 Plus CE (DiceCTF 2021 challenge)" href="https://blog.arusekk.pl/posts/dicectf-2021-ti1337-plusce/"></a>
+</article>
 
 <article class="post-entry"> 
   <header class="entry-header">

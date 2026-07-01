@@ -6,8 +6,15 @@
     <description>Recent content in Posts on Arusekk blog</description>
     <generator>Hugo -- 0.163.3</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 22 Jun 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 01 Jul 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://blog.arusekk.pl/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Day 70 of selling free software</title>
+      <link>https://blog.arusekk.pl/posts/day-70-of-selling-free-software/</link>
+      <pubDate>Wed, 01 Jul 2026 00:00:00 +0000</pubDate>
+      <guid>https://blog.arusekk.pl/posts/day-70-of-selling-free-software/</guid>
+      <description>Uphill battle of selling 1-click Linux installer.</description>
+    </item>
     <item>
       <title>Lossless GIF recompression via exhaustive search</title>
       <link>https://blog.arusekk.pl/posts/lossless-gif-recompression/</link>
