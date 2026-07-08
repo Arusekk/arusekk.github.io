@@ -13,6 +13,9 @@ Come see this beautiful city and have a beer with me!
 
 * [CVE-2023-2234](https://github.com/zephyrproject-rtos/zephyr/security/advisories/GHSA-jcx5-3v9g-xf9j) (RCE in Zephyr BT HCI)
 * [CVE-2024-34083](https://github.com/aio-libs/aiosmtpd/security/advisories/GHSA-wgjv-9j3q-jhg8) (NOSTARTTLS in aiosmtpd)
+* CVE-2026-14346 - TBA
+* CVE-2026-14347 - TBA
+* CVE-2026-14348 - TBA
 
 ## Projects
 
