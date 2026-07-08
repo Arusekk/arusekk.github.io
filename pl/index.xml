@@ -4,7 +4,7 @@
     <title>Blog Aruskka</title>
     <link>https://blog.arusekk.pl/pl/</link>
     <description>Recent content on Blog Aruskka</description>
-    <generator>Hugo -- 0.163.3</generator>
+    <generator>Hugo -- 0.164.0</generator>
     <language>pl</language>
     <lastBuildDate>Fri, 20 Mar 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://blog.arusekk.pl/pl/index.xml" rel="self" type="application/rss+xml" />
@@ -17,6 +17,19 @@
 &lt;a href=&#34;https://github.com/Arusekk#js-contribution-activity&#34;&gt;Lubię&lt;/a&gt; wolne oprogramowanie.
 Mieszkam we Wrocławiu w Polsce.
 Zapraszam do tego pięknego miasta!&lt;/p&gt;
+&lt;h2 id=&#34;błędy-bezpieczeństwa-które-znalazłem&#34;&gt;Błędy bezpieczeństwa, które znalazłem&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/zephyrproject-rtos/zephyr/security/advisories/GHSA-jcx5-3v9g-xf9j&#34;&gt;CVE-2023-2234&lt;/a&gt; (RCE w BT HCI Zephyra)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/aio-libs/aiosmtpd/security/advisories/GHSA-wgjv-9j3q-jhg8&#34;&gt;CVE-2024-34083&lt;/a&gt; (NOSTARTTLS w aiosmtpd)&lt;/li&gt;
+&lt;li&gt;CVE-2026-14346 - wkrótce&lt;/li&gt;
+&lt;li&gt;CVE-2026-14347 - wkrótce&lt;/li&gt;
+&lt;li&gt;CVE-2026-14348 - wkrótce&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;projekty&#34;&gt;Projekty&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/Gallopsled/pwntools&#34;&gt;Pwntools&lt;/a&gt; - narzędzia dla hakerów&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://sr.ht/~arusekk/uglendix&#34;&gt;uglendix&lt;/a&gt; - dystrybucja Plan9/Linux (&lt;a href=&#34;https://11e.iwp9.org&#34;&gt;11. IWP9&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
 &lt;h2 id=&#34;dla-nerdów&#34;&gt;Dla nerdów&lt;/h2&gt;
 &lt;p&gt;Wpisy na tym blogu udostępnione są na licencji Creative Commons &lt;a href=&#34;https://creativecommons.org/licenses/by-sa/4.0/&#34;&gt;BY-SA 4.0&lt;/a&gt;.
 Zbudowałem ten blog przy użyciu &lt;a href=&#34;https://gohugo.io&#34;&gt;Hugo&lt;/a&gt;,
