@@ -126,7 +126,7 @@ into new equipment.
 
 # Summary
 
-Do not buy this thing. If you need a laptop to last even 4 years, buy a [Framework](fmw) or buy a [MNT reform](mntre).
+Do not buy this thing. If you need a laptop to last even 4 years, buy a [Framework][fmw] or buy a [MNT reform][mntre].
 
 [fmw]: https://frame.work
 [mntre]: https://mnt.re
