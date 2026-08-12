@@ -27,11 +27,11 @@ I settled on QEMU, because it is great.
 The ISO needs a lot of RAM (min 3 gigs) for some reason.
 
 ```
-$ qemu-system-x86_64 -m 4G -smp 2 -cpu host -accel kvm -usbdevice tablet -vga virtio -cdrom ~/Pobrane/derive81.iso
+$ qemu-system-x86_64 -m 4G -smp 2 -cpu host -accel kvm -usbdevice tablet -vga virtio -cdrom ~/Downloads/derive81.iso
 ```
 
 `-m 4G` means 4G memory, `-smp 2` means 2 cores, `-cpu host -accel kvm` mean virtualisation (because emulation is slow, kvm requires cpu host),
-`-usbdevice tablet` means better mouse integration, and `-vga virtio` supports /dev/dri/render* which is required for some reason by swc
+`-usbdevice tablet` means better mouse integration, and `-vga virtio` supports `/dev/dri/render*` which is [required for some reason by swc][pr]
 (and by neuswc too).
 If you give it less than 3 GiB, it will panic at best.
 Now you need to wait two minutes or more, because initramfs is quite big and XZ-compressed.
@@ -45,11 +45,11 @@ login: root
 password: derive
 # dtr s                     # dtr, most likely from detour, the source package manager
 # dtr s                     # need to do it twice for some reason, it asks something, so say yes
-# spm add neuswc            # spm is the binary package manager, (neu)swc is the wayland compositor
-# spm add xkeyboard-config  # required by (neu)swc, spm does not handle runtime dependencies as of mid-2026
-# spm add hst               # terminal, otherwise you won't be able to do anything basically
-# spm add go-mono           # some font so that hst does not crash
-# spm add hevel             # the flagship graphical session
+# spc add neuswc            # spc is the binary package manager, (neu)swc is the wayland compositor
+# spc add xkeyboard-config  # required by (neu)swc, spc does not handle runtime dependencies as of mid-2026
+# spc add hst               # terminal, otherwise you won't be able to do anything basically
+# spc add go-mono           # some font so that hst does not crash
+# spc add hevel             # the flagship graphical session
 # swc-launch hevel          # dérive!
 ```
 
@@ -63,7 +63,7 @@ It moves!
 
 There are also cool mouse chords for resizing the windows,
 scrolling all around and stuff.
-It will not look anywhere near [the Hevel demo on @schrub900's channel][mwga],
+It will not look anywhere near [the Hevel demo on @shrub900's channel][mwga],
 but you can certainly get the feel of a desktop that is basically an infinite plane.
 
 Maybe I will record a demo, too.
@@ -75,3 +75,4 @@ Subscribe to my RSS if you want to stay updated.
 [wiki]: https://en.wikipedia.org/wiki/Static_library
 [repo]: https://pkg.derivelinux.org/
 [mwga]: https://youtu.be/CoDwrvK6xxQ?t=177
+[pr]: https://github.com/michaelforney/swc/pull/82
