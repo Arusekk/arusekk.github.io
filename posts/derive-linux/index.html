@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Checking out dérive Linux | Arusekk blog</title>
+<meta name="keywords" content="">
+<meta name="description" content="The missing getting started guide for dérive Linux, how to take a closer look at it.">
+<meta name="author" content="Arusekk">
+<link rel="canonical" href="https://blog.arusekk.pl/posts/derive-linux/">
+<meta name="google-site-verification" content="bYg8j9Mad2AS5t14kMMccNgC-2zDjGk48iuoGhFvXe0">
+<meta name="msvalidate.01" content="561966B916832399DDA58ED4584121A9">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.aeb04085357f24835232aa89766467110fb6da019fa0a790d4d097b3949d7276.css" integrity="sha256-rrBAhTV/JINSMqqJdmRnEQ&#43;22gGfoKeQ1NCXs5SdcnY=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://blog.arusekk.pl/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://blog.arusekk.pl/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://blog.arusekk.pl/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://blog.arusekk.pl/apple-touch-icon.png">
+<link rel="mask-icon" href="https://blog.arusekk.pl/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://blog.arusekk.pl/posts/derive-linux/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:url" content="https://blog.arusekk.pl/posts/derive-linux/">
+  <meta property="og:site_name" content="Arusekk blog">
+  <meta property="og:title" content="Checking out dérive Linux">
+  <meta property="og:description" content="The missing getting started guide for dérive Linux, how to take a closer look at it.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2026-08-12T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-08-12T00:00:00+00:00">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Checking out dérive Linux">
+<meta name="twitter:description" content="The missing getting started guide for dérive Linux, how to take a closer look at it.">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://blog.arusekk.pl/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Checking out dérive Linux",
+      "item": "https://blog.arusekk.pl/posts/derive-linux/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Checking out dérive Linux",
+  "name": "Checking out dérive Linux",
+  "description": "The missing getting started guide for dérive Linux, how to take a closer look at it.",
+  "keywords": [
+    
+  ],
+  "articleBody": "I recently came across dérive, one of the few Linux distros distributing static binaries, and the one most actively maintained (maybe because the contributors are young and have plenty of free time; I hope that the project stays as active in a couple years). And it is heavily inspired by plan9 (something the community calls 9larping). I think this is a great idea overall. Anyway, let’s get to the guide part.\nPrerequisites a 3-button mouse, or a 2-button + scrollwheel mouse, internet (if you are reading this, you are probably good to go), a physical mouse, seriously go grab a mouse, if you only have a touchpad, you will be unable to do anything once the GUI starts. Launching You can download the iso from their official website, or directly from their repository.\nThen you can either boot it on actual hardware, or use a VM. I settled on QEMU, because it is great. The ISO needs a lot of RAM (min 3 gigs) for some reason.\n$ qemu-system-x86_64 -m 4G -smp 2 -cpu host -accel kvm -usbdevice tablet -vga virtio -cdrom ~/Pobrane/derive81.iso -m 4G means 4G memory, -smp 2 means 2 cores, -cpu host -accel kvm mean virtualisation (because emulation is slow, kvm requires cpu host), -usbdevice tablet means better mouse integration, and -vga virtio supports /dev/dri/render* which is required for some reason by swc (and by neuswc too). If you give it less than 3 GiB, it will panic at best. Now you need to wait two minutes or more, because initramfs is quite big and XZ-compressed. ZSTD would be way faster, but also make the ISO bigger. Not judging.\nThen you get to commandline prompt. Type the following commands to get to the graphical session to check it out.\nlogin: root password: derive # dtr s # dtr, most likely from detour, the source package manager # dtr s # need to do it twice for some reason, it asks something, so say yes # spm add neuswc # spm is the binary package manager, (neu)swc is the wayland compositor # spm add xkeyboard-config # required by (neu)swc, spm does not handle runtime dependencies as of mid-2026 # spm add hst # terminal, otherwise you won't be able to do anything basically # spm add go-mono # some font so that hst does not crash # spm add hevel # the flagship graphical session # swc-launch hevel # dérive! Now if everything went fine, you should see a black screen with a cursor. Start by pressing LMB (left mouse button), then also press RMB (right mouse button), and drag across the screen. Congrats, you just opened a terminal. Do it again, somewhere outside the first window. Now click one window, and then click the other one. It moves!\nThere are also cool mouse chords for resizing the windows, scrolling all around and stuff. It will not look anywhere near the Hevel demo on @schrub900’s channel, but you can certainly get the feel of a desktop that is basically an infinite plane.\nMaybe I will record a demo, too. Who knows. Subscribe to my RSS if you want to stay updated.\n",
+  "wordCount" : "523",
+  "inLanguage": "en",
+  "datePublished": "2026-08-12T00:00:00Z",
+  "dateModified": "2026-08-12T00:00:00Z",
+  "author":{
+    "@type": "Person",
+    "name": "Arusekk"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://blog.arusekk.pl/posts/derive-linux/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Arusekk blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://blog.arusekk.pl/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://blog.arusekk.pl/" accesskey="h" title="Arusekk blog (Alt + H)">Arusekk blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                <ul class="lang-switch"><li>|</li>
+                    <li>
+                        <a href="https://blog.arusekk.pl/pl/" title="🇵🇱 PL"
+                            aria-label=":flag_pl: PL">🇵🇱 PL</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://blog.arusekk.pl/" title="Home">
+                    <span>Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://blog.arusekk.pl/about/" title="About">
+                    <span>About</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://blog.arusekk.pl/contact/" title="Contact">
+                    <span>Contact</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://blog.arusekk.pl/blogroll/" title="Blogroll">
+                    <span>Blogroll</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://blog.arusekk.pl/posts/index.xml" title="Feed">
+                    <span>Feed</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      Checking out dérive Linux
+    </h1>
+    <div class="post-description">
+      The missing getting started guide for dérive Linux, how to take a closer look at it.
+    </div>
+    <div class="post-meta"><span title='2026-08-12 00:00:00 +0000 UTC'>August 12, 2026</span>&nbsp;·&nbsp;3 min&nbsp;·&nbsp;Arusekk
+
+</div>
+  </header> 
+  <div class="post-content"><p>I recently came across <a href="https://www.derivelinux.org/">dérive</a>, one of the few Linux distros distributing <a href="https://en.wikipedia.org/wiki/Static_library">static binaries</a>,
+and the one most actively maintained (maybe because the contributors are young and have plenty of free time;
+I hope that the project stays as active in a couple years).
+And it is heavily inspired by plan9 (something the community calls 9larping).
+I think this is a great idea overall.
+Anyway, let&rsquo;s get to the guide part.</p>
+<h2 id="prerequisites">Prerequisites<a hidden class="anchor" aria-hidden="true" href="#prerequisites">#</a></h2>
+<ul>
+<li>a 3-button mouse, or a 2-button + scrollwheel mouse,</li>
+<li>internet (if you are reading this, you are probably good to go),</li>
+<li>a physical mouse,</li>
+<li>seriously go grab a mouse, if you only have a touchpad, you will be unable to do anything once the GUI starts.</li>
+</ul>
+<h2 id="launching">Launching<a hidden class="anchor" aria-hidden="true" href="#launching">#</a></h2>
+<p>You can download the iso from their official website, or <a href="https://pkg.derivelinux.org/">directly from their repository</a>.</p>
+<p>Then you can either boot it on actual hardware, or use a VM.
+I settled on QEMU, because it is great.
+The ISO needs a lot of RAM (min 3 gigs) for some reason.</p>
+<pre tabindex="0"><code>$ qemu-system-x86_64 -m 4G -smp 2 -cpu host -accel kvm -usbdevice tablet -vga virtio -cdrom ~/Pobrane/derive81.iso
+</code></pre><p><code>-m 4G</code> means 4G memory, <code>-smp 2</code> means 2 cores, <code>-cpu host -accel kvm</code> mean virtualisation (because emulation is slow, kvm requires cpu host),
+<code>-usbdevice tablet</code> means better mouse integration, and <code>-vga virtio</code> supports /dev/dri/render* which is required for some reason by swc
+(and by neuswc too).
+If you give it less than 3 GiB, it will panic at best.
+Now you need to wait two minutes or more, because initramfs is quite big and XZ-compressed.
+ZSTD would be way faster, but also make the ISO bigger. Not judging.</p>
+<p>Then you get to commandline prompt.
+Type the following commands to get to the graphical session to check it out.</p>
+<pre tabindex="0"><code>login: root
+password: derive
+# dtr s                     # dtr, most likely from detour, the source package manager
+# dtr s                     # need to do it twice for some reason, it asks something, so say yes
+# spm add neuswc            # spm is the binary package manager, (neu)swc is the wayland compositor
+# spm add xkeyboard-config  # required by (neu)swc, spm does not handle runtime dependencies as of mid-2026
+# spm add hst               # terminal, otherwise you won&#39;t be able to do anything basically
+# spm add go-mono           # some font so that hst does not crash
+# spm add hevel             # the flagship graphical session
+# swc-launch hevel          # dérive!
+</code></pre><p>Now if everything went fine, you should see a black screen with a cursor.
+Start by pressing LMB (left mouse button),
+then also press RMB (right mouse button), and drag across the screen.
+Congrats, you just opened a terminal.
+Do it again, somewhere outside the first window.
+Now click one window, and then click the other one.
+It moves!</p>
+<p>There are also cool mouse chords for resizing the windows,
+scrolling all around and stuff.
+It will not look anywhere near <a href="https://youtu.be/CoDwrvK6xxQ?t=177">the Hevel demo on @schrub900&rsquo;s channel</a>,
+but you can certainly get the feel of a desktop that is basically an infinite plane.</p>
+<p>Maybe I will record a demo, too.
+Who knows.
+Subscribe to my RSS if you want to stay updated.</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://blog.arusekk.pl/">Arusekk blog</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>
