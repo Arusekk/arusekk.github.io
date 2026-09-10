@@ -1,7 +1,7 @@
 ---
 title: Make your own local search engine
 date: 2026-09-10
-description: Challenge: use your insight into local specifics to make a local search engine without a multi-trillion budget.
+description: Challenge - use your insight into local specifics to make a local search engine without a multi-trillion budget.
 ---
 
 ## Alt search
