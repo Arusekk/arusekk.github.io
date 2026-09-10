@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Make your own local search engine | Arusekk blog</title>
+<meta name="keywords" content="">
+<meta name="description" content="Challenge - use your insight into local specifics to make a local search engine without a multi-trillion budget.">
+<meta name="author" content="Arusekk">
+<link rel="canonical" href="https://blog.arusekk.pl/posts/local-search-engine/">
+<meta name="google-site-verification" content="bYg8j9Mad2AS5t14kMMccNgC-2zDjGk48iuoGhFvXe0">
+<meta name="msvalidate.01" content="561966B916832399DDA58ED4584121A9">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.aeb04085357f24835232aa89766467110fb6da019fa0a790d4d097b3949d7276.css" integrity="sha256-rrBAhTV/JINSMqqJdmRnEQ&#43;22gGfoKeQ1NCXs5SdcnY=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://blog.arusekk.pl/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://blog.arusekk.pl/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://blog.arusekk.pl/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://blog.arusekk.pl/apple-touch-icon.png">
+<link rel="mask-icon" href="https://blog.arusekk.pl/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://blog.arusekk.pl/posts/local-search-engine/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:url" content="https://blog.arusekk.pl/posts/local-search-engine/">
+  <meta property="og:site_name" content="Arusekk blog">
+  <meta property="og:title" content="Make your own local search engine">
+  <meta property="og:description" content="Challenge - use your insight into local specifics to make a local search engine without a multi-trillion budget.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2026-09-10T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-09-10T00:00:00+00:00">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Make your own local search engine">
+<meta name="twitter:description" content="Challenge - use your insight into local specifics to make a local search engine without a multi-trillion budget.">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://blog.arusekk.pl/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Make your own local search engine",
+      "item": "https://blog.arusekk.pl/posts/local-search-engine/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Make your own local search engine",
+  "name": "Make your own local search engine",
+  "description": "Challenge - use your insight into local specifics to make a local search engine without a multi-trillion budget.",
+  "keywords": [
+    
+  ],
+  "articleBody": "Alt search I recently discovered all the trend around alternative search engines. First Kagi, then Uruky, then Marginalia. The latter is even AGPL! That’s something.\nBut it turns out they are quite big projects. I was surprised to learn that Marginalia runs Java, which is quite a huge piece of software itself already, to then learn that most such projects run on Apache Hadoop, which I don’t even want to know what it is, certainly something even bigger.\nWhy So Huge I wanted something simpler, to understand almost fully, and potentially make something for my own use, and maybe share it with you, dear reader. Small-scale projects are very important, because you can see the basic principles behind them without needing to set up an HPC cluster with worldwide redundancy and hot failover, partition-tolerant eventual consistency and all that buzzwords. Who needs that, realistically? Just make a boring PHP or Flask script that connects to an SQL database. I decided to use Golang, because PHP is a nightmare to debug, and Python is still slow.\nYes, I get it that once you are successful, every millisecond of downtime costs you millions. But if you are just starting out, who are you even kidding. Sorry to disappoint you, but unless you are doing something dodgy, you don’t even want everybody worldwide to just stop doing whatever they are doing and come to you instantly. You most likely want to get there steadily.\nChasing the cool factor It seems everybody does LLMs now. Even in your fridge there is an LLM-augmented milk jug. So I figured that there must be something to it, and I tried to use some open source ethically sourced piles of numbers to do a very simple purely linguistic task. Something not requiring actual ‘intelligence’ (i.e. understanding), but only choosing the right words. (You can probably see where this is going.)\nExtracting keywords I tried really hard to convince the frontier Polish-language models to produce a list of keywords for each document. So I downloaded ollama, set up support for my AMD GPU via Vulkan (I hate Nvidia with a passion if you haven’t noticed).\nAnd after trying many many times, forcing JSON grammar and schemas (nice idea by the way), it kept printing ‘keywords’ that were not even valid Polish words, but some amalgamations of Czech, Slovak and even Russian (yes, even to the point of mixing different alphabets in a single word, are you surprised?).\nSo I just gave up on stochastic representations. This is too fragile, non-deterministic and numerically instable.\nFortunately the better and simpler answer was already there.\nPostgres has full text search … and it’s great. I wanted to just use it and avoid learning about all the recent advances in vector embeddings and semantic search. I get it, this is all nice, but if it does not even work, then why. Full text keyword search with stemming is (and should be) enough for most people.\nThe big news is postgressql 19, coming out any time now, will have built-in support for Polish stemming rules (which is not a full replacement for actual spelling dictionary, but as usual gets you 90% of the way through in 10% of the code).\nI was wondering, how difficult would it be to set up a local search engine for my region? As it turns out, it took me a week, and I am quite proud of the resulting code. It is elegant and concise.\nSeed URLs I started by grabbing a long seed list of high-quality URLs, so I downloaded Polish small business list for Lower Silesia from CEIDG (at https://dane.biznes.gov.pl/), and after some preprocessing I got a list of actual URLs (some older records are hand-typed from handwritten paper documents, and the typos are… even scary sometimes). The detailed commands are in the project README.\nI then started a scraping job (Bash for + wget) to download a copy of each of these. While it was running, I designed the database scheme to keep all of the data, and wrote a really really simple Go program to visualise the data.\nThis is my first from-scratch golang program and I already like it. I actually recommend you to read all of the code if you never wrote Go.\nHow it works Less than 30 lines of CSS, 20+40 lines of HTML, and 170 of Go. And it supports JSON API responses as well as HTML responses on the same endpoint with no extra code (discriminating by Accept header). Remind me, why don’t we, um, like… you know, write software this way? And it’s not even ugly, and has a dark theme for night owls!\nThere is two routes: / (the front page) and /search (the results page). Each has a form with just one text field. The results page deliberately mimicks early 2000s look of search engines.\n(I do plan on extending it, to show some nice additional information, but just imagine, all MVPs could look like this!)\nTry it out yourself!\nSource code (AGPLv3): https://sr.ht/~arusekk/pgwebsearch Live demo: https://websearch.arusekk.pl\nThe challenge You like it? Let me know, I love reading what you think! Now, I have a challenge for you (actually, two challenges, the first one being updating your RSS feed with this great blog :–D)\nset up a similar local search engine for your region! Be the change you want to see. (Oh, if you happen to post it somewhere, please ping me on fedi so I can answer questions.)\n",
+  "wordCount" : "915",
+  "inLanguage": "en",
+  "datePublished": "2026-09-10T00:00:00Z",
+  "dateModified": "2026-09-10T00:00:00Z",
+  "author":{
+    "@type": "Person",
+    "name": "Arusekk"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://blog.arusekk.pl/posts/local-search-engine/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Arusekk blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://blog.arusekk.pl/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://blog.arusekk.pl/" accesskey="h" title="Arusekk blog (Alt + H)">Arusekk blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                <ul class="lang-switch"><li>|</li>
+                    <li>
+                        <a href="https://blog.arusekk.pl/pl/" title="🇵🇱 PL"
+                            aria-label=":flag_pl: PL">🇵🇱 PL</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://blog.arusekk.pl/" title="Home">
+                    <span>Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://blog.arusekk.pl/about/" title="About">
+                    <span>About</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://blog.arusekk.pl/contact/" title="Contact">
+                    <span>Contact</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://blog.arusekk.pl/blogroll/" title="Blogroll">
+                    <span>Blogroll</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://blog.arusekk.pl/posts/index.xml" title="Feed">
+                    <span>Feed</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      Make your own local search engine
+    </h1>
+    <div class="post-description">
+      Challenge - use your insight into local specifics to make a local search engine without a multi-trillion budget.
+    </div>
+    <div class="post-meta"><span title='2026-09-10 00:00:00 +0000 UTC'>September 10, 2026</span>&nbsp;·&nbsp;5 min&nbsp;·&nbsp;Arusekk
+
+</div>
+  </header> 
+  <div class="post-content"><h2 id="alt-search">Alt search<a hidden class="anchor" aria-hidden="true" href="#alt-search">#</a></h2>
+<p>I recently discovered all the trend around alternative search engines.
+First Kagi, then Uruky, then Marginalia.
+The latter is even AGPL!
+That&rsquo;s something.</p>
+<p>But it turns out they are quite big projects.
+I was surprised to learn that Marginalia runs Java,
+which is quite a huge piece of software itself already,
+to then learn that most such projects run on Apache Hadoop,
+which I don&rsquo;t even want to know what it is, certainly something even bigger.</p>
+<h2 id="why-so-huge">Why So Huge<a hidden class="anchor" aria-hidden="true" href="#why-so-huge">#</a></h2>
+<p>I wanted something simpler, to understand almost fully,
+and potentially make something for my own use,
+and maybe share it with you, dear reader.
+Small-scale projects are very important, because you can see the basic principles behind them
+without needing to set up an HPC cluster with worldwide redundancy and hot failover,
+partition-tolerant eventual consistency and all that buzzwords.
+Who needs that, realistically?
+Just make a boring PHP or Flask script that connects to an SQL database.
+I decided to use Golang, because PHP is a nightmare to debug, and Python is still slow.</p>
+<p>Yes, I get it that once you are successful, every millisecond of downtime costs you millions.
+But if you are just starting out, who are you even kidding.
+Sorry to disappoint you, but unless you are doing something dodgy,
+you don&rsquo;t even want everybody worldwide to just stop doing whatever they are doing
+and come to you instantly. You most likely want to get there steadily.</p>
+<h2 id="chasing-the-cool-factor">Chasing the cool factor<a hidden class="anchor" aria-hidden="true" href="#chasing-the-cool-factor">#</a></h2>
+<p>It seems everybody does LLMs now. Even in your fridge there is an LLM-augmented milk jug.
+So I figured that there must be something to it, and I tried to use some open source
+ethically sourced piles of numbers to do a very simple purely linguistic task.
+Something not requiring actual &lsquo;intelligence&rsquo; (i.e. understanding),
+but only choosing the right words. (You can probably see where this is going.)</p>
+<h2 id="extracting-keywords">Extracting keywords<a hidden class="anchor" aria-hidden="true" href="#extracting-keywords">#</a></h2>
+<p>I tried really hard to convince the <em>frontier</em> Polish-language models to produce a list
+of keywords for each document. So I downloaded ollama, set up support for my AMD GPU
+via Vulkan (I hate Nvidia with a passion if you haven&rsquo;t noticed).</p>
+<p>And after trying many many times, forcing JSON grammar and schemas (nice idea by the way),
+it kept printing &lsquo;keywords&rsquo; that were not even valid
+Polish words, but some amalgamations of Czech, Slovak and even Russian
+(yes, even to the point of mixing different alphabets in a single word,
+are you surprised?).</p>
+<p>So I just gave up on stochastic representations.
+This is too fragile, non-deterministic and numerically instable.</p>
+<p>Fortunately the better and simpler answer was already there.</p>
+<h2 id="postgres-has-full-text-search">Postgres has full text search<a hidden class="anchor" aria-hidden="true" href="#postgres-has-full-text-search">#</a></h2>
+<p>&hellip; and it&rsquo;s great. I wanted to just use it and avoid learning about all the recent advances
+in vector embeddings and semantic search.
+I get it, this is all nice, but if it does not even work, then why.
+Full text keyword search with stemming is (and should be) enough for most people.</p>
+<p>The big news is postgressql 19, coming out any time now,
+will have built-in support for Polish stemming rules
+(which is not a full replacement for actual spelling dictionary,
+but as usual gets you 90% of the way through in 10% of the code).</p>
+<p>I was wondering, how difficult would it be to set up a local search engine for my region?
+As it turns out, it took me a week, and I am quite proud of the resulting code.
+It is elegant and concise.</p>
+<h2 id="seed-urls">Seed URLs<a hidden class="anchor" aria-hidden="true" href="#seed-urls">#</a></h2>
+<p>I started by grabbing a long seed list of high-quality URLs,
+so I downloaded Polish small business list for Lower Silesia from CEIDG (at <a href="https://dane.biznes.gov.pl/">https://dane.biznes.gov.pl/</a>),
+and after some preprocessing I got a list of actual URLs
+(some older records are hand-typed from handwritten paper documents,
+and the typos are&hellip; even scary sometimes).
+The detailed commands are in the project README.</p>
+<p>I then started a scraping job (Bash for + wget) to download a copy of each of these.
+While it was running, I designed the database scheme to keep all of the data,
+and wrote a really really simple Go program to visualise the data.</p>
+<p>This is my first from-scratch golang program and I already like it.
+I actually recommend you to read all of the code if you never wrote Go.</p>
+<h2 id="how-it-works">How it works<a hidden class="anchor" aria-hidden="true" href="#how-it-works">#</a></h2>
+<p>Less than 30 lines of CSS, 20+40 lines of HTML, and 170 of Go.
+And it supports JSON API responses as well as HTML responses
+on the same endpoint with no extra code (discriminating by Accept header).
+Remind me, why don&rsquo;t we, um, like&hellip; you know, write software this way?
+And it&rsquo;s not even ugly, and has a dark theme for night owls!</p>
+<p>There is two routes: / (the front page) and /search (the results page).
+Each has a form with just one text field.
+The results page deliberately mimicks early 2000s look of search engines.</p>
+<p>(I do plan on extending it, to show some nice additional information,
+but just imagine, all MVPs could look like this!)</p>
+<p>Try it out yourself!</p>
+<p>Source code (AGPLv3): <a href="https://sr.ht/~arusekk/pgwebsearch">https://sr.ht/~arusekk/pgwebsearch</a>
+Live demo: <a href="https://websearch.arusekk.pl">https://websearch.arusekk.pl</a></p>
+<h2 id="the-challenge">The challenge<a hidden class="anchor" aria-hidden="true" href="#the-challenge">#</a></h2>
+<p>You like it? Let me know, I love reading what you think! Now, I have a challenge for you
+(actually, two challenges, the first one being updating your RSS feed with this great blog :&ndash;D)</p>
+<ul>
+<li>set up a similar local search engine for your region!
+Be the change you want to see.</li>
+</ul>
+<p>(Oh, if you happen to post it somewhere, please ping me on fedi so I can answer questions.)</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://blog.arusekk.pl/">Arusekk blog</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>
