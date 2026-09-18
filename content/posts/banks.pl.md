@@ -4,6 +4,10 @@ date: 2025-12-17
 description: Notatki o różnicach między moimi bankami i ich warunkami/ofertami
 ---
 
+(Wyjaśnienie - 2026-09-18: w artykule są linki i kody polecające. Dodałem je już po napisaniu artykułu,
+nie były nigdy jego celem, ale sam chciałbym dostać kilka takich kuponów,
+kiedy zaczynałem.)
+
 No więc skończyłem niedawno te 26 lat, więc płacę już prawdziwe podatki, i...
 Oj banki, banki.
 Fundament współczesnego świata - ekonomii opartej na zadłużeniu
@@ -51,7 +55,7 @@ W skrócie — pozbycie się całej wygody z robienia zakupów przez internet.
 
 To trochę jak zastąpienie czytania książki w czytelni czytaniem czyjejś gazety przez ramię w tramwaju.
 
-## Santander
+## Erste (do niedawna Santander)
 
 Mój pierwszy bank, jeszcze jako Bezbek (Bank Zachodni WBK)
 i wciąż mój główny bank.
@@ -91,6 +95,8 @@ warunek 10k wpływów i mieć darmowe konto premium
 (ćwiczenie dla Czytelnika - zlecenie stałe na przelew albo dwa, albo cztery,
 pewnie najlepiej z kontami oszczędnościowymi, żeby ta gotówka nie więdła).
 
+(Jeśli przypadkiem chcesz tam mieć konto, a nie masz, to kod ode mnie: BH3BTA)
+
 ## Alior
 
 Zacząłem korzystać z powodu konta oszczędnościowego „na nowe środki”.
@@ -106,6 +112,9 @@ Unikatowe plusy:
 
 Unikatowe minusy:
 - chyba nadal wymuszają hasło maskowane.
+
+(Nie mogę znaleźć polecajki. Jak umiesz obsługiwać ich apkę,
+to proszę podeślij instrukcję, skąd się to wyciąga.)
 
 Matma:
 - zaokrąglenia arytmetyczne,
@@ -129,6 +138,10 @@ Unikatowe minusy:
 Matma:
 - zaokrąglenia na niekorzyść klienta,
 - kapitalizacja miesięczna liczy dni.
+
+(Jeśli przypadkiem chcesz mieć konto w ING to możesz im dać znać,
+że jesteś ode mnie kodem 411RYD.
+Jak dostanę więcej to się podzielę.)
 
 ## Millennium
 
@@ -209,9 +222,15 @@ Tak samo GrapheneOS i Lineage.
 Łajdactwo.
 Przynajmniej działa na moim /e/OS.
 
-Korzystam z karty kredytowej (wciąż odradzam), bo dają 0.1% moneyback, ale chcę zamknąć, bo Santander daje lepszy.
+Korzystam z karty kredytowej (wciąż odradzam), bo dają 0.1% moneyback, ale chcę zamknąć, bo ~~Santander~~ Erste daje lepszy.
+
+Jeśli chcesz się zarejestrować z polecajką, żebym coś z tego miał
+(i chyba Ty też, nie pamiętam, coś było, chyba 250 PLN, ale jak nic nie dostaniesz a ja tak,
+to napisz i się podzielimy),
+to [możesz wejść przez mój link polecający][revo-polecajka].
 
 [revolulz]: https://consumerrights.wiki/w/Revolut_blocked_access_for_users_with_custom_OS
+[revo-polecajka]: https://revolut.com/referral/?referral-code=arkadi0hat!SEP2-26-AR-H3&geo-redirect
 
 ## ZEN.COM
 
@@ -235,6 +254,10 @@ i trudno wyliczyć te „zyski”.
 Prawdopodobnie żeby większość tych „zysków” wyprowadzić w gotówkę,
 trzeba by kupować jakieś towary i je odsprzedawać, fuj.
 Chociaż może jako przedsiębiorca coś by można wykręcić.
+
+(Jeśli akurat chcesz założyć ZEN swojej firmie, to też mam polecajkę - [kliknij tutaj][zen-polecajka])
+
+[zen-polecajka]: https://get.zen.com/business/809eaf9d-aca4-42ed-8e4c-f645b0fe30bd?referralCode=M491Q7490R&dealid=1
 
 ## XTB
 
@@ -270,7 +293,7 @@ A w ogóle to polecam bloga [„Finanse bardzo osobiste”][miwuc].
 Jeśli chodzi o gotówkę, polecam wypłaty blikiem, albo z domowych bankomatów.
 Wszystkie euronety i inne planet cashe drą pasy z użytkowników kart
 (25,- za wypłatę 50 złotych??).
-Jeśli chodzi o główny bank, to polecam Santander, bo zawsze można z niego przelewać dowolne pieniądze dalej.
+Jeśli chodzi o główny bank, to polecam ~~Santander~~ Erste, bo zawsze można z niego przelewać dowolne pieniądze dalej.
 Nie ma żadnych ograniczeń na rejestrację numeru w bliku, więc można go wykorzystywać jako darmowy przelew natychmiastowy
 (niestety ma limit 1000 zł / przelew).
 Znany trik polega na tym, że loguje się na konto docelowe, ustawia nr telefonu, a potem wchodzi na źródłowe
