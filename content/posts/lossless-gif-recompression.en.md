@@ -37,7 +37,7 @@ But none of the steps above mention actual compression itself!
 
 ## ZopfliPNG
 
-I heard about zopflipng. PNG uses DEFLATE, the compression format known from ZIP and GZIP. This is a variant of LZ77 with Huffman coding.
+I heard about [zopflipng][zopflipng]. PNG uses DEFLATE, the compression format known from ZIP and GZIP. This is a variant of LZ77 with Huffman coding.
 In this format, and quite commonly in other compression formats, there are many different ways to represent the exact same uncompressed data.
 
 DEFLATE is also the name of an algorithm that generates a reasonably compressed input,
@@ -49,14 +49,15 @@ some of them are even better than the largest 'compression level'.
 Now, Zopfli is the software that performs an exhaustive search across all possible syntactically valid streams,
 in order to find what is actually the smallest number of bits to represent the given uncompressed input.
 Then ZopfliPNG is the variant that does it for PNG and also explores the PNG pixel encodings.
-We need to be careful here, because finding the actual best compression for an arbitrary format can be equivalent to solving the halting problem.
+We need to be careful here, because finding the actual best compression for an arbitrary format can be equivalent to solving the halting problem
+(what if your compression format were almost Turing-complete?).
 But the compression formats we talk about today have some helpful invariants guaranteeing the search always halts.
 
 [rzip]: https://research.swtch.com/zip
 
 ## ZopfliGIF?
 
-There is no ZopfliGIF, but there is flexiGIF, which does almost exactly that.
+There is no ZopfliGIF, but there is [flexiGIF][flexi], which does almost exactly that.
 It is obviously a wonderful tool, and you should go use it on all your GIFs.
 But the thing is, GIF uses a very different compression scheme - LZW.
 And I found a baffling remark in its README, saying that it can leave files larger than the original algorithm.
@@ -170,3 +171,5 @@ going from A* to dynamic programming to a hybrid search with pruning.
 Hope it is useful to you!
 
 [zgif]: https://git.sr.ht/~arusekk/zgif/
+[zopflipng]: https://github.com/google/zopfli/blob/master/README.zopflipng
+[flexi]: https://create.stephan-brumme.com/flexigif-lossless-gif-lzw-optimization/
