@@ -168,6 +168,21 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">Rant on TLS PKI
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>I like modern cryptography. I quite understand some bits of it, since I had an excellent university course on that, and while the rest feels pretty magic, these are my thoughts that should be understood by anyone.
+My general opinion is that encryption is a mistake in most cases, but digital signatures make true sense to me, and I will focus on them.
+If someone gives you much data, they know more than you. This is true especially for big integer numbers. Remember RSA? This is the (still widely used) encryption algorithm that assumes that while it is trivial to know n = pq when you know two primes p and q, it is really unlikely and/or computationally expensive to guess p and q from n.
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2022-07-21 00:00:00 +0000 UTC'>July 21, 2022</span>&nbsp;·&nbsp;5 min&nbsp;·&nbsp;Arusekk</footer>
+  <a class="entry-link" aria-label="post link to Rant on TLS PKI" href="https://blog.arusekk.pl/posts/rant-on-tls-pki/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">Die, IPv4, just die already!!!1!
     </h2>
   </header>
@@ -224,23 +239,6 @@ I heard that Wine supports GTK3 themes, so I wanted to check it out, but there w
   </div>
   <footer class="entry-footer"><span title='2021-02-18 00:00:00 +0000 UTC'>February 18, 2021</span>&nbsp;·&nbsp;3 min&nbsp;·&nbsp;Arusekk</footer>
   <a class="entry-link" aria-label="post link to Average day of a FLOSS developer" href="https://blog.arusekk.pl/posts/average-day-of-a-floss-developer/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">TI 1337 Plus CE (DiceCTF 2021 challenge)
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>TI 1337 Plus CE Originally published in justCatTheFish repo.
-Writeup written by Arusekk. Solved by Arusekk, haqpl and Disconnect3d.
-We included the task files in ./taskfiles/.
-In the task, you have to take control over a patched (sandboxed) CPython. The patch checks the opcodes against a blacklist, and if any matches, it goes exit(1). It also forbids using variables beginning with _.
-The checks are perfored only if current environment is missing a secret COMPILE_SECRET and the current frame’s code object has co_filename set to anything other than a predefined string (FROZEN_SECRET).
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2021-02-10 00:00:00 +0000 UTC'>February 10, 2021</span>&nbsp;·&nbsp;6 min&nbsp;·&nbsp;Arusekk</footer>
-  <a class="entry-link" aria-label="post link to TI 1337 Plus CE (DiceCTF 2021 challenge)" href="https://blog.arusekk.pl/posts/dicectf-2021-ti1337-plusce/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

