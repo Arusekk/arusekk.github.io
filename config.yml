@@ -14,7 +14,7 @@ languages:
     params:
       homeInfoParams:
         title: Witaj
-        content: Jestem Arusekk.  Nie jakieś prawdziwe imię, ale w sieci jestem najbardziej znany właśnie pod takim.  To jest blog, na którym piszę o programowaniu i dzielę się niepopularnymi opiniami.  Póki co niektóre wpisy są dostępne tylko po polsku, inne tylko po angielsku.
+        content: Jestem Arusekk.  Nie jakieś prawdziwe imię, ale w sieci jestem najbardziej znany właśnie pod takim.  To jest blog, na którym piszę o programowaniu i dzielę się niepopularnymi opiniami.  Póki co niektóre wpisy są dostępne tylko po polsku, inne tylko po angielsku. Obecnie pracuję nad [instalacją Linuksa bez USB](https://www.1clicklinux.org/pl). Warte sprawdzenia.
     menu:
       main:
         - name: Wpisy
@@ -32,7 +32,7 @@ params:
   dateFormat: ":date_long"
   homeInfoParams:
     title: Welcome
-    content: My name is Arusekk.  Not a real name, but I find it the most real for me online.  This is a blog where I write about computer programming and some unpopular opinions.  Currently some posts are available in English only, some are in Polish only.
+    content: My name is Arusekk.  Not a real name, but I find it the most real for me online.  This is a blog where I write about computer programming and some unpopular opinions.  Currently some posts are available in English only, some are in Polish only.  Currently working on improving [Linux installation without USB](https://1clicklinux.org). Make sure to check it out!
 
   analytics:
     google:
