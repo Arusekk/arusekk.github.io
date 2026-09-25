@@ -332,7 +332,7 @@ I will include the official Arch Linux repo and the sr.ht Alpine Linux repo, bec
 - 2026-08-29: version 1.9.3 published, not fixing the vulnerability
 - 2026-08-31: I hint in a post that I am working on [a software forge that pays project owners](https://hub.copyleft.market)
 - 2026-09-02: [PR with the final fix pushed](https://github.com/pycontribs/ansi2html/pull/263) and 1.9.4 published, fixing the vulnerability
-- 2026-09-04: [Alpine Linux updates ansi2html to a fixed version](https://gitlab.alpinelinux.org/alpine/aports/-/commit/b176d1a582dd9343b1c848cf5bee68f52398f239)
+- 2026-09-04: [Alpine Linux updates ansi2html to a fixed version](https://gitlab.alpinelinux.org/alpine/aports/-/commit/b176d1a582dd9343b1c848cf5bee68f52398f239)[^7]
 - 2026-09-05: [Arch Linux updates ansi2html to a fixed version](https://gitlab.archlinux.org/archlinux/packaging/packages/python-ansi2html/-/commit/775cf971799e445bc07ae133b1e2b7d312ba71ed)
 - 2026-09-xx: Life happens, I took a bit more work to sustain myself
 - 2026-09-23: This blog post (actually -09-24 because it's past midnight by now. sigh.)
@@ -342,6 +342,7 @@ Note how even carefully auditing ansi2html would not save SourceHut, unless redo
 builds.sr.ht remained vulnerable for (almost exactly) 4,5 years.
 
 [^6]: Totally not an impulse buy. 'To get a sense of being invested.' I tell to myself.
+[^7]: To be exact, SourceHut is officially supported only on Alpine 3.22, which does not ship py3-ansi2html, hence sr.ht-apkbuilds
 
 [a2h-tru]: https://github.com/pycontribs/ansi2html/issues/259
 [a2h-trupr]: https://github.com/pycontribs/ansi2html/pull/260
