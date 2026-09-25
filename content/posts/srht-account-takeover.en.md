@@ -299,7 +299,7 @@ Don't do this, kids. No excitement justifies it.
 [cvss-woes]: https://daniel.haxx.se/blog/2025/01/23/cvss-is-dead-to-us/
 [cvss-calc]: https://www.first.org/cvss/calculator/4.0#CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:P/VC:H/VI:H/VA:N/SC:L/SI:L/SA:N/AU:Y/R:I/V:C/RE:L/U:Red
 
-## Vulnerabile versions
+## Vulnerable versions
 
 `ansi2html >=1.7.0, <1.9.4`, `builds.sr.ht >= 0.40.0, < 0.105.1`
 
