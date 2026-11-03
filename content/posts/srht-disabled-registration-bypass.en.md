@@ -1,5 +1,5 @@
 ---
-title: SourceHut disabled registration bypass | CVE-2026-?
+title: SourceHut disabled registration bypass | CVE-2026-121728
 date: 2026-11-03
 description: You could register accounts on SourceHut instances who disabled registration
 ---
@@ -108,7 +108,7 @@ curl -v -b cookie.txt $META/register/step2 \
 - 2026-10-?? - I keep thinking about what I wrote back on 2026-08-13
 - 2026-11-02 - disclosure to SourceHut's security mailing list
 - 2026-11-03 - ack, fix lands, downstream notified, this post published, CVE id requested from VulnCheck
-- 2026-11-xx - TBA if CVE number is assigned
+- 2026-11-03 - VulnCheck assigns CVE-2026-121728
 - some day, profit?
 
 ## Summary
