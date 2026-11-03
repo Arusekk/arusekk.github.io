@@ -9,7 +9,7 @@
     <lastBuildDate>Tue, 03 Nov 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://blog.arusekk.pl/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>SourceHut disabled registration bypass | CVE-2026-?</title>
+      <title>SourceHut disabled registration bypass | CVE-2026-121728</title>
       <link>https://blog.arusekk.pl/posts/srht-disabled-registration-bypass/</link>
       <pubDate>Tue, 03 Nov 2026 00:00:00 +0000</pubDate>
       <guid>https://blog.arusekk.pl/posts/srht-disabled-registration-bypass/</guid>
